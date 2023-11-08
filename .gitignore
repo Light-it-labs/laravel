@@ -22,3 +22,4 @@ yarn-error.log
 /reports/
 /tsconfig.tsbuildinfo
 /.phpunit.cache/
+.DS_STORE
