@@ -1,8 +1,4 @@
-import Input from "../components/Input"
-import { MailIcon } from "@/icons/MailIcon"
-import { UserIcon } from "@/icons/UserIcon"
-import { PadlockIcon } from "@/icons/PadlockIcon"
-import { Button } from "@/components/Button"
+import SignUpForm from "@/components/SignUpForm"
 
 export const SignUp = () => {
     return(
@@ -20,11 +16,7 @@ export const SignUp = () => {
                     You can <a href="#" className="text-red-500 ">Login here!</a>
                 </p>
 
-                <Input info="Mail"><MailIcon /></Input>
-                <Input info="Username" type="text"><UserIcon /></Input>
-                <Input info="Password" type="password"><PadlockIcon /></Input>
-                <Input info="Confirmation password" type="password"><PadlockIcon /></Input>
-                <Button text="Register"/>
+                <SignUpForm />
             </div>
         </div>
     );
