@@ -27,8 +27,7 @@ class RegisterUserRequest extends FormRequest
         return [
             'mail' => ['required', 'unique:users,mail'],
             'username' => ['required', 'unique:users,username'],
-            'password' => ['required'],
-            'password_confirmation' => ['required', 'same:password']
+            'password' => ['required', 'confirmed'],
         ];
     }
 
@@ -38,7 +37,6 @@ class RegisterUserRequest extends FormRequest
         $dto->mail = $this->input('mail');
         $dto->username = $this->input('username');
         $dto->password = $this->input('password');
-        $dto->password_confirmation = $this->input('password_confirmation');
 
         return $dto;
     }

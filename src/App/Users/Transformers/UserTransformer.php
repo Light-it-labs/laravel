@@ -19,7 +19,6 @@ class UserTransformer extends Transformer
             'mail' => $user->mail,
             'username' => $user->username,
             'password' => $user->password,
-            'password_confirmation' => $user->password_confirmation,
         ];
     }
 }

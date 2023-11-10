@@ -1,4 +1,5 @@
-import { Route, Routes} from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+
 // import type { Location } from "react-router-dom";
 
 // import { Layout } from "@/layout";
@@ -9,17 +10,16 @@ import { SignUp } from "@/screens/SignUp";
 import { ROUTES } from "./routes";
 
 export const Router = () => {
-//   const location = useLocation();
-//   const { previousLocation } = (location.state ?? {}) as {
-//     previousLocation?: Location;
-//   };
+  //   const location = useLocation();
+  //   const { previousLocation } = (location.state ?? {}) as {
+  //     previousLocation?: Location;
+  //   };
 
   return (
     <div>
-        <Routes>
-            <Route element={<SignUp />} path={ROUTES.signUp} />
-        </Routes>
-
+      <Routes>
+        <Route element={<SignUp />} path={ROUTES.signUp} />
+      </Routes>
     </div>
     // <div>
     //   {/* PUBLIC ONLY ROUTES */}

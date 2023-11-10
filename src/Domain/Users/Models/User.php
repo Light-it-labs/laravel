@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Domain\Users\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as AuthUser;
 
-class User extends Model
+class User extends AuthUser
 {
     protected $guarded = [];
 }
