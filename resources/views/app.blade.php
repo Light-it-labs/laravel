@@ -329,6 +329,6 @@
   <body class="antialiased">
     <div id="app"></div>
 
-    @viteReactRefresh @vite('resources/js/app.tsx')
+    @viteReactRefresh @vite('resources/js/App.tsx')
   </body>
 </html>
