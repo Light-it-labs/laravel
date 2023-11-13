@@ -1,10 +1,8 @@
 import type { AxiosError } from "axios";
 
 import { useUserStore } from "@/stores";
-import { getAPI } from "../axios";
+import { privateAPI } from "../axios";
 import { memoizedRefreshToken } from "./refreshToken";
-
-const privateAPI = getAPI();
 
 export const errorResponse = async (error: AxiosError) => {
   const config = error?.config;

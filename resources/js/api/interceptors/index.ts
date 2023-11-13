@@ -1,2 +1,2 @@
 export * from "./privateRequest";
-export * from "./unauthenticatedResponse";
+export * from "./errorResponse";

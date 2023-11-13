@@ -2,10 +2,6 @@ export const ROUTES = {
   base: "/",
   login: "/login",
   projects: "/projects",
-  deployments: "/deployments",
-  activity: "/activity",
-  domains: "/domains",
-  usage: "/usage",
-  settings: "/settings",
+  users: "/users",
   notFound: "*",
 } as const;

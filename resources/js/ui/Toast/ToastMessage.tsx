@@ -46,7 +46,9 @@ export const ToastMessage = ({ toast, onClose }: ToastMessageProps) => {
                   {toast.title}
                 </p>
               )}
-              <p className="text-sm text-gray-500">{toast.message}</p>
+              {toast.message && (
+                <p className="text-sm text-gray-500">{toast.message}</p>
+              )}
             </div>
             <div className="ml-4 flex flex-shrink-0">
               <button

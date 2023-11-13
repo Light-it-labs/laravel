@@ -1,8 +1,9 @@
 import { Link, useLocation } from "react-router-dom";
 
-import { icons, Logo } from "@/components";
+import { Logo } from "@/components";
 import { ROUTES } from "@/router";
 import { useUserStore } from "@/stores";
+import { icons } from "@/ui";
 import { tw } from "@/utils";
 
 const navigation = [
@@ -12,29 +13,9 @@ const navigation = [
     icon: <icons.FolderIcon className="w-6" />,
   },
   {
-    path: ROUTES.deployments,
-    label: "Deployments",
-    icon: <icons.ServerIcon className="w-6" />,
-  },
-  {
-    path: ROUTES.activity,
-    label: "Activity",
-    icon: <icons.SignalIcon className="w-6" />,
-  },
-  {
-    path: ROUTES.domains,
-    label: "Domains",
-    icon: <icons.GlobeAltIcon className="w-6" />,
-  },
-  {
-    path: ROUTES.usage,
-    label: "Usage",
-    icon: <icons.ChartBarSquareIcon className="w-6" />,
-  },
-  {
-    path: ROUTES.settings,
-    label: "Settings",
-    icon: <icons.Cog6ToothIcon className="w-6" />,
+    path: ROUTES.users,
+    label: "Users",
+    icon: <icons.UserGroupIcon className="w-6" />,
   },
 ] as const;
 
@@ -46,7 +27,7 @@ export const Sidebar = ({
   const { pathname: currentPath } = useLocation();
   const setToken = useUserStore((state) => state.setToken);
   return (
-    <div className="flex h-screen grow flex-col gap-y-5 overflow-y-auto bg-black/50 px-6 ring-1 ring-white/5">
+    <div className="flex h-screen grow flex-col gap-y-12 overflow-y-auto bg-black/50 px-6 ring-1 ring-white/5">
       <div className="mx-auto flex h-16 shrink-0 py-6 pr-2">
         <Logo className="h-11" />
       </div>

@@ -4,6 +4,8 @@ import { persist } from "zustand/middleware";
 export interface User {
   email: string;
   name: string;
+  picture: string;
+  role: "standard" | "admin";
 }
 
 export interface UserStoreState {

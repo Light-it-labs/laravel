@@ -26,11 +26,11 @@ export const Router = () => {
         <Route element={<ProtectedRoute expected="loggedIn" />}>
           <Route element={<Layout />}>
             <Route
-              element={<Navigate to={ROUTES.settings} />}
+              element={<Navigate to={ROUTES.users} />}
               path={ROUTES.base}
             />
 
-            <Route element={<Settings />} path={ROUTES.settings} />
+            <Route element={<Settings />} path={ROUTES.users} />
 
             <Route path={ROUTES.notFound} element={<NotFound />} />
           </Route>

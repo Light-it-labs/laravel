@@ -10,11 +10,8 @@ const baseConfig = {
   },
 };
 
-const publicAPI = axios.create(baseConfig);
-const privateAPI = axios.create(baseConfig);
+export const publicAPI = axios.create(baseConfig);
+export const privateAPI = axios.create(baseConfig);
 
 privateAPI.interceptors.request.use(privateRequest);
 privateAPI.interceptors.response.use((response) => response, errorResponse);
-
-export const getAPI = ({ isPrivate } = { isPrivate: true }) =>
-  isPrivate ? privateAPI : publicAPI;

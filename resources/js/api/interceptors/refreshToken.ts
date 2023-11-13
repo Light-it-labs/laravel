@@ -2,15 +2,13 @@ import mem from "mem";
 
 import { useUserStore } from "@/stores";
 import type { ServiceResponse } from "../api.types";
-import { getAPI } from "../axios";
+import { privateAPI } from "../axios";
 
 export interface UserToken {
   refreshToken: string;
   tokenType: string;
   expiresIn: number;
 }
-
-const privateAPI = getAPI();
 
 const refreshToken = async () => {
   const { setToken, clearUser } = useUserStore.getState();
