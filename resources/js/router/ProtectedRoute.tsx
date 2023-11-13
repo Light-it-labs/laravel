@@ -1,13 +1,15 @@
 import type { ReactNode } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-import { useUserStore } from "@/stores";
+import { useUserStore } from "@/stores/useUserStore";
 import { ROUTES } from "./routes";
 
-type UserState = "loggedIn" | "loggedOut";
+type UserState = "loggedOut" | "standard" | "admin";
+
 const HOME = {
-  loggedIn: ROUTES.base,
   loggedOut: ROUTES.login,
+  admin: ROUTES.users,
+  standard: ROUTES.home,
 } as const;
 
 export const ProtectedRoute = ({
@@ -18,7 +20,7 @@ export const ProtectedRoute = ({
   expected: UserState | UserState[];
 }) => {
   const userState = useUserStore((state) =>
-    state.token !== null ? "loggedIn" : "loggedOut",
+    state.token ? state.user?.role ?? "standard" : "loggedOut",
   );
 
   if (!expected.includes(userState)) {

@@ -49,7 +49,7 @@ export const Login = () => {
       picture: string;
     }>(credential);
 
-    setUser({ email, name, picture, role: "standard" });
+    setUser({ email, name, picture, role: "admin" });
     googleLoginMutation({ email, name, googleToken: credential });
   };
 
