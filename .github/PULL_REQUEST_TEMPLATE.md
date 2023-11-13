@@ -28,7 +28,7 @@ This pr requires the following packages to be installed:
 - `package2`
 The packages are used for `reason1` and `reason2`.
 
-Because of this, you must run `pnpm i` before starting.
+Because of this, you must run `npm i` before starting.
 -->
 
 ## 📷 Screenshots
