@@ -2,5 +2,9 @@
 module.exports = {
   content: ["./resources/**/*.{js,ts,jsx,tsx}"],
   plugins: [require("@tailwindcss/typography")],
-  theme: { extend: {} },
+  theme: {
+    fontFamily: {
+      sans: ["Inter", "sans-serif"],
+    },
+  },
 };
