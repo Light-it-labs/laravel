@@ -3,7 +3,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "format": "prettier --write \"./resources/js/**/*.{js,cjs,mjs,ts,tsx,md,json}\" --ignore-path ../../.gitignore",
+    "format:check": "prettier --check \"./resources/js/**/*.{js,cjs,mjs,ts,tsx,md,json}\" --ignore-path ../../.gitignore",
+    "format:write": "prettier --write \"./resources/js/**/*.{js,cjs,mjs,ts,tsx,md,json}\" --ignore-path ../../.gitignore",
     "type-check": "tsc --noEmit",
     "lint": "eslint . --fix",
     "spell-checker": "cspell . --no-progress",

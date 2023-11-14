@@ -75,6 +75,7 @@ export const Sidebar = ({
                 className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-white hover:bg-gray-800"
               >
                 <img
+                  referrerPolicy="no-referrer"
                   className="h-8 w-8 rounded-full bg-gray-800"
                   src={user.picture}
                   alt={user.name}
