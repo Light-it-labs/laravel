@@ -1,9 +1,9 @@
-/** @typedef  {import("prettier").Config} PrettierConfig */
-/** @typedef {import("prettier-plugin-tailwindcss").PluginOptions} TailwindConfig */
 /** @typedef  {import("@ianvs/prettier-plugin-sort-imports").PluginConfig} SortImportsConfig */
+/** @typedef  {import("prettier").Config} PrettierConfig */
+/** @typedef  {{ tailwindConfig: string }} TailwindConfig */
 
-/** @type { PrettierConfig | SortImportsConfig | TailwindConfig  } */
-module.exports = {
+/** @type { PrettierConfig | SortImportsConfig | TailwindConfig } */
+const config = {
   arrowParens: "always",
   printWidth: 80,
   singleQuote: false,
@@ -28,3 +28,5 @@ module.exports = {
   importOrderParserPlugins: ["typescript", "jsx", "decorators-legacy"],
   importOrderTypeScriptVersion: "4.4.0",
 };
+
+module.exports = config;
