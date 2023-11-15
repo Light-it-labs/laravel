@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
-import { icons } from "@/components";
+import { icons } from "@/ui";
 import { Sidebar } from "./Sidebar";
 
 export const ResponsiveSidebar = () => {

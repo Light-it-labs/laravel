@@ -1,4 +1,7 @@
-import type { QueryClient } from "@tanstack/react-query";
+import type {
+  InvalidateQueryFilters,
+  QueryClient,
+} from "@tanstack/react-query";
 
 import type { Domain, SubDomains } from "./domains";
 
@@ -20,22 +23,25 @@ type QueryKeySignature<TSubDomains extends string, TParams> = readonly [
  */
 export function invalidateDomains(
   queryClient: QueryClient,
-  ...queries: (Domain | [domain: Domain, id?: string | number | null])[]
+  ...queries: (
+    | Domain
+    | [domain: Domain, id?: string | number | null | object]
+  )[]
 ) {
   queries.forEach((arg) => {
     const [domain, id] = typeof arg === "string" ? [arg] : arg;
-    void queryClient.invalidateQueries([domain, ALL]);
+    void queryClient.invalidateQueries([domain, ALL] as InvalidateQueryFilters);
     if (id !== undefined && id !== null && id !== ALL) {
-      void queryClient.invalidateQueries([domain, id]);
+      void queryClient.invalidateQueries([
+        domain,
+        id,
+      ] as InvalidateQueryFilters);
     }
   });
 
   const subDomainsToInvalidate = queries.map((q) =>
     typeof q === "string" ? q : q[0],
   );
-  console.log(subDomainsToInvalidate);
-
-  console.log("invalidateDomains called with queries: ", queries);
 
   // Here we search all the cache for subdomains and clear those out because we have no way to check
   // if the data that was mutated will affect these endpoints or not
@@ -48,8 +54,7 @@ export function invalidateDomains(
         typeof subDomains === "string" &&
         subDomainsToInvalidate.some((d) => subDomains.split(",").includes(d))
       ) {
-        console.log("Invalidating queryKey:", queryKey);
-        void queryClient.invalidateQueries(queryKey);
+        void queryClient.invalidateQueries(queryKey as InvalidateQueryFilters);
       }
     });
 }
@@ -68,20 +73,12 @@ export function invalidateQuery(
 ) {
   const paramsId = id ?? ALL;
 
-  console.log(
-    "invalidateQuery called with queryName: ",
-    queryName,
-    " and id: ",
-    id,
-  );
-
   queryClient
     .getQueryCache()
     .getAll()
     .forEach(({ queryKey }) => {
       if (queryName === queryKey.at(3) && paramsId === queryKey.at(1)) {
-        console.log("Invalidating queryKey:", queryKey);
-        void queryClient.invalidateQueries(queryKey);
+        void queryClient.invalidateQueries(queryKey as InvalidateQueryFilters);
       }
     });
 }
