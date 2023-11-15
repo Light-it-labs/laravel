@@ -1,35 +1,17 @@
 import axios from "axios";
 
-import { useUserStore } from "@/stores";
+import { env } from "@/env";
+import { errorResponse, privateRequest } from "./interceptors";
 
-export const api = axios.create({
-  // baseURL: env.VITE_API_URL,
+const baseConfig = {
+  baseURL: env.VITE_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
-});
-
-export const getAuthHeaders = () => {
-  const userToken = useUserStore.getState().token;
-
-  return {
-    Authorization: `Bearer ${userToken}`,
-  };
 };
 
-export interface ServiceResponse<T> {
-  status: number;
-  success: boolean;
-  data: T;
-  pagination?: {
-    count: number;
-    total: number;
-    perPage: number;
-    currentPage: number;
-    totalPages: number;
-    links: {
-      previous: string;
-      next: string;
-    };
-  };
-}
+export const publicAPI = axios.create(baseConfig);
+export const privateAPI = axios.create(baseConfig);
+
+privateAPI.interceptors.request.use(privateRequest);
+privateAPI.interceptors.response.use((response) => response, errorResponse);

@@ -1,35 +1,60 @@
-# Light It Pull Request Template ⚡⚡⚡
+# ⚡ TaskTitle - [###](https://app.clickup.com/t/###) ⚡
 
-_Resolve_: [closes -#](https://app.clickup.com/t/ticket_id)
+## 💻 What type of change is this?
 
-## Description and Requires ⭐
+- [ ] 💎 Feature
+- [ ] 🐛 Bug Fix
+- [ ] 📝 Documentation Update
+- [ ] 🎨 Styling
+- [ ] 🧑‍💻 Code Refactor
+- [ ] 🔥 Performance Improvements
+- [ ] ✅ Test
+- [ ] 🤖 Build / CI
+
+## ⭐ Description
 
 <!--
-Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.
+Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context.
 Example:
 -->
 
-Ex. I've added support for authentication to implement Key Result 2 of OKR1. It includes
-model, table, controller and test. For more background, see ticket #CU-834794.
-
-- [ ] This change requires a database update or migration
-- [ ] This change requires a documentation update
-
-## Proof of Test (optional) 📷
-
-Include Screenshots if is necessary.
-
-### How Has This Been Tested? ❓
+I've added support for authentication to implement Key Result 2 of OKR1. It includes model, table, controller and test.
 
 <!--
-Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration
+ONLY ADD SECTION IF A NEW PACKAGE IS ADDED
+### Requires
+This pr requires the following packages to be installed:
+- `package1`
+- `package2`
+The packages are used for `reason1` and `reason2`.
+
+Because of this, you must run `npm i` before starting.
 -->
 
-- [ ] Test A
-- [ ] Test B
+## 📷 Screenshots
 
-## Checklist ✅
+<!--
+Please include before AND after screenshots of the change.
+-->
 
+### Before
+
+### After
+
+## 💬 Comments
+
+<!--
+Please describe any known issues, bugs, or unintended consequences with this change. Also, please include any additional comments you feel are relevant to the reviewer.
+-->
+
+This pr is blocked by #1234.
+Im awaiting backend changes to be merged before I can complete this, etc.
+This
+
+## ✅ Checklist
+
+- [ ] This PR can be merged (it is not a draft, work in progress, or blocked on another PR)
+- [ ] I have tested this change locally in multiple screen sizes
 - [ ] My code follows the style guidelines of this project
 - [ ] I have performed a self-review of my own code
 - [ ] I have made corresponding changes to the documentation

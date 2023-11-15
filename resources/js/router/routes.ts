@@ -1,11 +1,11 @@
 export const ROUTES = {
   base: "/",
   login: "/login",
-  projects: "/projects",
-  deployments: "/deployments",
-  activity: "/activity",
-  domains: "/domains",
-  usage: "/usage",
-  settings: "/settings",
+  home: "/home",
+  users: "/users",
   notFound: "*",
+} as const;
+
+export const MODAL_ROUTES = {
+  successModal: "/success-modal",
 } as const;

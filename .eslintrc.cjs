@@ -40,12 +40,7 @@ const config = {
     ],
     "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
   },
-  ignorePatterns: [
-    "**/.eslintrc.cjs",
-    "**/*.config.js",
-    "**/*.config.cjs",
-    "resources/js/app.js",
-  ],
+  ignorePatterns: ["**/.eslintrc.cjs", "**/*.config.js", "**/*.config.cjs"],
   reportUnusedDisableDirectives: true,
   globals: {
     React: "writable",
