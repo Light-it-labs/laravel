@@ -1,6 +1,6 @@
 import { MODAL_ROUTES } from "@/router";
 import { useNavigateModal } from "@/router/useNavigateModal";
-import { Button } from "@/ui/Button";
+import { Button } from "@/ui";
 
 export function Home() {
   const navigateModal = useNavigateModal();
@@ -16,8 +16,8 @@ export function Home() {
         <li>item</li>
         <li>item</li>
       </ul>
-      <Button onClick={() => navigateModal(MODAL_ROUTES.successModal)}>
-        I open the success modal
+      <Button onClick={() => navigateModal(MODAL_ROUTES.exampleModal)}>
+        I open the example modal
       </Button>
     </div>
   );

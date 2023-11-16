@@ -7,5 +7,6 @@ export const ROUTES = {
 } as const;
 
 export const MODAL_ROUTES = {
-  successModal: "/success-modal",
+  exampleModal: "/example-modal",
+  userForm: "/user-form",
 } as const;
