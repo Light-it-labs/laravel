@@ -8,4 +8,5 @@ export const ROUTES = {
 
 export const MODAL_ROUTES = {
   exampleModal: "/example-modal",
+  userForm: "/user-form",
 } as const;

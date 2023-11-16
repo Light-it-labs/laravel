@@ -40,11 +40,12 @@ interface CreateUserParams {
 }
 
 export const createUser = {
-  mutation: async (user: CreateUserParams) => {
-    const response = await privateAPI.post<ServiceResponse<User>>(
-      "/users",
-      user,
-    );
+  mutation: async (params: CreateUserParams) => {
+    const { passwordConfirmation, ...rest } = params;
+    const response = await privateAPI.post<ServiceResponse<User>>("/users", {
+      ...rest,
+      password_confirmation: passwordConfirmation,
+    });
 
     return response.data.data;
   },

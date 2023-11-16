@@ -1,11 +1,7 @@
+import type { ModalProps } from "@/shared.types";
 import { Modal } from "@/ui";
 
-interface ExampleModalProps {
-  show: boolean;
-  onClose: () => void;
-}
-
-export const ExampleModal = ({ show, onClose }: ExampleModalProps) => {
+export const ExampleModal = ({ show, onClose }: ModalProps) => {
   return (
     <Modal
       show={show}
