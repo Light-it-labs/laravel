@@ -28,12 +28,13 @@
     "mockery/mockery": "^1.4.4",
     "nunomaduro/collision": "^7.0",
     "pestphp/pest": "^2.6",
-    "pestphp/pest-plugin-laravel": "^2.0",
+    "pestphp/pest-plugin-laravel": "^2.2",
     "phpunit/phpunit": "^10.2",
     "ramsey/conventional-commits": "^1.5",
     "spatie/laravel-ignition": "^2.0",
     "webgriffe/captainhook": "^2.1",
-    "worksome/coding-style": "^2.5"
+    "worksome/coding-style": "^2.5",
+    "worksome/request-factories": "^3.2"
   },
   "autoload": {
     "psr-4": {
