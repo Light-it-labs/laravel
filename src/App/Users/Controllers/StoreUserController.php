@@ -17,6 +17,6 @@ class StoreUserController
 
         return responder()
             ->success($user, UserTransformer::class)
-            ->respond();
+            ->respond(JsonResponse::HTTP_CREATED);
     }
 }
