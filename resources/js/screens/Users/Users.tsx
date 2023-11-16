@@ -1,3 +1,9 @@
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
+import { deleteUser, getUsersQuery } from "@/api";
+import { MODAL_ROUTES } from "@/router";
+import { useNavigateModal } from "@/router/useNavigateModal";
+import { Button, errorToast, icons, useToastStore } from "@/ui";
 import { tw } from "@/utils";
 
 const statuses = {
@@ -109,19 +115,63 @@ const activityItems = [
     date: "2 weeks ago",
     dateTime: "2023-01-09T08:45",
   },
-];
+] as const;
 
 export const Users = () => {
+  const { pushToast } = useToastStore();
+  const queryClient = useQueryClient();
+
+  const { data: users, isLoading: isLoadingUsers } = useQuery({
+    ...getUsersQuery(),
+    select: (users) =>
+      users.map((user, idx) => {
+        const selectedItem =
+          activityItems[idx % activityItems.length] ?? activityItems[0];
+
+        return {
+          ...selectedItem,
+
+          user: {
+            imageUrl: selectedItem.user.imageUrl,
+            name: user.name,
+            id: user.id,
+          },
+        };
+      }),
+  });
+
+  const { mutate: deleteUserMutation } = useMutation({
+    mutationFn: deleteUser.mutation,
+    onSuccess: (_, requestedId) => {
+      deleteUser.invalidates(queryClient, { userId: requestedId });
+      void pushToast({
+        type: "success",
+        title: "Success",
+        message: "User successfully deleted!",
+      });
+    },
+    onError: errorToast,
+  });
+
+  const navigateModal = useNavigateModal();
+
   return (
-    <div className="bg-gray-900 py-10">
-      <h2 className="px-4 text-base font-semibold leading-7 text-white sm:px-6 lg:px-8">
+    <div className="bg-gray-900">
+      <h2 className="flex items-center justify-between px-4 py-9 text-base font-semibold leading-7 text-white sm:px-6 lg:px-8">
         Latest activity
+        <Button
+          variant="secondary"
+          onClick={() => navigateModal(MODAL_ROUTES.userForm)}
+        >
+          Create user
+        </Button>
       </h2>
-      <table className="mt-6 w-full whitespace-nowrap text-left">
+      <table className="w-full whitespace-nowrap text-left">
         <colgroup>
           <col className="w-full sm:w-4/12" />
           <col className="lg:w-4/12" />
           <col className="lg:w-2/12" />
+          <col className="lg:w-1/12" />
           <col className="lg:w-1/12" />
           <col className="lg:w-1/12" />
         </colgroup>
@@ -157,10 +207,25 @@ export const Users = () => {
             >
               Deployed at
             </th>
+            <th
+              scope="col"
+              className="hidden py-2 pl-0 pr-4 text-right font-semibold sm:table-cell sm:pr-6 lg:pr-8"
+            >
+              <span className="sr-only">Action</span>
+            </th>
           </tr>
         </thead>
         <tbody className="divide-y divide-white/5">
-          {activityItems.map((item) => (
+          {isLoadingUsers && (
+            <tr className="h-full items-center">
+              <td colSpan={5}>
+                <div className="flex justify-center p-9">
+                  <icons.SpinnerIcon />
+                </div>
+              </td>
+            </tr>
+          )}
+          {users?.map((item) => (
             <tr key={item.commit}>
               <td className="py-4 pl-4 pr-8 sm:pl-6 lg:pl-8">
                 <div className="flex items-center gap-x-4">
@@ -210,6 +275,14 @@ export const Users = () => {
               </td>
               <td className="hidden py-4 pl-0 pr-4 text-right text-sm leading-6 text-gray-400 sm:table-cell sm:pr-6 lg:pr-8">
                 <time dateTime={item.dateTime}>{item.date}</time>
+              </td>
+              <td className="hidden py-4 pl-0 pr-4 text-right text-sm leading-6 text-gray-400 sm:table-cell sm:pr-6 lg:pr-8">
+                <Button
+                  variant="tertiary"
+                  onClick={() => deleteUserMutation(item.user.id)}
+                >
+                  <icons.TrashIcon className="h-5 w-5" />
+                </Button>
               </td>
             </tr>
           ))}
