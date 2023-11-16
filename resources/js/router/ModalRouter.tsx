@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { Transition, TransitionGroup } from "react-transition-group";
 
-import { SuccessModal } from "@/modals";
+import { ExampleModal, UserModal } from "@/modals";
 import { MODAL_ROUTES } from "./routes";
 
 export const ModalRouter = ({ showModal }: { showModal: boolean }) => {
@@ -26,8 +26,12 @@ export const ModalRouter = ({ showModal }: { showModal: boolean }) => {
             <div ref={nodeRef}>
               <Routes location={location}>
                 <Route
-                  path={`${MODAL_ROUTES.successModal}`}
-                  element={<SuccessModal show={show} onClose={goBack} />}
+                  path={`${MODAL_ROUTES.exampleModal}`}
+                  element={<ExampleModal show={show} onClose={goBack} />}
+                />
+                <Route
+                  path={`${MODAL_ROUTES.userForm}`}
+                  element={<UserModal show={show} onClose={goBack} />}
                 />
               </Routes>
             </div>
