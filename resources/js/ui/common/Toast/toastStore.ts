@@ -63,7 +63,7 @@ export const useToastStore = create<ToastStore>((set, get) => ({
       return state;
     });
 
-    await asyncTimeout(600);
+    await asyncTimeout(500);
 
     set((state) => ({
       toasts: state.toasts.filter((toast) => toast.id !== id),
