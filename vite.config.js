@@ -1,3 +1,4 @@
+import { sentryVitePlugin } from "@sentry/vite-plugin";
 /* eslint-disable import/no-extraneous-dependencies */
 import react from "@vitejs/plugin-react";
 import laravel from "laravel-vite-plugin";
@@ -20,5 +21,13 @@ export default defineConfig({
       },
       name: "blade",
     },
+    sentryVitePlugin({
+      org: "testing-hg",
+      project: "php-laravel",
+    }),
   ],
+
+  build: {
+    sourcemap: true,
+  },
 });
