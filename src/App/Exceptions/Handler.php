@@ -7,6 +7,7 @@ namespace App\Exceptions;
 use Flugg\Responder\Exceptions\Handler as ExceptionHandler;
 use Flugg\Responder\Exceptions\Http\HttpException;
 use Illuminate\Support\Str;
+use Sentry\Laravel\Integration;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
@@ -49,6 +50,7 @@ class Handler extends ExceptionHandler
     public function register(): void
     {
         $this->reportable(function (Throwable $e) {
+            Integration::captureUnhandledException($e);
         });
     }
 

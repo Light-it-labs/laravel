@@ -33,6 +33,9 @@
     "laravel",
     "laravelsail",
     "lightranet",
+    "livewire",
+    "Livewire",
+    "LIVEWIRE",
     "macvim",
     "magento",
     "mailgun",
@@ -73,6 +76,7 @@
     "websockets",
     "Worksome",
     "xdebug",
+    "yourserver",
     "zustand"
   ]
 }
