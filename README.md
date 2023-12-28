@@ -264,7 +264,7 @@ Sentry is a developer-first error tracking and performance monitoring platform. 
 
 **DISCLAIMER**: If you see this in your network tab, it may be due to the browser you're using. This screenshot was taken from the Arc browser, which made it seem as if something was missing, while on the Google browser the request is successful.
 
-![Alt text](image.png)
+![Sentry request error](image.png)
 
 ## HTTP Codes References
 
