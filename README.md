@@ -33,6 +33,7 @@ This step is not necessary when you use Docker.
     - Php ECS
     - Rector Php
     - XDebug
+    - Sentry
   - Single Action and Clean Controllers
   - Request Classes
   - Strict Mode
@@ -251,6 +252,15 @@ The web page is using a clockwork as debugbar, it is similar to debugbar from la
 Full documentation of clockwork in this [link](https://underground.works/clockwork/).
 
 It is mandatory to install plugin of clockwork in your browser check this [link](https://chrome.google.com/webstore/detail/clockwork/dmggabnehkmmfmdffgajcflpdjlnoemp/related?hl=es)
+
+## Sentry
+
+Sentry is a developer-first error tracking and performance monitoring platform. Errors are logged both from the frontend and backend. In order to get it up and running, you need to follow these steps:
+
+1. Create an account [here](https://sentry.io)
+2. Create a project within an organization
+3. Copy the DSN provided below "Configure SDK" and paste it in your `.env`'s `SENTRY_LARAVEL_DSN`
+4. You can test your configuration using `sail artisan sentry:test`
 
 ## HTTP Codes References
 
