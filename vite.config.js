@@ -34,11 +34,13 @@ export default ({ mode }) => {
   const env = process.env;
 
   if (env) {
+    const sentryAuthToken = env.VITE_SENTRY_AUTH_TOKEN;
     const sentryOrg = env.VITE_SENTRY_ORGANIZATION;
     const sentryProject = env.VITE_SENTRY_PROJECT;
     
-    if (sentryOrg && sentryProject) {
+    if (sentryAuthToken && sentryOrg && sentryProject) {
       config.plugins.push(sentryVitePlugin({
+        authToken: sentryAuthToken,
         org: sentryOrg,
         project: sentryProject,
       }));
