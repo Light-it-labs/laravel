@@ -2,32 +2,48 @@ import { sentryVitePlugin } from "@sentry/vite-plugin";
 /* eslint-disable import/no-extraneous-dependencies */
 import react from "@vitejs/plugin-react";
 import laravel from "laravel-vite-plugin";
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import checker from "vite-plugin-checker";
 
-export default defineConfig({
-  plugins: [
-    laravel({
-      input: ["resources/css/app.css", "resources/js/App.tsx"],
-      refresh: true,
-    }),
-    react(),
-    checker({ typescript: true }),
-    {
-      handleHotUpdate({ file, server }) {
-        if (file.endsWith(".blade.php")) {
-          server.ws.send({ path: "*", type: "full-reload" });
-        }
-      },
-      name: "blade",
-    },
-    sentryVitePlugin({
-      org: "testing-hg",
-      project: "php-laravel",
-    }),
-  ],
+export default ({ mode }) => {
+  process.env = {...process.env, ...loadEnv(mode, process.cwd())};
 
-  build: {
-    sourcemap: true,
-  },
-});
+  const config = {
+    plugins: [
+      laravel({
+        input: ["resources/css/app.css", "resources/js/App.tsx"],
+        refresh: true,
+      }),
+      react(),
+      checker({ typescript: true }),
+      {
+        handleHotUpdate({ file, server }) {
+          if (file.endsWith(".blade.php")) {
+            server.ws.send({ path: "*", type: "full-reload" });
+          }
+        },
+        name: "blade",
+      },
+    ],
+  
+    build: {
+      sourcemap: true,
+    },
+  };
+
+  const env = process.env;
+
+  if (env) {
+    const sentryOrg = env.VITE_SENTRY_ORGANIZATION;
+    const sentryProject = env.VITE_SENTRY_PROJECT;
+    
+    if (sentryOrg && sentryProject) {
+      config.plugins.push(sentryVitePlugin({
+        org: sentryOrg,
+        project: sentryProject,
+      }));
+    }
+  }
+
+  return defineConfig(config);
+}
