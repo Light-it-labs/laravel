@@ -1,6 +1,7 @@
 {
   "ignorePaths": [
     "bootstrap/cache",
+    "CHANGELOG.md",
     "cspell.json",
     "composer.json",
     "docker-compose.yml",
@@ -51,6 +52,7 @@
     "Npkj",
     "Nuno",
     "nunomaduro",
+    "roundrobin",
     "PAPERTRAIL",
     "Parens",
     "passw",
