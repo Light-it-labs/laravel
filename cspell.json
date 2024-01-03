@@ -11,6 +11,9 @@
     "vendor"
   ],
   "words": [
+    "Dispatchable",
+    "Queueable",
+    "Mailables",
     "autoload",
     "Autoloaded",
     "autoloading",
