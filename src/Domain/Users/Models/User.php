@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Domain\Users\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -74,4 +76,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * @return Attribute<string, string>
+     */
+    public function email(): Attribute
+    {
+        return Attribute::make(
+            function (mixed $value) {
+                /** @var string $value */
+
+                return strtolower($value);
+            },
+            function (mixed $value) {
+                /** @var string $value */
+
+                return strtolower($value);
+            },
+        );
+    }
 }
