@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace {{ namespace }};
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class {{ class }}
+class TestController
 {
     //
 }
