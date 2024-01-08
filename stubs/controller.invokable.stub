@@ -8,9 +8,6 @@ use Illuminate\Http\Request;
 
 class {{ class }}
 {
-    /**
-     * Handle the incoming request.
-     */
     public function __invoke(Request $request)
     {
         //
