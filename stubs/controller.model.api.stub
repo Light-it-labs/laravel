@@ -5,10 +5,9 @@ declare(strict_types=1);
 namespace {{ namespace }};
 
 use {{ namespacedModel }};
-use {{ rootNamespace }}Http\Controllers\Controller;
 use {{ namespacedRequests }}
 
-class {{ class }} extends Controller
+class {{ class }}
 {
     /**
      * Display a listing of the resource.

@@ -5,11 +5,10 @@ declare(strict_types=1);
 namespace {{ namespace }};
 
 use {{ namespacedModel }};
-use {{ rootNamespace }}Http\Controllers\Controller;
 use {{ namespacedParentModel }};
 use Illuminate\Http\Request;
 
-class {{ class }} extends Controller
+class {{ class }}
 {
     /**
      * Display a listing of the resource.
