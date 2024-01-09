@@ -2,44 +2,61 @@
 
 declare(strict_types=1);
 
+use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
+
 namespace {{ namespace }};
 
 use Illuminate\Http\Request;
 
 class {{ class }}
 {
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function create()
+    public function create(): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function show(string $id)
+    public function show(string $id): View
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function edit(string $id)
+    public function edit(string $id): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function destroy(string $id)
+    public function destroy(string $id): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 }

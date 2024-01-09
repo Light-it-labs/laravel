@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
+
 namespace {{ namespace }};
 
 use {{ namespacedModel }};
@@ -10,38 +13,52 @@ use Illuminate\Http\Request;
 
 class {{ class }}
 {
-    public function index({{ parentModel }} ${{ parentModelVariable }})
+    public function index({{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function create({{ parentModel }} ${{ parentModelVariable }})
+    public function create({{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function store(Request $request, {{ parentModel }} ${{ parentModelVariable }})
+    public function store(Request $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function show({{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }})
+    public function show({{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): View
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function edit({{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }})
+    public function edit({{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function update(Request $request, {{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }})
+    public function update(Request $request, {{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function destroy({{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }})
+    public function destroy({{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 }

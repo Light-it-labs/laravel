@@ -23,16 +23,16 @@ class {{ class }} extends Mailable
 
     public function envelope(): Envelope
     {
-        return new Envelope(
-            subject: '{{ subject }}',
-        );
+        return responder()
+            ->success()
+            ->respond(new Envelope(subject: '{{ subject }}'));
     }
 
     public function content(): Content
     {
-        return new Content(
-            view: 'view.name',
-        );
+        return responder()
+            ->success()
+            ->respond(new Content(view: 'view.name'));
     }
 
     /**
@@ -40,6 +40,8 @@ class {{ class }} extends Mailable
      */
     public function attachments(): array
     {
-        return [];
+        return responder()
+            ->success()
+            ->respond([]);
     }
 }

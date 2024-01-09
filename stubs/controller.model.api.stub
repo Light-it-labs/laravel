@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
+
 namespace {{ namespace }};
 
 use {{ namespacedModel }};
@@ -9,28 +12,38 @@ use {{ namespacedRequests }}
 
 class {{ class }}
 {
-    public function index()
+    public function index(): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function store({{ storeRequest }} $request)
+    public function store({{ storeRequest }} $request): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function show({{ model }} ${{ modelVariable }})
+    public function show({{ model }} ${{ modelVariable }}): View
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }})
+    public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }}): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function destroy({{ model }} ${{ modelVariable }})
+    public function destroy({{ model }} ${{ modelVariable }}): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 }

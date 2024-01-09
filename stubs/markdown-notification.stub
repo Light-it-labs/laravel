@@ -23,12 +23,16 @@ class {{ class }} extends Notification
      */
     public function via(object $notifiable): array
     {
-        return ['mail'];
+        return responder()
+            ->success()
+            ->respond(['mail']);
     }
 
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage)->markdown('{{ view }}');
+        return responder()
+            ->success()
+            ->respond((new MailMessage)->markdown('{{ view }}'));
     }
 
     /**
@@ -36,8 +40,8 @@ class {{ class }} extends Notification
      */
     public function toArray(object $notifiable): array
     {
-        return [
-            //
-        ];
+        return responder()
+            ->success()
+            ->respond([]);
     }
 }

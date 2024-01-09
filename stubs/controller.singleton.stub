@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
+
 namespace {{ namespace }};
 
 use Illuminate\Http\Request;
@@ -18,19 +21,25 @@ class {{ class }}
         abort(404);
     }
 
-    public function show()
+    public function show(): View
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function edit()
+    public function edit(): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function update(Request $request)
+    public function update(Request $request): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
     public function destroy(): never
