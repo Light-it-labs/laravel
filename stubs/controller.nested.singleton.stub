@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use Illuminate\Http\JsonResponse;
-use Illuminate\View\View;
-
 namespace {{ namespace }};
 
+use Illuminate\Contracts\View\View as ViewContract;
+use Illuminate\Http\JsonResponse;
+use Illuminate\View\View;
 use {{ namespacedModel }};
 use Illuminate\Http\Request;
 use {{ namespacedParentModel }};
@@ -23,24 +23,26 @@ class {{ class }}
         abort(404);
     }
 
-    public function show({{ parentModel }} ${{ parentModelVariable }}): View
+    public function show({{ parentModel }} ${{ parentModelVariable }}): ViewContract
     {
-        return responder()
-            ->success()
-            ->respond();
+        return View::make('{{ parentModelVariablePlural }}.show', [
+            '{{ parentModelVariable }}' => ${{ parentModelVariable }}
+        ]);
     }
 
-    public function edit({{ parentModel }} ${{ parentModelVariable }}): JsonResponse
+    public function edit({{ parentModel }} ${{ parentModelVariable }}): ViewContract
     {
-        return responder()
-            ->success()
-            ->respond();
+        return View::make('{{ parentModelVariablePlural }}.edit', [
+            '{{ parentModelVariable }}' => ${{ parentModelVariable }}
+        ]);
     }
 
     public function update(Request $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
+        ${{ parentModelVariable }}->update($request->validated());
+
         return responder()
-            ->success()
+            ->success(${{ parentModelVariable }})
             ->respond();
     }
 

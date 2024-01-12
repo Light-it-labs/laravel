@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-use Illuminate\Http\JsonResponse;
-use Illuminate\View\View;
-
 namespace {{ namespace }};
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class {{ class }}
@@ -16,7 +14,7 @@ class {{ class }}
         abort(404);
     }
 
-    public function show(): View
+    public function show(): JsonResponse
     {
         return responder()
             ->success()
@@ -26,7 +24,9 @@ class {{ class }}
     public function update(Request $request): JsonResponse
     {
         return responder()
-            ->success()
+            ->success([
+                'message' => 'Record updated successfully.'
+            ])
             ->respond();
     }
 

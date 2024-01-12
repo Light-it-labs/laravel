@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-use Illuminate\Http\JsonResponse;
-use Illuminate\View\View;
-
 namespace {{ namespace }};
 
+use Illuminate\Http\JsonResponse;
 use {{ namespacedModel }};
 use Illuminate\Http\Request;
 use {{ namespacedParentModel }};
@@ -18,18 +16,19 @@ class {{ class }}
         abort(404);
     }
 
-    public function show({{ parentModel }} ${{ parentModelVariable }}): View
+    public function show({{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
         return responder()
-            ->success()
+            ->success(${{ parentModelVariable }})
             ->respond();
-
     }
 
     public function update(Request $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
+        ${{ parentModelVariable }}->update($request->validated());
+
         return responder()
-            ->success()
+            ->success(${{ parentModelVariable }})
             ->respond();
     }
 

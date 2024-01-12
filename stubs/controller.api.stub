@@ -2,15 +2,14 @@
 
 declare(strict_types=1);
 
-use Illuminate\Http\JsonResponse;
-
 namespace {{ namespace }};
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class {{ class }}
 {
-    public function index(): JsonResponse;
+    public function index(): JsonResponse
     {
         return responder()
             ->success()
@@ -20,8 +19,10 @@ class {{ class }}
     public function store(Request $request): JsonResponse
     {
         return responder()
-            ->success()
-            ->respond();
+            ->success([
+                "message" => "Record successfully created."
+            ])
+            ->respond(JsonResponse::HTTP_CREATED);
     }
 
     public function show(string $id): JsonResponse
@@ -34,7 +35,9 @@ class {{ class }}
     public function update(Request $request, string $id): JsonResponse
     {
         return responder()
-            ->success()
+            ->success([
+                "message" => "Record successfully updated."
+            ])
             ->respond();
     }
 
@@ -42,6 +45,6 @@ class {{ class }}
     {
         return responder()
             ->success()
-            ->respond();
+            ->respond(JsonResponse::HTTP_NO_CONTENT);
     }
 }

@@ -2,48 +2,41 @@
 
 declare(strict_types=1);
 
-use Illuminate\Http\JsonResponse;
-use Illuminate\View\View;
-
 namespace {{ namespace }};
+
+use Illuminate\Http\JsonResponse;
+use Illuminate\Contracts\View\View as ViewContract;
+use Illuminate\View\View;
 
 use Illuminate\Http\Request;
 
 class {{ class }}
 {
-    public function index(): JsonResponse
+    public function index(): ViewContract
     {
-        return responder()
-            ->success()
-            ->respond();
+        return View::make('index');
     }
 
-    public function create(): JsonResponse
+    public function create(): ViewContract
     {
-        return responder()
-            ->success()
-            ->respond();
+        return View::make('create');
     }
 
     public function store(Request $request): JsonResponse
     {
         return responder()
             ->success()
-            ->respond();
+            ->respond(JsonResponse::HTTP_CREATED);
     }
 
     public function show(string $id): View
     {
-        return responder()
-            ->success()
-            ->respond();
+        return View::make('show');
     }
 
-    public function edit(string $id): JsonResponse
+    public function edit(string $id): ViewContract
     {
-        return responder()
-            ->success()
-            ->respond();
+        return View::make('edit');
     }
 
     public function update(Request $request, string $id): JsonResponse
@@ -57,6 +50,6 @@ class {{ class }}
     {
         return responder()
             ->success()
-            ->respond();
+            ->respond(JsonResponse::HTTP_NO_CONTENT);
     }
 }

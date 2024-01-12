@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-use Illuminate\Http\JsonResponse;
-use Illuminate\View\View;
-
 namespace {{ namespace }};
 
+use Illuminate\Http\JsonResponse;
 use {{ namespacedModel }};
 use {{ namespacedParentModel }};
 use Illuminate\Http\Request;
@@ -16,35 +14,40 @@ class {{ class }}
     public function index({{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
         return responder()
-            ->success()
+            ->success(${{ parentModelVariable }}->{{ modelVariablePlural }}()->paginate())
             ->respond();
     }
 
     public function store(Request $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
+    ${{ modelVariable }} = ${{ parentModelVariable }}->{{ modelVariablePlural }}()->save($request->validated());
         return responder()
-            ->success()
-            ->respond();
+            ->success(${{ modelVariable }})
+            ->respond(JsonResponse::HTTP_CREATED);
     }
 
-    public function show({{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): View
+    public function show({{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): JsonResponse
     {
         return responder()
-            ->success()
+            ->success(${{ modelVariable }})
             ->respond();
     }
 
     public function update(Request $request, {{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): JsonResponse
     {
+        ${{ modelVariable }}->update($request->validated());
+
         return responder()
-            ->success()
+            ->success(${{ modelVariable }})
             ->respond();
     }
 
     public function destroy({{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): JsonResponse
     {
+        ${{ modelVariable }}->delete();
+
         return responder()
             ->success()
-            ->respond();
+            ->respond(JsonResponse::HTTP_NO_CONTENT);
     }
 }

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use Illuminate\Http\JsonResponse;
-use Illuminate\View\View;
-
 namespace {{ namespace }};
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View as ViewContract;
+use Illuminate\View\View;
 
 class {{ class }} 
 {
@@ -21,24 +21,22 @@ class {{ class }}
         abort(404);
     }
 
-    public function show(): View
+    public function show(): ViewContract
     {
-        return responder()
-            ->success()
-            ->respond();
+        return View::make('show');
     }
 
-    public function edit(): JsonResponse
+    public function edit(): ViewContract
     {
-        return responder()
-            ->success()
-            ->respond();
+        return View::make('edit');
     }
 
     public function update(Request $request): JsonResponse
     {
         return responder()
-            ->success()
+            ->success([
+                'message' => 'Record updated successfully.'
+            ])
             ->respond();
     }
 
