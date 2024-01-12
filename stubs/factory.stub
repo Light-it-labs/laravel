@@ -13,8 +13,8 @@ class {{ factory }}Factory extends Factory
 {
     public function definition(): array
     {
-        return responder()
-            ->success()
-            ->respond([]);
+        return [
+            //
+        ];
     }
 }

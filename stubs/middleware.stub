@@ -15,8 +15,6 @@ class {{ class }}
      */
     public function handle(Request $request, Closure $next): Response
     {
-        return responder()
-            ->success()
-            ->respond($next($request));
+        return $next($request);
     }
 }

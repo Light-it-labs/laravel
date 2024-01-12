@@ -15,8 +15,8 @@ class {{ class }} extends FormRequest
 
     public function rules(): array
     {
-        return responder()
-            ->success()
-            ->respond([]);
+        return [
+            //
+        ];
     }
 }

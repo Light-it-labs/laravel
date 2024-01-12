@@ -14,8 +14,6 @@ class {{ class }} extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return responder()
-            ->success()
-            ->respond(parent::toArray($request));
+        return parent::toArray($request);
     }
 }

@@ -17,8 +17,6 @@ class {{ class }} extends Component
 
     public function render(): View|Closure|string
     {
-        return responder()
-            ->success()
-            ->respond({{ view }});
+        return {{ view }};
     }
 }

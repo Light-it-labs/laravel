@@ -12,50 +12,36 @@ class {{ class }}
 {
     public function viewAny({{ user }} $user): bool
     {
-        return responder()
-            ->success()
-            ->respond(false);
+        //
     }
 
     public function view({{ user }} $user, {{ model }} ${{ modelVariable }}): bool
     {
-        return responder()
-            ->success()
-            ->respond(false);
+        //
     }
 
     public function create({{ user }} $user): bool
     {
-        return responder()
-            ->success()
-            ->respond(false);
+        //
     }
 
     public function update({{ user }} $user, {{ model }} ${{ modelVariable }}): bool
     {
-        return responder()
-            ->success()
-            ->respond(false);
+        //
     }
 
     public function delete({{ user }} $user, {{ model }} ${{ modelVariable }}): bool
     {
-        return responder()
-            ->success()
-            ->respond(false);
+        //
     }
 
     public function restore({{ user }} $user, {{ model }} ${{ modelVariable }}): bool
     {
-        return responder()
-            ->success()
-            ->respond(false);
+        //
     }
 
     public function forceDelete({{ user }} $user, {{ model }} ${{ modelVariable }}): bool
     {
-        return responder()
-            ->success()
-            ->respond(false);
+        //
     }
 }

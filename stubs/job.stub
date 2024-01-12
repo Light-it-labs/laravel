@@ -17,8 +17,6 @@ class {{ class }}
 
     public function handle(): void
     {
-        return responder()
-            ->success()
-            ->respond();
+        //
     }
 }
