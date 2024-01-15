@@ -8,7 +8,7 @@ use Illuminate\Contracts\View\View as ViewContract;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\View;
 use {{ namespacedModel }};
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Http\FormRequest;
 use {{ namespacedParentModel }};
 
 class {{ class }}
@@ -18,7 +18,7 @@ class {{ class }}
         abort(404);
     }
 
-    public function store(Request $request, {{ parentModel }} ${{ parentModelVariable }}): never
+    public function store(FormRequest $request, {{ parentModel }} ${{ parentModelVariable }}): never
     {
         abort(404);
     }
@@ -37,7 +37,7 @@ class {{ class }}
         ]);
     }
 
-    public function update(Request $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
+    public function update(FormRequest $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
         ${{ parentModelVariable }}->update($request->validated());
 

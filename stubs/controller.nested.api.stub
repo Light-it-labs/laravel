@@ -7,7 +7,7 @@ namespace {{ namespace }};
 use Illuminate\Http\JsonResponse;
 use {{ namespacedModel }};
 use {{ namespacedParentModel }};
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Http\FormRequest;
 
 class {{ class }}
 {
@@ -18,9 +18,10 @@ class {{ class }}
             ->respond();
     }
 
-    public function store(Request $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
+    public function store(FormRequest $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
-    ${{ modelVariable }} = ${{ parentModelVariable }}->{{ modelVariablePlural }}()->save($request->validated());
+        ${{ modelVariable }} = ${{ parentModelVariable }}->{{ modelVariablePlural }}()->save($request->validated());
+
         return responder()
             ->success(${{ modelVariable }})
             ->respond(JsonResponse::HTTP_CREATED);
@@ -33,7 +34,7 @@ class {{ class }}
             ->respond();
     }
 
-    public function update(Request $request, {{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): JsonResponse
+    public function update(FormRequest $request, {{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): JsonResponse
     {
         ${{ modelVariable }}->update($request->validated());
 
