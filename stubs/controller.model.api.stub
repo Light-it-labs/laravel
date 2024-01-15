@@ -36,7 +36,7 @@ class {{ class }}
 
     public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }}): JsonResponse
     {
-    ${{ modelVariable }}->update($request->validated());
+        ${{ modelVariable }}->update($request->validated());
     
         return responder()
             ->success(${{ modelVariable }})
