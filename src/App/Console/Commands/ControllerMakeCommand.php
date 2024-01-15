@@ -75,10 +75,10 @@ class ControllerMakeCommand extends BaseCommand
 
         $modelVariablePlural = Str::of(class_basename($modelClass))->lcfirst()->plural();
 
-        return array_merge($replace, [
+        return [
             ...$parentReplacements,
             '{{ modelVariablePlural }}' => $modelVariablePlural,
             '{{modelVariablePlural}}' => $modelVariablePlural,
-        ]);
+        ];
     }
 }
