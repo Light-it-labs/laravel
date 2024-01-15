@@ -22,7 +22,9 @@ class {{ class }}
 
     public function create({{ parentModel }} ${{ parentModelVariable }}): ViewContract
     {
-        return View::make('{{ parentModelVariablePlural }}.{{ modelVariablePlural }}.create');
+        return View::make('{{ parentModelVariablePlural }}.{{ modelVariablePlural }}.create', [
+            '{{ parentModelVariable }}' => ${{ parentModelVariable }}
+        ]);
     }
 
     public function store(FormRequest $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
@@ -37,6 +39,7 @@ class {{ class }}
     public function show({{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): ViewContract
     {
         return View::make('{{ modelVariablePlural }}.show', [
+            '{{ parentModelVariable }}' => ${{ parentModelVariable }},
             '{{ modelVariable }}' => ${{ modelVariable }}
         ]);
     }
@@ -44,6 +47,7 @@ class {{ class }}
     public function edit({{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): ViewContract
     {
         return View::make('{{ modelVariablePlural }}.edit', [
+            '{{ parentModelVariable }}' => ${{ parentModelVariable }},
             '{{ modelVariable }}' => ${{ modelVariable }}
         ]);
     }
