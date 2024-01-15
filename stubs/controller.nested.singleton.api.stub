@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace {{ namespace }};
 
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 use {{ namespacedModel }};
-use Illuminate\Foundation\Http\FormRequest;
 use {{ namespacedParentModel }};
 
 class {{ class }}

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace {{ namespace }};
 
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 use {{ namespacedModel }};
 use {{ namespacedParentModel }};
-use Illuminate\Foundation\Http\FormRequest;
 
 class {{ class }}
 {

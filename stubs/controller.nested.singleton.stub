@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace {{ namespace }};
 
 use Illuminate\Contracts\View\View as ViewContract;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\View;
 use {{ namespacedModel }};
-use Illuminate\Foundation\Http\FormRequest;
 use {{ namespacedParentModel }};
 
 class {{ class }}
