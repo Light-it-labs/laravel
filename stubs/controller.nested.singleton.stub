@@ -6,7 +6,7 @@ namespace {{ namespace }};
 
 use Illuminate\Contracts\View\View as ViewContract;
 use Illuminate\Http\JsonResponse;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\View;
 use {{ namespacedModel }};
 use Illuminate\Http\Request;
 use {{ namespacedParentModel }};
