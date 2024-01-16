@@ -57,6 +57,7 @@ export const Login = () => {
     <div className="flex h-screen grow flex-col items-center justify-center gap-9 bg-gray-800 px-6 py-12 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm">
         <Logo className="mx-auto h-16 w-auto" />
+
         <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">
           Sign in to your account
         </h2>

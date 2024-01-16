@@ -34,6 +34,7 @@ export const Modal = ({
           <Dialog.Title className="text-lg font-semibold leading-none tracking-tight">
             {title}
           </Dialog.Title>
+
           <Dialog.Description className="text-sm text-gray-400">
             {description}
           </Dialog.Description>
@@ -47,6 +48,7 @@ export const Modal = ({
             aria-label="Close"
           >
             <icons.XMarkIcon className="h-4 w-4" />
+
             <span className="sr-only">Close</span>
           </button>
         </Dialog.Close>

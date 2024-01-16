@@ -72,6 +72,7 @@ export const UserForm = ({ onClose }: { onClose: () => void }) => {
           {...register("name")}
           error={errors.name?.message}
         />
+
         <Input
           type="email"
           id="email"
@@ -80,6 +81,7 @@ export const UserForm = ({ onClose }: { onClose: () => void }) => {
           {...register("email")}
           error={errors.email?.message}
         />
+
         <Input
           type="password"
           id="password"
@@ -88,6 +90,7 @@ export const UserForm = ({ onClose }: { onClose: () => void }) => {
           {...register("password")}
           error={errors.password?.message}
         />
+
         <Input
           type="password"
           id="passwordConfirmation"
@@ -102,6 +105,7 @@ export const UserForm = ({ onClose }: { onClose: () => void }) => {
         <Button onClick={onClose} variant="outline" className="min-w-[7rem]">
           Cancel
         </Button>
+
         <Button
           type="submit"
           disabled={!isDirty || isPendingCreateUserMutation}

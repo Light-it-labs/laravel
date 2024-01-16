@@ -29,6 +29,7 @@ export const ModalRouter = ({ showModal }: { showModal: boolean }) => {
                   path={`${MODAL_ROUTES.exampleModal}`}
                   element={<ExampleModal show={show} onClose={goBack} />}
                 />
+
                 <Route
                   path={`${MODAL_ROUTES.userForm}`}
                   element={<UserModal show={show} onClose={goBack} />}
