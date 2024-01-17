@@ -80,7 +80,9 @@ export const Sidebar = ({
                   src={user.picture}
                   alt={user.name}
                 />
+
                 <span className="sr-only">Your profile</span>
+
                 <span aria-hidden="true">{user.name}</span>
               </Link>
             </li>

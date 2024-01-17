@@ -15,6 +15,7 @@ export const ResponsiveSidebar = () => {
             <Sidebar onCloseSidebar={() => setSidebarOpen(false)} />
             <Dialog.Close className="absolute right-8 top-8 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:pointer-events-none">
               <icons.XMarkIcon className="h-4 w-4 stroke-[4] text-gray-500" />
+
               <span className="sr-only">Close</span>
             </Dialog.Close>
           </Dialog.Content>
@@ -28,6 +29,7 @@ export const ResponsiveSidebar = () => {
           onClick={() => setSidebarOpen(true)}
         >
           <span className="sr-only">Open sidebar</span>
+
           <icons.Bars3Icon className="h-5 w-5" aria-hidden="true" />
         </button>
 
@@ -36,6 +38,7 @@ export const ResponsiveSidebar = () => {
             <label htmlFor="search-field" className="sr-only">
               Search
             </label>
+
             <div className="relative w-full">
               <icons.MagnifyingGlassIcon
                 className="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-500"
