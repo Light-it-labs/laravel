@@ -26,8 +26,8 @@ export const googleLogin = {
   },
 };
 
-export function logout() {
+export const logout = () => {
   const { clearUser } = useUserStore.getState();
 
   clearUser();
-}
+};

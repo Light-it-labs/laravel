@@ -2,7 +2,7 @@ import { MODAL_ROUTES } from "@/router";
 import { useNavigateModal } from "@/router/useNavigateModal";
 import { Button } from "@/ui";
 
-export function Home() {
+export const Home = () => {
   const navigateModal = useNavigateModal();
   return (
     <div className="prose p-10 text-white lg:prose-xl">
@@ -21,4 +21,4 @@ export function Home() {
       </Button>
     </div>
   );
-}
+};
