@@ -13,6 +13,7 @@ import {
   useNavigationType,
 } from "react-router-dom";
 
+import { ErrorBoundaryFallback } from "../../resources/js/screens/ErrorBoundaryFallback";
 import { env } from "./env";
 import { Router } from "./router";
 import { Toasts } from "./ui";
@@ -44,7 +45,9 @@ Sentry.init({
   tracesSampleRate: 1.0,
 
   // Set `tracePropagationTargets` to control for which URLs distributed tracing should be enabled
-  tracePropagationTargets: ["localhost", /^https:\/\/yourserver\.io\/api/],
+  tracePropagationTargets: [
+    new RegExp(env.VITE_SENTRY_TRACE_PROPAGATION_TARGET_REGEX),
+  ],
 
   // Capture Replay for 10% of all sessions,
   // plus for 100% of sessions with an error
@@ -56,9 +59,11 @@ createRoot(document.getElementById("app")!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <GoogleOAuthProvider clientId={env.VITE_GOOGLE_AUTH_SSO_CLIENT_ID}>
-        <BrowserRouter>
-          <Router />
-        </BrowserRouter>
+        <Sentry.ErrorBoundary fallback={<ErrorBoundaryFallback />}>
+          <BrowserRouter>
+            <Router />
+          </BrowserRouter>
+        </Sentry.ErrorBoundary>
 
         {ReactDOM.createPortal(<Toasts />, document.body)}
       </GoogleOAuthProvider>
