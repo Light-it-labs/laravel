@@ -5,8 +5,9 @@ declare(strict_types=1);
 namespace {{ namespace }};
 
 use Illuminate\Contracts\View\View as ViewContract;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\View;
 use {{ namespacedModel }};
 use {{ namespacedParentModel }};
@@ -15,32 +16,30 @@ class {{ class }}
 {
     public function create({{ parentModel }} ${{ parentModelVariable }}): never
     {
-        abort(404);
+        App::abort(JsonResponse::HTTP_NOT_FOUND);
     }
 
-    public function store(FormRequest $request, {{ parentModel }} ${{ parentModelVariable }}): never
+    public function store(Request $request, {{ parentModel }} ${{ parentModelVariable }}): never
     {
-        abort(404);
+        App::abort(JsonResponse::HTTP_NOT_FOUND);
     }
 
     public function show({{ parentModel }} ${{ parentModelVariable }}): ViewContract
     {
-        return View::make('{{ parentModelVariablePlural }}.show', [
+        return View::make('{{ parentModelVariable }}.show', [
             '{{ parentModelVariable }}' => ${{ parentModelVariable }}
         ]);
     }
 
     public function edit({{ parentModel }} ${{ parentModelVariable }}): ViewContract
     {
-        return View::make('{{ parentModelVariablePlural }}.edit', [
+        return View::make('{{ parentModelVariable }}.edit', [
             '{{ parentModelVariable }}' => ${{ parentModelVariable }}
         ]);
     }
 
-    public function update(FormRequest $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
+    public function update(Request $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
-        ${{ parentModelVariable }}->update($request->validated());
-
         return responder()
             ->success(${{ parentModelVariable }})
             ->respond();
@@ -48,6 +47,6 @@ class {{ class }}
 
     public function destroy({{ parentModel }} ${{ parentModelVariable }}): never
     {
-        abort(404);
+        App::abort(JsonResponse::HTTP_NOT_FOUND);
     }
 }

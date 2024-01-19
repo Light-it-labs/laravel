@@ -14,43 +14,39 @@ class {{ class }}
 {
     public function index(): ViewContract
     {
-        return View::make('{{ modelVariablePlural }}.index', [
-            '{{ modelVariablePlural }}' => {{ model }}::paginate()
+        return View::make('{{ modelVariable }}.index', [
+            //
         ]);
     }
 
     public function create(): ViewContract
     {
-        return View::make('{{ modelVariablePlural }}.create');
+        return View::make('{{ modelVariable }}.create');
     }
 
     public function store({{ storeRequest }} $request): JsonResponse
     {
-        ${{ modelVariable }} = {{ model }}::create($request->validated());
-
         return responder()
-            ->success(${{ modelVariable }})
+            ->success()
             ->respond(JsonResponse::HTTP_CREATED);
     }
 
     public function show({{ model }} ${{ modelVariable }}): ViewContract
     {
-        return View::make('{{ modelVariablePlural }}.show', [
+        return View::make('{{ modelVariable }}.show', [
             '{{ modelVariable }}' => ${{ modelVariable }}
         ]);
     }
 
     public function edit({{ model }} ${{ modelVariable }}): ViewContract
     {
-        return View::make('{{ modelVariablePlural }}.edit', [
+        return View::make('{{ modelVariable }}.edit', [
             '{{ modelVariable }}' => ${{ modelVariable }}
         ]);
     }
 
     public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }}): JsonResponse
     {
-        ${{ modelVariable }}->update($request->validated());
-
         return responder()
             ->success(${{ modelVariable }})
             ->respond();

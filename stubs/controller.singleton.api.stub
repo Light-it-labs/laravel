@@ -6,12 +6,13 @@ namespace {{ namespace }};
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class {{ class }}
 {
     public function store(Request $request): never
     {
-        abort(404);
+        App::abort(JsonResponse::HTTP_NOT_FOUND);
     }
 
     public function show(): JsonResponse
@@ -24,14 +25,12 @@ class {{ class }}
     public function update(Request $request): JsonResponse
     {
         return responder()
-            ->success([
-                'message' => 'Record updated successfully.'
-            ])
+            ->success()
             ->respond();
     }
 
     public function destroy(): never
     {
-        abort(404);
+        App::abort(JsonResponse::HTTP_NOT_FOUND);
     }
 }

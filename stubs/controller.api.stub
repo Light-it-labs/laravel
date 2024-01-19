@@ -19,9 +19,7 @@ class {{ class }}
     public function store(Request $request): JsonResponse
     {
         return responder()
-            ->success([
-                "message" => "Record successfully created."
-            ])
+            ->success()
             ->respond(JsonResponse::HTTP_CREATED);
     }
 
@@ -35,9 +33,7 @@ class {{ class }}
     public function update(Request $request, string $id): JsonResponse
     {
         return responder()
-            ->success([
-                "message" => "Record successfully updated."
-            ])
+            ->success()
             ->respond();
     }
 

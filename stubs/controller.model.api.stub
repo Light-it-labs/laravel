@@ -20,10 +20,8 @@ class {{ class }}
 
     public function store({{ storeRequest }} $request): JsonResponse
     {
-        ${{ modelVariable }} = {{ model }}::create($request->validated());
-
         return responder()
-            ->success(${{ modelVariable }})
+            ->success()
             ->respond(JsonResponse::HTTP_CREATED);
     }
 
@@ -36,8 +34,6 @@ class {{ class }}
 
     public function update({{ updateRequest }} $request, {{ model }} ${{ modelVariable }}): JsonResponse
     {
-        ${{ modelVariable }}->update($request->validated());
-    
         return responder()
             ->success(${{ modelVariable }})
             ->respond();

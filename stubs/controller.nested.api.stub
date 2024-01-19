@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace {{ namespace }};
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use {{ namespacedModel }};
 use {{ namespacedParentModel }};
 
@@ -14,16 +14,14 @@ class {{ class }}
     public function index({{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
         return responder()
-            ->success(${{ parentModelVariable }}->{{ modelVariablePlural }}()->paginate())
+            ->success()
             ->respond();
     }
 
-    public function store(FormRequest $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
+    public function store(Request $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
-        ${{ modelVariable }} = ${{ parentModelVariable }}->{{ modelVariablePlural }}()->save($request->validated());
-
         return responder()
-            ->success(${{ modelVariable }})
+            ->success()
             ->respond(JsonResponse::HTTP_CREATED);
     }
 
@@ -34,10 +32,8 @@ class {{ class }}
             ->respond();
     }
 
-    public function update(FormRequest $request, {{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): JsonResponse
+    public function update(Request $request, {{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): JsonResponse
     {
-        ${{ modelVariable }}->update($request->validated());
-
         return responder()
             ->success(${{ modelVariable }})
             ->respond();

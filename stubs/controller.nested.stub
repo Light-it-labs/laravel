@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace {{ namespace }};
 
 use Illuminate\Contracts\View\View as ViewContract;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use {{ namespacedModel }};
 use {{ namespacedParentModel }};
@@ -15,30 +15,28 @@ class {{ class }}
 {
     public function index({{ parentModel }} ${{ parentModelVariable }}): ViewContract
     {
-        return View::make('{{ parentModelVariablePlural }}.{{ modelVariablePlural }}.index', [
-            '{{ modelVariablePlural }}' => ${{ parentModelVariable }}->{{ modelVariablePlural }}()->paginate()
+        return View::make('{{ parentModelVariable }}.{{ modelVariable }}.index', [
+            //
         ]);
     }
 
     public function create({{ parentModel }} ${{ parentModelVariable }}): ViewContract
     {
-        return View::make('{{ parentModelVariablePlural }}.{{ modelVariablePlural }}.create', [
+        return View::make('{{ parentModelVariable }}.{{ modelVariable }}.create', [
             '{{ parentModelVariable }}' => ${{ parentModelVariable }}
         ]);
     }
 
-    public function store(FormRequest $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
+    public function store(Request $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
-        ${{ modelVariable }} = ${{ parentModelVariable }}->{{ modelVariablePlural }}()->save($request->validated());
-
         return responder()
-            ->success(${{ modelVariable }})
+            ->success()
             ->respond(JsonResponse::HTTP_CREATED);
     }
 
     public function show({{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): ViewContract
     {
-        return View::make('{{ modelVariablePlural }}.show', [
+        return View::make('{{ modelVariable }}.show', [
             '{{ parentModelVariable }}' => ${{ parentModelVariable }},
             '{{ modelVariable }}' => ${{ modelVariable }}
         ]);
@@ -46,18 +44,16 @@ class {{ class }}
 
     public function edit({{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): ViewContract
     {
-        return View::make('{{ modelVariablePlural }}.edit', [
+        return View::make('{{ modelVariable }}.edit', [
             '{{ parentModelVariable }}' => ${{ parentModelVariable }},
             '{{ modelVariable }}' => ${{ modelVariable }}
         ]);
     }
 
-    public function update(FormRequest $request, {{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): JsonResponse
+    public function update(Request $request, {{ parentModel }} ${{ parentModelVariable }}, {{ model }} ${{ modelVariable }}): JsonResponse
     {
-        ${{ modelVariable }}->update($request->validated());
-
         return responder()
-            ->success(${{ modelVariable }})
+            ->success()
             ->respond();
     }
 
