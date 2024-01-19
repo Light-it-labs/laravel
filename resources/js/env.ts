@@ -10,6 +10,7 @@ const envSchema = z.object({
   VITE_API_URL: defaultValidation,
   VITE_GOOGLE_AUTH_SSO_CLIENT_ID: defaultValidation,
   VITE_SENTRY_DSN_PUBLIC: defaultValidation,
+  VITE_SENTRY_TRACE_PROPAGATION_TARGET_REGEX: defaultValidation,
 });
 
 type EnvValues = z.infer<typeof envSchema>;
