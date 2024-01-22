@@ -4,27 +4,36 @@ declare(strict_types=1);
 
 namespace {{ namespace }};
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class {{ class }}
 {
-    public function store(Request $request): never
+    public function store(Request $request): JsonResponse
     {
-        abort(404);
+        return responder()
+            ->error()
+            ->respond(JsonResponse::HTTP_NOT_FOUND);
     }
 
-    public function show()
+    public function show(): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function update(Request $request)
+    public function update(Request $request): JsonResponse
     {
-        //
+        return responder()
+            ->success()
+            ->respond();
     }
 
-    public function destroy(): never
+    public function destroy(): JsonResponse
     {
-        abort(404);
+        return responder()
+            ->error()
+            ->respond(JsonResponse::HTTP_NOT_FOUND);
     }
 }
