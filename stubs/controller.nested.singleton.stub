@@ -7,21 +7,24 @@ namespace {{ namespace }};
 use Illuminate\Contracts\View\View as ViewContract;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\View;
 use {{ namespacedModel }};
 use {{ namespacedParentModel }};
 
 class {{ class }}
 {
-    public function create({{ parentModel }} ${{ parentModelVariable }}): never
+    public function create({{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
-        App::abort(JsonResponse::HTTP_NOT_FOUND);
+        return responder()
+            ->error()
+            ->respond(JsonResponse::HTTP_NOT_FOUND);
     }
 
-    public function store(Request $request, {{ parentModel }} ${{ parentModelVariable }}): never
+    public function store(Request $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
-        App::abort(JsonResponse::HTTP_NOT_FOUND);
+        return responder()
+            ->error()
+            ->respond(JsonResponse::HTTP_NOT_FOUND);
     }
 
     public function show({{ parentModel }} ${{ parentModelVariable }}): ViewContract
@@ -45,8 +48,10 @@ class {{ class }}
             ->respond();
     }
 
-    public function destroy({{ parentModel }} ${{ parentModelVariable }}): never
+    public function destroy({{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
-        App::abort(JsonResponse::HTTP_NOT_FOUND);
+        return responder()
+            ->error()
+            ->respond(JsonResponse::HTTP_NOT_FOUND);
     }
 }

@@ -6,15 +6,16 @@ namespace {{ namespace }};
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use {{ namespacedModel }};
 use {{ namespacedParentModel }};
 
 class {{ class }}
 {
-    public function store(Request $request, {{ parentModel }} ${{ parentModelVariable }}): never
+    public function store(Request $request, {{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
-        App::abort(JsonResponse::HTTP_NOT_FOUND);
+        return responder()
+            ->error()
+            ->respond(JsonResponse::HTTP_NOT_FOUND);
     }
 
     public function show({{ parentModel }} ${{ parentModelVariable }}): JsonResponse
@@ -31,8 +32,10 @@ class {{ class }}
             ->respond();
     }
 
-    public function destroy({{ parentModel }} ${{ parentModelVariable }}): never
+    public function destroy({{ parentModel }} ${{ parentModelVariable }}): JsonResponse
     {
-        App::abort(JsonResponse::HTTP_NOT_FOUND);
+        return responder()
+            ->error()
+            ->respond(JsonResponse::HTTP_NOT_FOUND);
     }
 }

@@ -6,13 +6,14 @@ namespace {{ namespace }};
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 
 class {{ class }}
 {
-    public function store(Request $request): never
+    public function store(Request $request): JsonResponse
     {
-        App::abort(JsonResponse::HTTP_NOT_FOUND);
+        return responder()
+            ->error()
+            ->respond(JsonResponse::HTTP_NOT_FOUND);
     }
 
     public function show(): JsonResponse
@@ -29,8 +30,10 @@ class {{ class }}
             ->respond();
     }
 
-    public function destroy(): never
+    public function destroy(): JsonResponse
     {
-        App::abort(JsonResponse::HTTP_NOT_FOUND);
+        return responder()
+            ->error()
+            ->respond(JsonResponse::HTTP_NOT_FOUND);
     }
 }
