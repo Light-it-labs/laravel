@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3eeecddee4e830cc8625462ddb2fe2c9",
+    "content-hash": "11ab832a40210230fe92b49255de2052",
     "packages": [
         {
             "name": "brick/math",
@@ -3709,16 +3709,16 @@
         },
         {
             "name": "spatie/laravel-query-builder",
-            "version": "5.8.1",
+            "version": "6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-query-builder.git",
-                "reference": "caa8467fa9e127ba7ea9e0aac93c71324365bae2"
+                "reference": "d63a54aa95b40395258cdc87d916bc23c9264c19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-query-builder/zipball/caa8467fa9e127ba7ea9e0aac93c71324365bae2",
-                "reference": "caa8467fa9e127ba7ea9e0aac93c71324365bae2",
+                "url": "https://api.github.com/repos/spatie/laravel-query-builder/zipball/d63a54aa95b40395258cdc87d916bc23c9264c19",
+                "reference": "d63a54aa95b40395258cdc87d916bc23c9264c19",
                 "shasum": ""
             },
             "require": {
@@ -3731,10 +3731,11 @@
             "require-dev": {
                 "ext-json": "*",
                 "mockery/mockery": "^1.4",
+                "nunomaduro/larastan": "^2.0",
                 "orchestra/testbench": "^7.0|^8.0",
                 "pestphp/pest": "^2.0",
-                "spatie/invade": "^2.0",
-                "spatie/laravel-ray": "^1.28"
+                "phpunit/phpunit": "^10.0",
+                "spatie/invade": "^2.0"
             },
             "type": "library",
             "extra": {
@@ -3778,7 +3779,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2024-05-10T08:19:35+00:00"
+            "time": "2024-05-10T08:53:41+00:00"
         },
         {
             "name": "symfony/clock",
