@@ -28,7 +28,7 @@
     "autoprefixer": "^10.4.19",
     "concurrently": "^8.2.2",
     "cspell": "^8.8.1",
-    "eslint": "^8.48.0",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
