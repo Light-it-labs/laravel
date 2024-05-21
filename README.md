@@ -61,13 +61,13 @@ This step is not necessary when you use Docker.
 1. Clone GitHub repo for this project locally:
 
    ```bash
-   git clone git@github.com:Light-it-labs/lightranet
+   git clone git@github.com:Light-it-labs/laravel
    ```
 
 2. cd into your project and create a copy of your .env file
 
    ```bash
-   cd lightranet
+   cd laravel
    cp .env.example .env
    ```
 
@@ -106,21 +106,23 @@ This step is not necessary when you use Docker.
 ### Frontend
 
 You need nvm installed in your machine. <https://github.com/nvm-sh/nvm#install--update-script>
+You need pnpm installed in your machine <https://pnpm.io/es/installation>
 
-For frontend environment you need install npm dependencies with `npm install` and after that to compile assets for Frontend SPA in local you can run: `npm run dev` or `npm run watch`
-In production environment is necessary run `npm run production`
+
+For frontend environment you need install npm dependencies with `pnpm install` and after that to compile assets for Frontend SPA in local you can run: `npm run dev` or `npm run watch`
+In production environment is necessary run `pnpm run production`
 
 1. Install npm dependencies:
 
    ```bash
    nvm use
-   npm install
+   pnpm install
    ```
 
 2. Run the app:
 
    ```bash
-   npm run dev
+   pnpm run dev
    ```
 
 ### Hooks
@@ -295,7 +297,7 @@ To access services in local environment with host aliases, add the following ali
 2. Paste the following hosts aliases:
 
    ```bash
-   127.0.0.1       lightranet.test
+   127.0.0.1       laravel.test
    127.0.0.1       db
    127.0.0.1       s3
    127.0.0.1       redis
