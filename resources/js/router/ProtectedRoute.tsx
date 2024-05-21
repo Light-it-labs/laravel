@@ -20,7 +20,7 @@ export const ProtectedRoute = ({
   expected: UserState | UserState[];
 }) => {
   const userState = useUserStore((state) =>
-    state.token ? state.user?.role ?? "standard" : "loggedOut",
+    state.token ? (state.user?.role ?? "standard") : "loggedOut",
   );
 
   if (!expected.includes(userState)) {

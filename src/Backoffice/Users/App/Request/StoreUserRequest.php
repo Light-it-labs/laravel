@@ -11,7 +11,9 @@ use Lightit\Backoffice\Users\Domain\DataTransferObjects\UserDto;
 class StoreUserRequest extends FormRequest
 {
     public const NAME = 'name';
+
     public const EMAIL = 'email';
+
     public const PASSWORD = 'password';
 
     /**

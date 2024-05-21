@@ -20,7 +20,7 @@ describe('users', function () {
         Notification::fake();
 
         $data = StoreUserRequestFactory::new()->create([
-            'password' => 'passw0rd'
+            'password' => 'passw0rd',
         ]);
 
         postJson(url('/api/users'), $data)
@@ -28,7 +28,7 @@ describe('users', function () {
 
         assertDatabaseHas('users', [
             'name' => $data['name'],
-            'email' => $data['email']
+            'email' => $data['email'],
         ]);
 
         $user = User::query()->firstOrFail();

@@ -25,7 +25,7 @@ describe('users', function () {
             ->assertExactJson([
                 'status' => 200,
                 'success' => true,
-                'data' => $users->map(fn(User $user) => $transformer->transform($user))->toArray(),
+                'data' => $users->map(fn (User $user) => $transformer->transform($user))->toArray(),
             ]);
     });
 });
