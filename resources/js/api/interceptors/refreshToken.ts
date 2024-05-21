@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import mem from "mem";
 
 import { useUserStore } from "@/stores";
