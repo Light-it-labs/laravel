@@ -1,7 +1,7 @@
 import type { AxiosError } from "axios";
 
+import { privateAPI } from "@/shared/services/http";
 import { useUserStore } from "@/shared/services/stores";
-import { privateAPI } from "../axios";
 import { memoizedRefreshToken } from "./refreshToken";
 
 export const errorResponse = async (error: AxiosError) => {

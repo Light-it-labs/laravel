@@ -1,9 +1,10 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import type { Location } from "react-router-dom";
 
-import { Home, NotFound, Users } from "@/screens";
-import { Login } from "@/screens/Login";
+import { Login } from "@/auth/screens/Login";
 import { Layout } from "@/shared/layouts";
+import { Home, NotFound } from "@/shared/screens";
+import { Users } from "@/users/screens";
 import { ModalRouter } from "./ModalRouter";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { ROUTES } from "./routes";

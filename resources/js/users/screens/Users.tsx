@@ -1,10 +1,7 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-
-import { deleteUser, getUsersQuery } from "@/api";
-import { MODAL_ROUTES } from "@/router";
-import { useNavigateModal } from "@/router/useNavigateModal";
-import { Button, errorToast, icons, useToastStore } from "@/shared/ui";
+import { MODAL_ROUTES, useNavigateModal } from "@/shared/services/router";
+import { Button, icons } from "@/shared/ui";
 import { tw } from "@/shared/utils";
+import { useDeleteUserMutation, useUsersQuery } from "@/users/api";
 
 const statuses = {
   Completed: "text-green-400 bg-green-400/10",
@@ -118,39 +115,22 @@ const activityItems = [
 ] as const;
 
 export const Users = () => {
-  const { pushToast } = useToastStore();
-  const queryClient = useQueryClient();
+  const { data: users, isLoading: isLoadingUsers } = useUsersQuery();
+  const { mutate: deleteUser } = useDeleteUserMutation();
 
-  const { data: users, isLoading: isLoadingUsers } = useQuery({
-    ...getUsersQuery(),
-    select: (users) =>
-      users.map((user, idx) => {
-        const selectedItem =
-          activityItems[idx % activityItems.length] ?? activityItems[0];
+  const mappedUsers = users?.map((user, idx) => {
+    const selectedItem =
+      activityItems[idx % activityItems.length] ?? activityItems[0];
 
-        return {
-          ...selectedItem,
+    return {
+      ...selectedItem,
 
-          user: {
-            imageUrl: selectedItem.user.imageUrl,
-            name: user.name,
-            id: user.id,
-          },
-        };
-      }),
-  });
-
-  const { mutate: deleteUserMutation } = useMutation({
-    mutationFn: deleteUser.mutation,
-    onSuccess: (_, requestedId) => {
-      deleteUser.invalidates(queryClient, { userId: requestedId });
-      void pushToast({
-        type: "success",
-        title: "Success",
-        message: "User successfully deleted!",
-      });
-    },
-    onError: errorToast,
+      user: {
+        imageUrl: selectedItem.user.imageUrl,
+        name: user.name,
+        id: user.id,
+      },
+    };
   });
 
   const navigateModal = useNavigateModal();
@@ -238,7 +218,7 @@ export const Users = () => {
               </td>
             </tr>
           )}
-          {users?.map((item) => (
+          {mappedUsers?.map((item) => (
             <tr key={item.commit}>
               <td className="py-4 pl-4 pr-8 sm:pl-6 lg:pl-8">
                 <div className="flex items-center gap-x-4">
@@ -296,7 +276,7 @@ export const Users = () => {
               <td className="hidden py-4 pl-0 pr-4 text-right text-sm leading-6 text-gray-400 sm:table-cell sm:pr-6 lg:pr-8">
                 <Button
                   variant="tertiary"
-                  onClick={() => deleteUserMutation(item.user.id)}
+                  onClick={() => deleteUser(item.user.id)}
                 >
                   <icons.TrashIcon className="h-5 w-5" />
                 </Button>

@@ -1,8 +1,8 @@
 import mem from "mem";
 
+import type { ServiceResponse } from "@/shared/services/http";
+import { privateAPI } from "@/shared/services/http";
 import { useUserStore } from "@/shared/services/stores";
-import type { ServiceResponse } from "../api.types";
-import { privateAPI } from "../axios";
 
 export interface UserToken {
   refreshToken: string;
@@ -18,7 +18,7 @@ const refreshToken = async () => {
     const response =
       await privateAPI.post<ServiceResponse<UserToken>>("/auth/refresh");
 
-    const { data: userToken } = response.data;
+    const { payload: userToken } = response.data;
     if (!userToken.refreshToken) {
       clearUser();
     } else {

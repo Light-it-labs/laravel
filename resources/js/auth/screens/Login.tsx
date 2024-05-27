@@ -1,13 +1,12 @@
 import { GoogleLogin } from "@react-oauth/google";
-import { useMutation } from "@tanstack/react-query";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
-import { googleLogin } from "@/api";
-import { ROUTES } from "@/router";
 import { Logo } from "@/shared/components";
+import { ROUTES } from "@/shared/services/router";
 import { useUserStore } from "@/shared/services/stores";
 import { errorToast, useToastStore } from "@/shared/ui";
+import { useGoogleLoginMutation } from "../api/useGoogleLoginMutation";
 
 export const Login = () => {
   const { pushToast } = useToastStore();
@@ -15,23 +14,7 @@ export const Login = () => {
 
   const navigate = useNavigate();
 
-  const { mutate: googleLoginMutation } = useMutation({
-    mutationFn: googleLogin.mutation,
-    onSuccess: (data) => {
-      void pushToast({ type: "success", title: "Welcome back!" });
-      setToken(data.data.accessToken);
-      navigate(ROUTES.base);
-    },
-    onError: (e) => {
-      errorToast(e);
-
-      // here we fail forwards, we are basically logging the user anyways
-      // because we KNOW the login will fail
-      void pushToast({ type: "success", title: "Welcome back!" });
-      setToken("some token");
-      navigate(ROUTES.base);
-    },
-  });
+  const { mutate: loginWithGoogle } = useGoogleLoginMutation();
 
   const handleLogin = (credential: string) => {
     if (!credential) {
@@ -50,7 +33,25 @@ export const Login = () => {
     }>(credential);
 
     setUser({ email, name, picture, role: "admin" });
-    googleLoginMutation({ email, name, googleToken: credential });
+    loginWithGoogle(
+      { email, name, googleToken: credential },
+      {
+        onSuccess(data) {
+          void pushToast({ type: "success", title: "Welcome back!" });
+          setToken(data.accessToken);
+          navigate(ROUTES.base);
+        },
+        onError(e) {
+          errorToast(e);
+
+          // here we fail forwards, we are basically logging the user anyways
+          // because we KNOW the login will fail
+          void pushToast({ type: "success", title: "Welcome back!" });
+          setToken("some token");
+          navigate(ROUTES.base);
+        },
+      },
+    );
   };
 
   return (

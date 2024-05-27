@@ -13,10 +13,9 @@ import {
   useNavigationType,
 } from "react-router-dom";
 
+import { ErrorBoundaryFallback, Router } from "@/shared/services/router";
 import { Toasts } from "@/shared/ui";
-import { ErrorBoundaryFallback } from "../../resources/js/screens/ErrorBoundaryFallback";
 import { env } from "./env";
-import { Router } from "./router";
 
 import "@/shared/assets/css/app.css";
 import "./bootstrap";

@@ -1,11 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { createUser } from "@/api";
-import { Button, errorToast, icons, Input, useToastStore } from "@/shared/ui";
+import { Button, errorToast, icons, Input } from "@/shared/ui";
 import { handleAxiosFieldErrors } from "@/shared/utils";
+import { useCreateUserMutation } from "@/users/api/useCreateUserMutation";
 
 const userSchema = z
   .object({
@@ -36,31 +35,23 @@ export const UserForm = ({ onClose }: { onClose: () => void }) => {
     resolver: zodResolver(userSchema),
   });
 
-  const { pushToast } = useToastStore();
-  const queryClient = useQueryClient();
-
-  const { mutate: createUserMutation, isPending: isPendingCreateUserMutation } =
-    useMutation({
-      mutationFn: createUser.mutation,
-      onSuccess: (data) => {
-        createUser.invalidates(queryClient);
-        void pushToast({
-          type: "success",
-          title: "Success",
-          message: `User "${data.name}" successfully created!`,
-        });
-        onClose();
-      },
-      onError: (err) => {
-        errorToast(err);
-        handleAxiosFieldErrors(err, setError);
-      },
-    });
+  const { mutate: createUser, isPending: isPendingCreateUser } =
+    useCreateUserMutation();
 
   return (
     <form
       onSubmit={(e) => {
-        void handleSubmit((value) => createUserMutation(value))(e);
+        void handleSubmit((value) =>
+          createUser(value, {
+            onSuccess() {
+              onClose();
+            },
+            onError: (err) => {
+              errorToast(err);
+              handleAxiosFieldErrors(err, setError);
+            },
+          }),
+        )(e);
       }}
       className="flex flex-col gap-7"
     >
@@ -108,10 +99,10 @@ export const UserForm = ({ onClose }: { onClose: () => void }) => {
 
         <Button
           type="submit"
-          disabled={!isDirty || isPendingCreateUserMutation}
+          disabled={!isDirty || isPendingCreateUser}
           className="min-w-[7rem]"
         >
-          {isPendingCreateUserMutation ? (
+          {isPendingCreateUser ? (
             <icons.SpinnerIcon className="h-5 w-5" />
           ) : (
             "Create"

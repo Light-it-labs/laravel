@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { Transition, TransitionGroup } from "react-transition-group";
 
-import { ExampleModal, UserModal } from "@/modals";
+import { ExampleModal, UserModal } from "@/shared/services/router/modals";
 import { MODAL_ROUTES } from "./routes";
 
 export const ModalRouter = ({ showModal }: { showModal: boolean }) => {
