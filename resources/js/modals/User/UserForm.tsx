@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { createUser } from "@/api";
+import { handleAxiosFieldErrors } from "@/shared/utils";
 import { Button, errorToast, icons, Input, useToastStore } from "@/ui";
-import { handleAxiosFieldErrors } from "@/utils";
 
 const userSchema = z
   .object({

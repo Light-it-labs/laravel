@@ -3,8 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { Logo } from "@/components";
 import { ROUTES } from "@/router";
 import { useUserStore } from "@/shared/services/stores";
+import { tw } from "@/shared/utils";
 import { icons } from "@/ui";
-import { tw } from "@/utils";
 
 const navigation = [
   {

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 
-import { tw } from "@/utils";
+import { tw } from "@/shared/utils";
 import { icons } from "./Icons";
 
 interface ModalProps {

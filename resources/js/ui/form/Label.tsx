@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef, FC, ReactNode } from "react";
 
-import { tw } from "@/utils";
+import { tw } from "@/shared/utils";
 
 export interface LabelProps extends ComponentPropsWithoutRef<"label"> {
   label: ReactNode;

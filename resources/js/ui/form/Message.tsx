@@ -1,6 +1,6 @@
 import type { ComponentPropsWithoutRef } from "react";
 
-import { tw } from "@/utils";
+import { tw } from "@/shared/utils";
 
 export interface MessageProps extends ComponentPropsWithoutRef<"p"> {
   message?: string;
