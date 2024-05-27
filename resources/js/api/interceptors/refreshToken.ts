@@ -1,6 +1,6 @@
 import mem from "mem";
 
-import { useUserStore } from "@/stores";
+import { useUserStore } from "@/shared/services/stores";
 import type { ServiceResponse } from "../api.types";
 import { privateAPI } from "../axios";
 

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-import { useUserStore } from "@/stores/useUserStore";
+import { useUserStore } from "@/shared/services/stores";
 import { ROUTES } from "./routes";
 
 type UserState = "loggedOut" | "standard" | "admin";

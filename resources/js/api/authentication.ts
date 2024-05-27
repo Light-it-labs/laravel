@@ -1,4 +1,4 @@
-import { useUserStore } from "@/stores";
+import { useUserStore } from "@/shared/services/stores";
 import type { ServiceResponse } from "./api.types";
 import { publicAPI } from "./axios";
 

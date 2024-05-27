@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { googleLogin } from "@/api";
 import { Logo } from "@/components";
 import { ROUTES } from "@/router";
-import { useUserStore } from "@/stores";
+import { useUserStore } from "@/shared/services/stores";
 import { errorToast, useToastStore } from "@/ui";
 
 export const Login = () => {
