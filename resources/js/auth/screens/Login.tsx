@@ -6,7 +6,7 @@ import { Logo } from "@/shared/components";
 import { ROUTES } from "@/shared/services/router";
 import { useUserStore } from "@/shared/services/stores";
 import { errorToast, useToastStore } from "@/shared/ui";
-import { useGoogleLoginMutation } from "../api/useGoogleLoginMutation";
+import { useGoogleLoginMutation } from "../api/mutations/useGoogleLoginMutation";
 
 export const Login = () => {
   const { pushToast } = useToastStore();

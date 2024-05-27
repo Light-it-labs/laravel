@@ -4,7 +4,7 @@ import { z } from "zod";
 
 import { Button, errorToast, icons, Input } from "@/shared/ui";
 import { handleAxiosFieldErrors } from "@/shared/utils";
-import { useCreateUserMutation } from "@/users/api/useCreateUserMutation";
+import { useCreateUserMutation } from "@/users/api/mutations/useCreateUserMutation";
 
 const userSchema = z
   .object({
