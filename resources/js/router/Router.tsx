@@ -1,9 +1,9 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import type { Location } from "react-router-dom";
 
-import { Layout } from "@/layout";
 import { Home, NotFound, Users } from "@/screens";
 import { Login } from "@/screens/Login";
+import { Layout } from "@/shared/layouts";
 import { ModalRouter } from "./ModalRouter";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { ROUTES } from "./routes";
