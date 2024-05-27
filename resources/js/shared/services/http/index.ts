@@ -38,6 +38,7 @@ const baseConfig = {
   baseURL: env.VITE_API_URL,
   headers: {
     "Content-Type": "application/json",
+    "X-Requested-With": "XMLHttpRequest",
   },
 };
 
