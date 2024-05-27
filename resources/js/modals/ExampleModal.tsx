@@ -1,5 +1,5 @@
 import type { ModalProps } from "@/shared.types";
-import { Modal } from "@/ui";
+import { Modal } from "@/shared/ui";
 
 export const ExampleModal = ({ show, onClose }: ModalProps) => {
   return (

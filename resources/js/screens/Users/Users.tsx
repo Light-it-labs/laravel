@@ -3,8 +3,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { deleteUser, getUsersQuery } from "@/api";
 import { MODAL_ROUTES } from "@/router";
 import { useNavigateModal } from "@/router/useNavigateModal";
+import { Button, errorToast, icons, useToastStore } from "@/shared/ui";
 import { tw } from "@/shared/utils";
-import { Button, errorToast, icons, useToastStore } from "@/ui";
 
 const statuses = {
   Completed: "text-green-400 bg-green-400/10",

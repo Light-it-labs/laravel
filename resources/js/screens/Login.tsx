@@ -7,7 +7,7 @@ import { googleLogin } from "@/api";
 import { Logo } from "@/components";
 import { ROUTES } from "@/router";
 import { useUserStore } from "@/shared/services/stores";
-import { errorToast, useToastStore } from "@/ui";
+import { errorToast, useToastStore } from "@/shared/ui";
 
 export const Login = () => {
   const { pushToast } = useToastStore();

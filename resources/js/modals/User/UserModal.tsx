@@ -1,5 +1,5 @@
 import type { ModalProps } from "@/shared.types";
-import { Modal } from "@/ui";
+import { Modal } from "@/shared/ui";
 import { UserForm } from "./UserForm";
 
 export const UserModal = ({ show, onClose }: ModalProps) => {

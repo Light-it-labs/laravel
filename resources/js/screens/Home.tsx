@@ -1,6 +1,6 @@
 import { MODAL_ROUTES } from "@/router";
 import { useNavigateModal } from "@/router/useNavigateModal";
-import { Button } from "@/ui";
+import { Button } from "@/shared/ui";
 
 export const Home = () => {
   const navigateModal = useNavigateModal();

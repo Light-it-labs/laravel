@@ -13,10 +13,10 @@ import {
   useNavigationType,
 } from "react-router-dom";
 
+import { Toasts } from "@/shared/ui";
 import { ErrorBoundaryFallback } from "../../resources/js/screens/ErrorBoundaryFallback";
 import { env } from "./env";
 import { Router } from "./router";
-import { Toasts } from "./ui";
 
 import "@/shared/assets/css/app.css";
 import "./bootstrap";
