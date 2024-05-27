@@ -1,4 +1,4 @@
-import type { SVGProps } from "@/shared.types";
+import type { SVGProps } from "@/shared/types";
 
 export const Logo = ({ className, ...props }: SVGProps) => {
   return (

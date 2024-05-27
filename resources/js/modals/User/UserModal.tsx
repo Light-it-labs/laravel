@@ -1,4 +1,4 @@
-import type { ModalProps } from "@/shared.types";
+import type { ModalProps } from "@/shared/types";
 import { Modal } from "@/shared/ui";
 import { UserForm } from "./UserForm";
 
