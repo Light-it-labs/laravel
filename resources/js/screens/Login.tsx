@@ -4,8 +4,8 @@ import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
 import { googleLogin } from "@/api";
-import { Logo } from "@/components";
 import { ROUTES } from "@/router";
+import { Logo } from "@/shared/components";
 import { useUserStore } from "@/shared/services/stores";
 import { errorToast, useToastStore } from "@/shared/ui";
 
