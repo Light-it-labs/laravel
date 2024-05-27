@@ -18,7 +18,7 @@ import { env } from "./env";
 import { Router } from "./router";
 import { Toasts } from "./ui";
 
-import "../css/app.css";
+import "@/shared/assets/css/app.css";
 import "./bootstrap";
 
 const queryClient = new QueryClient();
