@@ -1,5 +1,4 @@
 import axios from "axios";
-import type { AxiosError } from "axios";
 
 import {
   errorResponse,
@@ -8,12 +7,14 @@ import {
 import { env } from "@/shared/utils/env";
 
 export interface ErrorPayload {
+  code: string;
   message: string;
+  fields?: [];
 }
 
 declare module "@tanstack/react-query" {
   interface Register {
-    defaultError: AxiosError<ServiceResponse<ErrorPayload>>;
+    defaultError: ErrorPayload;
   }
 }
 

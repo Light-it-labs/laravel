@@ -3,7 +3,7 @@ import { useMutation } from "@tanstack/react-query";
 import type { ServiceResponse } from "@/shared/services/http";
 import { publicAPI } from "@/shared/services/http";
 
-interface UserToken {
+interface GoogleLoginResponse {
   accessToken: string;
   tokenType: string;
   expiresIn: number;
@@ -16,7 +16,7 @@ interface GoogleLoginRequest {
 }
 
 const loginWithGoogle = async (params: GoogleLoginRequest) => {
-  const response = await publicAPI.post<ServiceResponse<UserToken>>(
+  const response = await publicAPI.post<ServiceResponse<GoogleLoginResponse>>(
     "/auth/google",
     {
       ...params,

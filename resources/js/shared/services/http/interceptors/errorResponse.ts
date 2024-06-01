@@ -1,10 +1,13 @@
 import type { AxiosError } from "axios";
 
+import type { ErrorPayload, ServiceResponse } from "@/shared/services/http";
 import { privateAPI } from "@/shared/services/http";
 import { useUserStore } from "@/shared/services/stores";
 import { memoizedRefreshToken } from "./refreshToken";
 
-export const errorResponse = async (error: AxiosError) => {
+export const errorResponse = async (
+  error: AxiosError<ServiceResponse<ErrorPayload>>,
+) => {
   const config = error?.config;
 
   if (error?.response?.status === 401) {
@@ -20,5 +23,5 @@ export const errorResponse = async (error: AxiosError) => {
       window.location.href = "/login";
     }
   }
-  return Promise.reject(error);
+  return Promise.reject(error.response?.data.payload);
 };
