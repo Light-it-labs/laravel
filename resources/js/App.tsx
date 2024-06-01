@@ -18,7 +18,6 @@ import { Toasts } from "@/shared/ui";
 import { env } from "./env";
 
 import "@/shared/assets/css/app.css";
-import "./bootstrap";
 
 const queryClient = new QueryClient();
 
