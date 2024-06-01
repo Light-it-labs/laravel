@@ -60,6 +60,9 @@ class GenerateFrontendComponent extends Command
         $componentTemplate = $this->getComponentTemplate($stubPath, $name);
 
         File::put($componentPath, $componentTemplate);
+        
+        $indexPath = $componentDir . '/index.ts';
+        $this->updateIndexFile($indexPath, $name);
 
         $this->info("Component {$name}.tsx created successfully in {$chosenDomain}.");
     }
@@ -73,5 +76,20 @@ class GenerateFrontendComponent extends Command
             [$name],
             $template
         );
+    }
+    
+    protected function updateIndexFile($indexPath, $componentName)
+    {
+        $exportStatement = "export * from './{$componentName}';\n";
+
+        if (File::exists($indexPath)) {
+            $currentContents = File::get($indexPath);
+
+            if (strpos($currentContents, $exportStatement) === false) {
+                File::append($indexPath, $exportStatement);
+            }
+        } else {
+            File::put($indexPath, $exportStatement);
+        }
     }
 }
