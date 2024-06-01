@@ -1,0 +1,11 @@
+interface {{ name }}Props {
+  test: string;
+}
+
+export function {{ name }}({ test }: {{ name }}Props) {
+  return (
+    <>
+      { test }
+    </>
+  )
+}
