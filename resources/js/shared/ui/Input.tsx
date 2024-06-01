@@ -1,7 +1,7 @@
 import type { ComponentPropsWithoutRef, ForwardedRef, ReactNode } from "react";
 
+import { IconWrapper } from "@/shared/ui";
 import { forwardRef, tw } from "@/shared/utils";
-import { IconWrapper } from "../common";
 import { Label } from "./Label";
 import { Message } from "./Message";
 
