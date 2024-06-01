@@ -1,11 +1,11 @@
 import axios from "axios";
 import type { AxiosError } from "axios";
 
-import { env } from "@/env";
 import {
   errorResponse,
   privateRequest,
 } from "@/shared/services/http/interceptors";
+import { env } from "@/shared/utils/env";
 
 export interface ErrorPayload {
   message: string;

@@ -15,7 +15,7 @@ import {
 
 import { ErrorBoundaryFallback, Router } from "@/shared/services/router";
 import { Toasts } from "@/shared/ui";
-import { env } from "./env";
+import { env } from "./shared/utils/env";
 
 import "@/shared/assets/css/app.css";
 
