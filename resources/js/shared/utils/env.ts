@@ -1,6 +1,6 @@
 import { z, ZodError } from "zod";
 
-import { useToastStore } from "@/shared/ui";
+import { useToastStore } from "@/ui";
 
 // We've defined here the validations & schema for making sure the env vars ARE correct.
 const defaultValidation = z.string().min(1, "Env Var is not defined");

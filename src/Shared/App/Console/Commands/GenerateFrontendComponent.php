@@ -85,7 +85,7 @@ class GenerateFrontendComponent extends Command
         if (File::exists($indexPath)) {
             $currentContents = File::get($indexPath);
 
-            if (strpos($currentContents, $exportStatement) === false) {
+            if (!str_contains($currentContents, $exportStatement)) {
                 File::append($indexPath, $exportStatement);
             }
         } else {
