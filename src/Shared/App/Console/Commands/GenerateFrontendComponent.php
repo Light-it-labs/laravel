@@ -30,7 +30,7 @@ class GenerateFrontendComponent extends Command
         
         // List existing directories inside resources/js
         $resourcesJsDir = resource_path('js');
-        $domainFolders = array_filter(glob($resourcesJsDir . '/*'), 'is_dir');
+        $domainFolders = array_filter(glob($resourcesJsDir . '/domains/*'), 'is_dir');
 
         if (empty($domainFolders)) {
             $this->error("No directories found inside resources/js");
@@ -85,7 +85,7 @@ class GenerateFrontendComponent extends Command
         if (File::exists($indexPath)) {
             $currentContents = File::get($indexPath);
 
-            if (!str_contains($currentContents, $exportStatement)) {
+            if (! str_contains($currentContents, $exportStatement)) {
                 File::append($indexPath, $exportStatement);
             }
         } else {
