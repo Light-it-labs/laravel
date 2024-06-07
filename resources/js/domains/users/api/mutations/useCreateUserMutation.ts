@@ -2,9 +2,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { userKeys } from "@/domains/users/api/keys/UserKeyFactory";
 import type { UserRequest, UserResponse } from "@/domains/users/types";
-import { privateAPI } from "@/services/http";
-import type { ServiceResponse } from "@/services/http";
-import { useToastStore } from "@/services/notifications";
+import { privateAPI } from "@/shared/services/http";
+import type { ServiceResponse } from "@/shared/services/http";
+import { useToastStore } from "@/shared/services/stores";
 
 const createUser = async (params: UserRequest) => {
   const { passwordConfirmation, ...rest } = params;

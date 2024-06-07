@@ -13,8 +13,8 @@ import {
   useNavigationType,
 } from "react-router-dom";
 
-import { Toasts } from "@/services/notifications";
-import { ErrorBoundaryFallback, Router } from "@/services/router";
+import { Toasts } from "@/shared/services/notifications";
+import { ErrorBoundaryFallback, Router } from "@/shared/services/router";
 import { env } from "@/shared/utils/env";
 
 import "@/shared/assets/css/app.css";

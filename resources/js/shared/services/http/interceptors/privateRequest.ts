@@ -1,6 +1,6 @@
 import type { InternalAxiosRequestConfig } from "axios";
 
-import { useUserStore } from "@/services/stores";
+import { useUserStore } from "@/shared/services/stores";
 
 export const privateRequest = (config: InternalAxiosRequestConfig) => {
   const { token } = useUserStore.getState();

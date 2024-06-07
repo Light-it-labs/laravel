@@ -1,6 +1,6 @@
 import { useDeleteUserMutation } from "@/domains/users/api/mutations/useDeleteUserMutation";
 import { useUsersQuery } from "@/domains/users/api/queries/useUsersQuery";
-import { MODAL_ROUTES, useNavigateModal } from "@/services/router";
+import { MODAL_ROUTES, useNavigateModal } from "@/shared/services/router";
 import { Button, icons } from "@/shared/ui";
 import { tw } from "@/shared/utils";
 

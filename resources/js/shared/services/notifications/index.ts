@@ -1,3 +1,3 @@
 export * from "./Toasts";
 export * from "./errorToast";
-export * from "@/services/stores/useToastStore";
+export * from "@/shared/services/stores/useToastStore";

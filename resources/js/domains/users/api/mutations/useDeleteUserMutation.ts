@@ -2,8 +2,9 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { userKeys } from "@/domains/users/api/keys/UserKeyFactory";
 import type { UserResponse } from "@/domains/users/types";
-import { privateAPI } from "@/services/http";
-import { errorToast, useToastStore } from "@/services/notifications";
+import { privateAPI } from "@/shared/services/http";
+import { errorToast } from "@/shared/services/notifications";
+import { useToastStore } from "@/shared/services/stores";
 
 const deleteUser = async (userId: UserResponse["id"]) => {
   await privateAPI.delete(`/users/${userId}`);

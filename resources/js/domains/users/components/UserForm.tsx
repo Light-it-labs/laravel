@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { useCreateUserMutation } from "@/domains/users/api/mutations/useCreateUserMutation";
-import { errorToast } from "@/services/notifications";
+import { errorToast } from "@/shared/services/notifications";
 import { Button, icons, Input } from "@/shared/ui";
 import { handleAxiosFieldErrors } from "@/shared/utils";
 

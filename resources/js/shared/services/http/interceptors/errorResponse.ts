@@ -1,8 +1,8 @@
 import type { AxiosError } from "axios";
 
-import type { ErrorPayload, ServiceResponse } from "@/services/http";
-import { privateAPI } from "@/services/http";
-import { useUserStore } from "@/services/stores";
+import type { ErrorPayload, ServiceResponse } from "@/shared/services/http";
+import { privateAPI } from "@/shared/services/http";
+import { useUserStore } from "@/shared/services/stores";
 import { memoizedRefreshToken } from "./refreshToken";
 
 export const errorResponse = async (

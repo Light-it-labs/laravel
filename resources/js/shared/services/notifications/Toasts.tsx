@@ -1,4 +1,4 @@
-import { useToastStore } from "@/services/stores/useToastStore";
+import { useToastStore } from "@/shared/services/stores/useToastStore";
 import { ToastMessage } from "./ToastMessage";
 
 export const Toasts = () => {

@@ -1,8 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 
-import { ROUTES } from "@/services/router/routes";
-import { useUserStore } from "@/services/stores";
 import { Logo } from "@/shared/components";
+import { ROUTES } from "@/shared/services/router/routes";
+import { useUserStore } from "@/shared/services/stores";
 import { icons } from "@/shared/ui";
 import { tw } from "@/shared/utils";
 

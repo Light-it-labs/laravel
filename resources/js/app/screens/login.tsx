@@ -3,10 +3,10 @@ import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
 import { useGoogleLoginMutation } from "@/domains/auth/api/mutations/useGoogleLoginMutation";
-import { errorToast, useToastStore } from "@/services/notifications";
-import { ROUTES } from "@/services/router";
-import { useUserStore } from "@/services/stores";
 import { Logo } from "@/shared/components";
+import { errorToast } from "@/shared/services/notifications";
+import { ROUTES } from "@/shared/services/router";
+import { useToastStore, useUserStore } from "@/shared/services/stores";
 
 export const Login = () => {
   const { pushToast } = useToastStore();

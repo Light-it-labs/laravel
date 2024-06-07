@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 
-import type { ServiceResponse } from "@/services/http";
-import { publicAPI } from "@/services/http";
+import type { ServiceResponse } from "@/shared/services/http";
+import { publicAPI } from "@/shared/services/http";
 
 interface GoogleLoginResponse {
   accessToken: string;

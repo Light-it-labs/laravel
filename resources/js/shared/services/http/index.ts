@@ -1,6 +1,9 @@
 import axios from "axios";
 
-import { errorResponse, privateRequest } from "@/services/http/interceptors";
+import {
+  errorResponse,
+  privateRequest,
+} from "@/shared/services/http/interceptors";
 import { env } from "@/shared/utils/env";
 
 export interface ErrorPayload {
