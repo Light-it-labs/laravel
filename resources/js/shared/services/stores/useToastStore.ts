@@ -1,23 +1,8 @@
-import type { ReactNode } from "react";
 import { v4 as uuid } from "uuid";
 import { create } from "zustand";
 
+import type { Toast } from "@/shared/services/notifications/types";
 import { asyncTimeout } from "@/shared/utils/asyncTimeout";
-
-export const toastTypes = ["info", "success", "error", "warning"] as const;
-
-export type ToastType = (typeof toastTypes)[number];
-
-export interface Toast {
-  id: string;
-  type: ToastType;
-  icon: ReactNode;
-  title: string;
-  message: string;
-  timestamp: number; // date.now()
-  duration: number; // in ms
-  state: "open" | "isClosing";
-}
 
 export interface ToastStore {
   toasts: Toast[];

@@ -1,6 +1,6 @@
 import { XMarkIcon } from "@heroicons/react/20/solid";
 
-import type { Toast } from "@/shared/services/stores/useToastStore";
+import type { Toast } from "@/shared/services/notifications/types";
 import { tw } from "@/shared/utils/tw";
 import toastIcons from "./toastIcons";
 
