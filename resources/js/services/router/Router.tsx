@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import type { Location } from "react-router-dom";
 
-import { Layout } from "@/app/layouts";
+import { LeftNavbarLayout } from "@/app/layouts";
 import { NotFound } from "@/app/NotFound";
 import { Home } from "@/app/screens/home";
 import { Login } from "@/app/screens/login";
@@ -26,7 +26,7 @@ export const Router = () => {
 
         {/* PRIVATE ONLY ROUTES */}
         <Route element={<ProtectedRoute expected={["admin", "standard"]} />}>
-          <Route element={<Layout />}>
+          <Route element={<LeftNavbarLayout />}>
             <Route element={<Navigate to={ROUTES.home} />} path={ROUTES.base} />
 
             <Route element={<Home />} path={ROUTES.home} />
@@ -36,7 +36,7 @@ export const Router = () => {
         </Route>
 
         <Route element={<ProtectedRoute expected="admin" />}>
-          <Route element={<Layout />}>
+          <Route element={<LeftNavbarLayout />}>
             <Route element={<Users />} path={ROUTES.users} />
           </Route>
         </Route>

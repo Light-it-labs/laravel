@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 
-import { Navbar } from "./Navbar";
+import { Navbar } from "../../shared/components/Navbar";
 
-export const Layout = () => {
+export const LeftNavbarLayout = () => {
   return (
     <div className="h-screen flex-col overflow-hidden bg-gray-900 md:flex md:flex-row">
       <Navbar />
