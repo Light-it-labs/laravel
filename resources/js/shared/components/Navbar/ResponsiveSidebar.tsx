@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 
-import { icons } from "@/ui";
+import { icons } from "@/shared/ui";
 import { Sidebar } from "./Sidebar";
 
 export const ResponsiveSidebar = () => {

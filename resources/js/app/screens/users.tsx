@@ -1,8 +1,8 @@
 import { useDeleteUserMutation } from "@/domains/users/api/mutations/useDeleteUserMutation";
 import { useUsersQuery } from "@/domains/users/api/queries/useUsersQuery";
 import { MODAL_ROUTES, useNavigateModal } from "@/services/router";
+import { Button, icons } from "@/shared/ui";
 import { tw } from "@/shared/utils";
-import { Button, icons } from "@/ui";
 
 const statuses = {
   Completed: "text-green-400 bg-green-400/10",
