@@ -3,9 +3,7 @@ import type { Location } from "react-router-dom";
 
 import { LeftNavbarLayout } from "@/app/layouts";
 import { NotFound } from "@/app/NotFound";
-import { Home } from "@/app/screens/home";
-import { Login } from "@/app/screens/login";
-import { Users } from "@/app/screens/users";
+import { Home, Login, Users } from "@/app/screens";
 import { ModalRouter } from "./ModalRouter";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { ROUTES } from "./routes";
