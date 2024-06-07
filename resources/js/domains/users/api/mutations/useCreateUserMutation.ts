@@ -4,7 +4,7 @@ import { userKeys } from "@/domains/users/api";
 import type { UserRequest, UserResponse } from "@/domains/users/types";
 import { privateAPI } from "@/services/http";
 import type { ServiceResponse } from "@/services/http";
-import { useToastStore } from "@/ui";
+import { useToastStore } from "@/services/notifications";
 
 const createUser = async (params: UserRequest) => {
   const { passwordConfirmation, ...rest } = params;

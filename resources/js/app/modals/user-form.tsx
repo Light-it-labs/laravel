@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { useCreateUserMutation } from "@/domains/users/api/mutations/useCreateUserMutation";
+import { errorToast } from "@/services/notifications";
 import { handleAxiosFieldErrors } from "@/shared/utils";
-import { Button, errorToast, icons, Input } from "@/ui";
+import { Button, icons, Input } from "@/ui";
 
 const userSchema = z
   .object({

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { useToastStore } from "../../services/stores/useToastStore";
+import { useToastStore } from "@/services/stores/useToastStore";
 
 const axiosErrorSchema = z.object({
   response: z.object({
