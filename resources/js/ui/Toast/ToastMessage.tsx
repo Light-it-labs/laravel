@@ -2,7 +2,7 @@ import { XMarkIcon } from "@heroicons/react/20/solid";
 
 import { tw } from "@/shared/utils/tw";
 import toastIcons from "./toastIcons";
-import type { Toast } from "./toastStore";
+import type { Toast } from "./useToastStore";
 
 export interface ToastMessageProps {
   toast: Toast;

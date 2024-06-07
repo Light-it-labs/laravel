@@ -1,3 +1,3 @@
 export * from "./Toasts";
 export * from "./errorToast";
-export * from "./toastStore";
+export * from "./useToastStore";
