@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { useCreateUserMutation } from "@/domains/users/api/mutations/useCreateUserMutation";
-import { errorToast } from "@/shared/services/notifications";
+import { showErrorToast } from "@/shared/services/notifications";
 import { Button, icons, Input } from "@/shared/ui";
 import { handleAxiosFieldErrors } from "@/shared/utils";
 
@@ -48,7 +48,7 @@ export const UserForm = ({ onClose }: { onClose: () => void }) => {
               onClose();
             },
             onError: (err) => {
-              errorToast(err);
+              showErrorToast(err);
               handleAxiosFieldErrors(err, setError);
             },
           }),

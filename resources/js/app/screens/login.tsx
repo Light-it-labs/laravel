@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useGoogleLoginMutation } from "@/domains/auth/api/mutations/useGoogleLoginMutation";
 import { Logo } from "@/shared/components";
-import { errorToast } from "@/shared/services/notifications";
+import { showErrorToast } from "@/shared/services/notifications";
 import { ROUTES } from "@/shared/services/router";
 import { useToastStore, useUserStore } from "@/shared/services/stores";
 
@@ -42,7 +42,7 @@ export const Login = () => {
           navigate(ROUTES.base);
         },
         onError(e) {
-          errorToast(e);
+          showErrorToast(e);
 
           // here we fail forwards, we are basically logging the user anyways
           // because we KNOW the login will fail

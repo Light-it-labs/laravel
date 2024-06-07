@@ -23,7 +23,7 @@ export const validateError = (data: unknown) => {
   return undefined;
 };
 
-export const errorToast = (error: unknown): void => {
+export const showErrorToast = (error: unknown): void => {
   const pushToast = useToastStore.getState().pushToast;
 
   const validatedError = validateError(error);
