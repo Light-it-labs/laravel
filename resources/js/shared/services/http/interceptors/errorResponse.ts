@@ -1,7 +1,10 @@
 import type { AxiosError } from "axios";
 
-import type { ErrorPayload, ServiceResponse } from "@/shared/services/http";
 import { privateAPI } from "@/shared/services/http";
+import type {
+  ErrorPayload,
+  ServiceResponse,
+} from "@/shared/services/http/types";
 import { useUserStore } from "@/shared/services/stores";
 import { memoizedRefreshToken } from "./refreshToken";
 

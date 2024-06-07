@@ -1,7 +1,7 @@
 import mem from "mem";
 
-import type { ServiceResponse } from "@/shared/services/http";
 import { privateAPI } from "@/shared/services/http";
+import type { ServiceResponse } from "@/shared/services/http/types";
 import { useUserStore } from "@/shared/services/stores";
 
 export interface UserToken {
