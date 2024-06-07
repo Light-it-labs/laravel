@@ -1,5 +1,5 @@
+import { useToastStore } from "../../services/stores/useToastStore";
 import { ToastMessage } from "./ToastMessage";
-import { useToastStore } from "./useToastStore";
 
 export const Toasts = () => {
   const { toasts, deleteToast } = useToastStore();
