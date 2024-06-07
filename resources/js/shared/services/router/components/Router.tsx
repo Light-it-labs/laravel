@@ -4,9 +4,9 @@ import type { Location } from "react-router-dom";
 import { LeftNavbarLayout } from "@/app/layouts";
 import { NotFound } from "@/app/NotFound";
 import { Home, Login, Users } from "@/app/screens";
+import { ROUTES } from "../config/routes";
 import { ModalRouter } from "./ModalRouter";
 import { ProtectedRoute } from "./ProtectedRoute";
-import { ROUTES } from "./routes";
 
 export const Router = () => {
   const location = useLocation();

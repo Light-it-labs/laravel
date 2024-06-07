@@ -1,4 +1,5 @@
-import { MODAL_ROUTES, useNavigateModal } from "@/shared/services/router";
+import { MODAL_ROUTES } from "@/shared/services/router/config/routes";
+import { useNavigateModal } from "@/shared/services/router/hooks/useNavigateModal";
 import { Button } from "@/shared/ui";
 
 export const Home = () => {

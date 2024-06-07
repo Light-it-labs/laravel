@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useGoogleLoginMutation } from "@/domains/auth/api/mutations/useGoogleLoginMutation";
 import { Logo } from "@/shared/components";
 import { showErrorToast } from "@/shared/services/notifications";
-import { ROUTES } from "@/shared/services/router";
+import { ROUTES } from "@/shared/services/router/config/routes";
 import { useToastStore, useUserStore } from "@/shared/services/stores";
 
 export const Login = () => {

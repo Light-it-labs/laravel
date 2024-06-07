@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 
 import { Logo } from "@/shared/components";
-import { ROUTES } from "@/shared/services/router/routes";
+import { ROUTES } from "@/shared/services/router/config/routes";
 import { useUserStore } from "@/shared/services/stores";
 import { icons } from "@/shared/ui";
 import { tw } from "@/shared/utils";

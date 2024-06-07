@@ -4,7 +4,7 @@ import { Transition, TransitionGroup } from "react-transition-group";
 
 import { ExampleModal } from "@/app/modals/example-modal";
 import { UserModal } from "@/app/modals/user-modal";
-import { MODAL_ROUTES } from "./routes";
+import { MODAL_ROUTES } from "@/shared/services/router/config/routes";
 
 export const ModalRouter = ({ showModal }: { showModal: boolean }) => {
   const navigate = useNavigate();

@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
+import { ROUTES } from "@/shared/services/router/config/routes";
 import { useUserStore } from "@/shared/services/stores";
-import { ROUTES } from "./routes";
 
 type UserState = "loggedOut" | "standard" | "admin";
 

@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
-import type { MODAL_ROUTES } from "./routes";
+import type { MODAL_ROUTES } from "../config/routes";
 
 type ModalRoutes = (typeof MODAL_ROUTES)[keyof typeof MODAL_ROUTES];
 type ValidModalUrl<T extends string> = T extends `${infer _}/${infer _}`
