@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { userKeys } from "@/domains/users/api";
+import { userKeys } from "@/domains/users/api/keys/UserKeyFactory";
 import type { UserRequest, UserResponse } from "@/domains/users/types";
 import { privateAPI } from "@/services/http";
 import type { ServiceResponse } from "@/services/http";

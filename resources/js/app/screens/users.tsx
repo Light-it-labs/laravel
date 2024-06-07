@@ -1,4 +1,5 @@
-import { useDeleteUserMutation, useUsersQuery } from "@/domains/users/api";
+import { useDeleteUserMutation } from "@/domains/users/api/mutations/useDeleteUserMutation";
+import { useUsersQuery } from "@/domains/users/api/queries/useUsersQuery";
 import { MODAL_ROUTES, useNavigateModal } from "@/services/router";
 import { tw } from "@/shared/utils";
 import { Button, icons } from "@/ui";
