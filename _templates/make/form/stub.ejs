@@ -1,0 +1,45 @@
+---
+to: resources/js/domains/<%= selectedDomain %>/components/<%= fileName %>Form.tsx
+---
+<%_ var fieldsArray = fields.replace(/\s/g, "").split(',') _%>
+import type { SubmitHandler } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const <%= fileName %>FormSchema = z.object({
+<%_ fieldsArray.forEach(field => { _%>
+  <%= field %>: z.null(),
+<%_ }); _%>
+})
+
+type <%= fileName %>Form = z.infer<typeof <%= fileName %>FormSchema>
+
+interface <%= fileName %>FormProps {
+  exampleProp: string;
+}
+
+const defaultValues = {
+<%_ fieldsArray.forEach(field => { _%>
+  <%= field %>: null,
+<%_ }); _%>
+}
+
+export function <%= fileName %>Form(_props: <%= fileName %>FormProps) {
+  
+  const { handleSubmit } = useForm<<%= fileName %>Form>({
+    defaultValues,
+    resolver: zodResolver(<%= fileName %>FormSchema),
+  })
+  
+  const onSubmit: SubmitHandler<<%= fileName %>Form> = (formData) => {
+    console.log(formData)
+  }
+  
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      {/* // Your fields here... */}
+      <button>Submit</button>
+    </form>
+  )
+}
