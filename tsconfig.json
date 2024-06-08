@@ -19,9 +19,9 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
-    "types": ["vite/client"],
+    "types": ["vite/client", "node"],
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": ["./resources/js/**/*", ".eslintrc.cjs", "prettier.config.cjs"]
+  "include": ["./resources/js/**/*", ".eslintrc.cjs", "prettier.config.cjs", "./_templates/**/*.cjs",]
 }
