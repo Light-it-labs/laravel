@@ -1,11 +1,6 @@
 /* eslint-disable */
-const fs = require("fs");
 const path = require("path");
-
-const getDirectories = source => {
-  return fs.readdirSync(source)
-    .filter(name => fs.lstatSync(path.join(source, name)).isDirectory());
-};
+const { getDomainFolderNames } = require("../../helpers/index.cjs")
 
 module.exports = {
   prompt: ({ prompter }) => {
@@ -20,7 +15,7 @@ module.exports = {
         type: 'select',
         name: 'selectedDomain',
         message: "Select a domain:",
-        choices: getDirectories(path.resolve(__dirname, "../../../resources/js/domains"))      
+        choices: getDomainFolderNames() 
       }
     ]
     
