@@ -1,0 +1,19 @@
+---
+to: resources/js/domains/<%= selectedDomain %>/api/queries/<%= fileName %>.ts
+---
+import { useQuery } from "@tanstack/react-query";
+
+import { privateAPI } from "@/shared/services/http";
+import type { ServiceResponse } from "@/shared/services/http/types";
+
+const fetchFn = async <T>() => {
+  const response = await privateAPI.get<ServiceResponse<T>>("/");
+  return response.data.payload;
+};
+
+export function <%= fileName %>() {
+  return useQuery({
+    queryKey: [], // Create query key through factory
+    queryFn: fetchFn,
+  });
+}

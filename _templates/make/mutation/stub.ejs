@@ -1,0 +1,18 @@
+---
+to: resources/js/domains/<%= selectedDomain %>/api/mutations/<%= fileName %>.ts
+---
+import { useMutation } from "@tanstack/react-query";
+
+import { privateAPI } from "@/shared/services/http";
+import type { ServiceResponse } from "@/shared/services/http/types";
+
+const mutateFn = async <T>() => {
+  const response = await privateAPI.post<ServiceResponse<T>>("/");
+  return response.data.payload;
+};
+
+export function <%= fileName %>() {
+  return useMutation({
+    mutationFn: mutateFn,
+  });
+}
