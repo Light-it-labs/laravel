@@ -2,7 +2,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { useCreateUserMutation } from "@/domains/users/api/mutations/useCreateUserMutation";
+import { useCreateUserMutation } from "@/domains/users/mutations/useCreateUserMutation";
 import { showErrorToast } from "@/shared/services/notifications";
 import { Button, icons, Input } from "@/shared/ui";
 import { handleAxiosFieldErrors } from "@/shared/utils";

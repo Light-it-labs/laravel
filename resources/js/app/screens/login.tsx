@@ -2,7 +2,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 
-import { useGoogleLoginMutation } from "@/domains/auth/api/mutations/useGoogleLoginMutation";
+import { useGoogleLoginMutation } from "@/domains/auth/mutations/useGoogleLoginMutation";
 import { Logo } from "@/shared/components";
 import { showErrorToast } from "@/shared/services/notifications";
 import { ROUTES } from "@/shared/services/router/config/routes";

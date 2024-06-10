@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { userKeys } from "@/domains/users/api/keys/UserKeyFactory";
+import { userKeys } from "@/domains/users/keys/UserKeyFactory";
 import type { UserResponse } from "@/domains/users/types";
 import { privateAPI } from "@/shared/services/http";
 import type { ServiceResponse } from "@/shared/services/http/types";
