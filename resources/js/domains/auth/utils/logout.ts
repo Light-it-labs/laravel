@@ -1,6 +1,5 @@
-import { useUserStore } from "@/shared/services/stores";
+import { clearUser } from "@/shared/services/stores";
 
 export const logout = () => {
-  const { clearUser } = useUserStore.getState();
   clearUser();
 };

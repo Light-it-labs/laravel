@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import { Logo } from "@/shared/components";
 import { ROUTES } from "@/shared/services/router/config/routes";
-import { useUserStore } from "@/shared/services/stores";
+import { setToken, useUser } from "@/shared/services/stores";
 import { icons } from "@/shared/ui";
 import { tw } from "@/shared/utils";
 
@@ -27,7 +27,7 @@ export const Sidebar = ({
   onCloseSidebar?: () => void;
 }) => {
   const { pathname: currentPath } = useLocation();
-  const { user, setToken } = useUserStore();
+  const user = useUser();
   return (
     <div className="flex h-screen grow flex-col gap-y-12 overflow-y-auto bg-black/50 px-6 ring-1 ring-white/5">
       <div className="mx-auto flex h-16 shrink-0 py-6 pr-2">

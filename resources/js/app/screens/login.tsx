@@ -6,11 +6,10 @@ import { useGoogleLoginMutation } from "@/domains/auth/api/mutations/useGoogleLo
 import { Logo } from "@/shared/components";
 import { showErrorToast } from "@/shared/services/notifications";
 import { ROUTES } from "@/shared/services/router/config/routes";
-import { useToastStore, useUserStore } from "@/shared/services/stores";
+import { setToken, setUser, useToastStore } from "@/shared/services/stores";
 
 export const Login = () => {
   const { pushToast } = useToastStore();
-  const { setToken, setUser } = useUserStore();
 
   const navigate = useNavigate();
 

@@ -2,7 +2,7 @@ import mem from "mem";
 
 import { privateAPI } from "@/shared/services/http";
 import type { ServiceResponse } from "@/shared/services/http/types";
-import { useUserStore } from "@/shared/services/stores";
+import { clearUser, setToken } from "@/shared/services/stores";
 
 export interface UserToken {
   refreshToken: string;
@@ -11,7 +11,6 @@ export interface UserToken {
 }
 
 const refreshToken = async () => {
-  const { setToken, clearUser } = useUserStore.getState();
   let refreshWasSuccessful = false;
 
   try {

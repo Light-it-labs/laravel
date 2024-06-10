@@ -5,7 +5,7 @@ import type {
   ErrorPayload,
   ServiceResponse,
 } from "@/shared/services/http/types";
-import { useUserStore } from "@/shared/services/stores";
+import { clearUser, useUserStore } from "@/shared/services/stores";
 import { memoizedRefreshToken } from "./refreshToken";
 
 export const errorResponse = async (
@@ -22,7 +22,7 @@ export const errorResponse = async (
         headers: { Authorization: `Bearer ${refreshedToken}` },
       });
     } else {
-      useUserStore.getState().clearUser();
+      clearUser();
       window.location.href = "/login";
     }
   }
