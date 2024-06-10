@@ -1,9 +1,9 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import type { Location } from "react-router-dom";
 
-import { LeftNavbarLayout } from "@/app/layouts";
 import { NotFound } from "@/app/NotFound";
 import { Home, Login, Users } from "@/app/screens";
+import { LeftNavbarLayout } from "@/shared/layouts";
 import { ROUTES } from "../config/routes";
 import { ModalRouter } from "./ModalRouter";
 import { ProtectedRoute } from "./ProtectedRoute";
