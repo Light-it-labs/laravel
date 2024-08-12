@@ -48,7 +48,7 @@
     "@heroicons/react": "^2.1.5",
     "@hookform/resolvers": "^3.9.0",
     "@radix-ui/react-dialog": "^1.1.1",
-    "@sentry/react": "^8.20.0",
+    "@sentry/react": "^8.25.0",
     "@sentry/vite-plugin": "^2.21.1",
     "@tanstack/react-query": "^5.51.15",
     "axios": "^1.7.2",
