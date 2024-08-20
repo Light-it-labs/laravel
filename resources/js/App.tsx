@@ -1,43 +1,80 @@
-import React from "react";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import * as Sentry from "@sentry/react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import ReactDOM from "react-dom";
-import { createRoot } from "react-dom/client";
+import { StrictMode } from "react";
+// import * as Sentry from "@sentry/react";
 import {
-  BrowserRouter,
-  createRoutesFromChildren,
-  matchRoutes,
-  useLocation,
-  useNavigationType,
-} from "react-router-dom";
+  QueryCache,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { createRoot } from "react-dom/client";
 
-import { ErrorBoundaryFallback } from "../../resources/js/screens/ErrorBoundaryFallback";
+// import { ErrorBoundaryFallback } from "./screens/ErrorBoundaryFallback";
+
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
+import { z } from "zod";
+
+import { Toasts, useToastStore } from "./components";
 import { env } from "./env";
 import { Router } from "./router";
-import { Toasts } from "./ui";
 
 import "../css/app.css";
 import "./bootstrap";
 
-const queryClient = new QueryClient();
 
-Sentry.init({
-  dsn: env.VITE_SENTRY_DSN_PUBLIC,
+const errorSchema = z.object({ message: z.string() });
+
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+const isLocal = env.VITE_APP_ENV === "local";
+
+const queryCache = !isLocal
+  ? new QueryCache()
+  : new QueryCache({
+      // here we set a generic error handler on dev mode
+      onError: (e, query) => {
+        const parsedError = errorSchema.safeParse(e);
+        const { pushToast } = useToastStore.getState();
+
+        void pushToast({
+          type: "error",
+          title: "Error",
+          message: `${query.queryKey[0] as string} error: ${
+            !parsedError.success
+              ? "Whoops! please check the network tab in the dev tools"
+              : parsedError.data.message
+          }`,
+        });
+      },
+    });
+
+const queryClient = new QueryClient({
+  queryCache,
+});
+
+const root = document.getElementById("root");
+
+if (!root) {
+  throw new Error(
+    "There's no #root div, something's wrong with our index.html",
+  );
+}
+
+// Enable this if needed
+/* Sentry.init({
+  dsn: env.VITE_SENTRY_DSN,
   integrations: [
-    Sentry.reactRouterV6BrowserTracingIntegration({
-      useEffect: React.useEffect,
-      useLocation,
-      useNavigationType,
-      createRoutesFromChildren,
-      matchRoutes,
+    new Sentry.BrowserTracing({
+      // See docs for support of different versions of variation of react router
+      // https://docs.sentry.io/platforms/javascript/guides/react/configuration/integrations/react-router/
+      routingInstrumentation: Sentry.reactRouterV6Instrumentation(
+        useEffect,
+        useLocation,
+        useNavigationType,
+        createRoutesFromChildren,
+        matchRoutes,
+      ),
     }),
-    Sentry.replayIntegration({
-      // Additional SDK configuration goes in here, for example:
-      maskAllText: true,
-      blockAllMedia: true,
-    }),
+    new Sentry.Replay(),
   ],
 
   // Set tracesSampleRate to 1.0 to capture 100%
@@ -53,24 +90,20 @@ Sentry.init({
   // plus for 100% of sessions with an error
   replaysSessionSampleRate: 0.1,
   replaysOnErrorSampleRate: 1.0,
-});
+}); */
 
-createRoot(document.getElementById("app")!).render(
-  <React.StrictMode>
+createRoot(root).render(
+  <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <GoogleOAuthProvider clientId={env.VITE_GOOGLE_AUTH_SSO_CLIENT_ID}>
-        <Sentry.ErrorBoundary fallback={<ErrorBoundaryFallback />}>
-          <BrowserRouter>
-            <Router />
-          </BrowserRouter>
-        </Sentry.ErrorBoundary>
+      {/* <Sentry.ErrorBoundary fallback={<ErrorBoundaryFallback />}> */}
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+      {/* </Sentry.ErrorBoundary> */}
 
-        {ReactDOM.createPortal(<Toasts />, document.body)}
-      </GoogleOAuthProvider>
+      {ReactDOM.createPortal(<Toasts />, document.body)}
 
-      {env.VITE_APP_ENV === "local" && (
-        <ReactQueryDevtools initialIsOpen={false} />
-      )}
+      {isLocal && <ReactQueryDevtools initialIsOpen={false} />}
     </QueryClientProvider>
-  </React.StrictMode>,
+  </StrictMode>,
 );

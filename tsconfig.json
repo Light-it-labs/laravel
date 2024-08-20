@@ -7,21 +7,33 @@
     "incremental": true,
     "isolatedModules": true,
     "jsx": "react-jsx",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "module": "esnext",
     "moduleResolution": "node",
     "noEmit": true,
     "noUncheckedIndexedAccess": true,
     "paths": {
-      "@/*": ["*"]
+      "~/*": [
+        "*"
+      ]
     },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
     "target": "ESNext",
-    "types": ["vite/client"],
+    "types": [
+      "vite/client"
+    ],
     "noUnusedLocals": true,
     "noUnusedParameters": true
   },
-  "include": ["./resources/js/**/*", ".eslintrc.cjs", "prettier.config.cjs"]
+  "include": [
+    "./resources/js/**/*",
+    ".eslintrc.cjs",
+    "prettier.config.cjs"
+  ]
 }

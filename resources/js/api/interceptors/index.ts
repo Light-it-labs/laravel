@@ -1,2 +1,1 @@
-export * from "./privateRequest";
-export * from "./errorResponse";
+export * from "./errorResponseInterceptors";

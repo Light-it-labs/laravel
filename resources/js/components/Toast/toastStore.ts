@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { v4 as uuid } from "uuid";
 import { create } from "zustand";
 
-import { asyncTimeout } from "@/utils/asyncTimeout";
+import { asyncTimeout } from "~/utils";
 
 export const toastTypes = ["info", "success", "error", "warning"] as const;
 
@@ -63,7 +63,7 @@ export const useToastStore = create<ToastStore>((set, get) => ({
       return state;
     });
 
-    await asyncTimeout(500);
+    await asyncTimeout(600);
 
     set((state) => ({
       toasts: state.toasts.filter((toast) => toast.id !== id),

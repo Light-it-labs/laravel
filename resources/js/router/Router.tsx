@@ -1,11 +1,9 @@
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import type { Location } from "react-router-dom";
 
-import { Layout } from "@/layout";
-import { Home, NotFound, Users } from "@/screens";
-import { Login } from "@/screens/Login";
-import { ModalRouter } from "./ModalRouter";
-import { ProtectedRoute } from "./ProtectedRoute";
+import { Layout } from "~/layout";
+import { Home, Login, NotFound } from "~/screens";
+import { useUserStore } from "~/stores";
 import { ROUTES } from "./routes";
 
 export const Router = () => {
@@ -14,39 +12,28 @@ export const Router = () => {
     previousLocation?: Location;
   };
 
+  const userState = useUserStore((state) =>
+    state.token ? "loggedIn" : "loggedOut",
+  );
+
   return (
-    <>
-      {/* PUBLIC ONLY ROUTES */}
-      <Routes location={previousLocation ?? location}>
-        <Route element={<ProtectedRoute expected="loggedOut" />}>
+    <Routes location={previousLocation ?? location}>
+      {/* PUBLIC ONLY ROUTES */}s
+      {userState === "loggedOut" && (
+        <>
+          <Route element={<Navigate to={ROUTES.login} replace />} path={"*"} />
           <Route element={<Login />} path={ROUTES.login} />
-        </Route>
-
-        {/* PRIVATE ONLY ROUTES */}
-        <Route element={<ProtectedRoute expected={["admin", "standard"]} />}>
+        </>
+      )}
+      {/* PRIVATE ONLY ROUTES */}
+      {userState === "loggedIn" && (
+        <>
           <Route element={<Layout />}>
-            <Route element={<Navigate to={ROUTES.home} />} path={ROUTES.base} />
-
             <Route element={<Home />} path={ROUTES.home} />
-
-            <Route path={ROUTES.notFound} element={<NotFound />} />
           </Route>
-        </Route>
-
-        <Route element={<ProtectedRoute expected="admin" />}>
-          <Route element={<Layout />}>
-            <Route element={<Users />} path={ROUTES.users} />
-          </Route>
-        </Route>
-      </Routes>
-
-      {/* MODALS ROUTES */}
-      <Routes>
-        <Route
-          path="*"
-          element={<ModalRouter showModal={!!previousLocation} />}
-        />
-      </Routes>
-    </>
+          <Route path="*" element={<NotFound />} />
+        </>
+      )}
+    </Routes>
   );
 };

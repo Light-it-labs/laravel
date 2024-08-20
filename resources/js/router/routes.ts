@@ -1,12 +1,8 @@
 export const ROUTES = {
-  base: "/",
+  home: "/",
   login: "/login",
-  home: "/home",
-  users: "/users",
-  notFound: "*",
 } as const;
 
 export const MODAL_ROUTES = {
-  exampleModal: "/example-modal",
-  userForm: "/user-form",
+  successModal: "/successModal",
 } as const;

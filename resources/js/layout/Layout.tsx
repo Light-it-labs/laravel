@@ -1,14 +1,24 @@
-import { Outlet } from "react-router-dom";
+import { useState } from "react";
+import { useOutlet } from "react-router-dom";
 
-import { Navbar } from "./Navbar";
+import { NavBar } from "./NavBar";
+import { Sidebar } from "./Sidebar";
 
 export const Layout = () => {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const outlet = useOutlet();
+
   return (
-    <div className="h-screen flex-col overflow-hidden bg-gray-900 md:flex md:flex-row">
-      <Navbar />
-      <main className="h-full grow overflow-y-auto">
-        <Outlet />
-      </main>
+    <div>
+      <Sidebar show={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+
+      <div className="lg:pl-72">
+        <NavBar setSidebarOpen={setSidebarOpen} />
+
+        <main className="py-10">
+          <div className="px-4 sm:px-6 lg:px-8">{outlet}</div>
+        </main>
+      </div>
     </div>
   );
 };

@@ -19,7 +19,7 @@
     </style>
   </head>
   <body class="antialiased">
-    <div id="app"></div>
+    <div id="root"></div>
 
     @viteReactRefresh @vite('resources/js/App.tsx')
   </body>
