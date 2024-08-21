@@ -4,7 +4,7 @@ export const Layout = () => {
   const outlet = useOutlet();
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-[#FCFCFC]">
       <header className=" p-4 "></header>
       <main>
         <div className="grid min-h-screen px-16">{outlet}</div>
