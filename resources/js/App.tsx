@@ -6,11 +6,10 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { createRoot } from "react-dom/client";
-
 // import { ErrorBoundaryFallback } from "./screens/ErrorBoundaryFallback";
 
 import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { z } from "zod";
 
@@ -21,10 +20,8 @@ import { Router } from "./router";
 import "../css/app.css";
 import "./bootstrap";
 
-
 const errorSchema = z.object({ message: z.string() });
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 const isLocal = env.VITE_APP_ENV === "local";
 
 const queryCache = !isLocal

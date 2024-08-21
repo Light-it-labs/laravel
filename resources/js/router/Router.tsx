@@ -1,9 +1,9 @@
-import { Navigate, Route, Routes, useLocation } from "react-router-dom";
-import type { Location } from "react-router-dom";
-
 import { Layout } from "~/layout";
 import { Home, Login, NotFound } from "~/screens";
 import { useUserStore } from "~/stores";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
+import type { Location } from "react-router-dom";
+
 import { ROUTES } from "./routes";
 
 export const Router = () => {

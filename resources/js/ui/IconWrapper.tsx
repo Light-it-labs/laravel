@@ -13,7 +13,7 @@ export const IconWrapper = ({
 }) => (
   <div
     className={tw(
-      "items-center flex flex-row",
+      "flex flex-row items-center",
       size === "sm" && "h-5 w-5",
       size === "md" && "h-6 w-6",
       size === "lg" && "h-6 w-6",

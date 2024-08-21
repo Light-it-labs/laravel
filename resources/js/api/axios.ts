@@ -1,7 +1,7 @@
-import axios from "axios";
-
 import { env } from "~/env";
 import { useUserStore } from "~/stores/useUserStore";
+import axios from "axios";
+
 import { errorResponseInterceptor } from "./interceptors";
 
 export const api = axios.create({
