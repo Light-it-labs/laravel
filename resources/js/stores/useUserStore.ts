@@ -17,7 +17,7 @@ export const useUserStore = create<UserStoreState>()(
   persist(
     (set) => ({
       user: null,
-      token: null,
+      token: "logged",
       setUser: (user: User | null) => {
         set(() => ({ user }));
       },

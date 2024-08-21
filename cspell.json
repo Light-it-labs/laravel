@@ -12,7 +12,8 @@
     "public/",
     "resources/views/",
     "tsconfig.tsbuildinfo",
-    "vendor"
+    "vendor",
+    "package.json"
   ],
   "words": [
     "autoload",
