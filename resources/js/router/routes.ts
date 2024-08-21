@@ -1,5 +1,6 @@
 export const ROUTES = {
   home: "/",
+  MultiStepForm: "/stepForm",
   login: "/login",
 } as const;
 

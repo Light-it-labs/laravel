@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const Home = () => {
   return (
     <div className="flex w-1/3 flex-col gap-12 self-center">
@@ -15,9 +17,12 @@ export const Home = () => {
           glance.
         </p>
       </div>
-      <button className="w-2/3 rounded-md bg-[#0B406F] px-8 py-2 text-white">
+      <Link
+        to="/stepForm"
+        className="w-2/3 rounded-md bg-[#0B406F] px-8 py-2 text-center text-white"
+      >
         Get started
-      </button>
+      </Link>
     </div>
   );
 };
