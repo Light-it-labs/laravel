@@ -2,13 +2,31 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface MultiStepFormData {
-  firstName: string;
+  personalFormData?: {
+    firstName: string;
+    lastName: string;
+    dateOfBirth: Date;
+    phoneNumber: string;
+  };
+  addressFormData?: {
+    street: string;
+    city: string;
+    state: string;
+    zipCode: string;
+  };
+  insuranceFormData?: {
+    insurancePlan: string;
+    memberId: string;
+    diabetesType: string;
+    diabetesManagement: string;
+  };
 }
 
 export interface MultiStepFormState {
   currentFormStep: number;
   multiStepFormData: MultiStepFormData | undefined;
-  setCurrentFormStep(formStep: number): void;
+  goToNextFormStep(): void;
+  goToPreviousFormStep(): void;
   setMultiStepFormData(multiStepFormData: MultiStepFormData): void;
 }
 
@@ -17,8 +35,15 @@ export const useMultiStepFormStore = create<MultiStepFormState>()(
     (set) => ({
       currentFormStep: 1,
       multiStepFormData: undefined,
-      setCurrentFormStep: (currentFormStep: number) => {
-        set(() => ({ currentFormStep }));
+      goToNextFormStep: () => {
+        set(({ currentFormStep }) => ({
+          currentFormStep: currentFormStep + 1,
+        }));
+      },
+      goToPreviousFormStep: () => {
+        set(({ currentFormStep }) => ({
+          currentFormStep: currentFormStep - 1,
+        }));
       },
       setMultiStepFormData: (multiStepFormData: MultiStepFormData) => {
         set(() => ({ multiStepFormData }));

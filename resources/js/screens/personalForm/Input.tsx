@@ -1,5 +1,6 @@
-import type { FormInputType } from "~/screens/FormStepOne";
 import type { UseFormRegister } from "react-hook-form";
+
+import type { FormInputType } from "./PersonalForm";
 
 interface InputPropTypes {
   id: keyof FormInputType;

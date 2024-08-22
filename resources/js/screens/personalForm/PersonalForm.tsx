@@ -1,5 +1,4 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Input } from "~/components/Input";
 import { useMultiStepFormStore } from "~/stores";
 import DatePicker from "react-datepicker";
 import type { SubmitHandler } from "react-hook-form";
@@ -7,44 +6,42 @@ import { Controller, useForm } from "react-hook-form";
 import { twMerge as tw } from "tailwind-merge";
 import { z } from "zod";
 
-import "react-datepicker/dist/react-datepicker.css";
+import { Input } from "./Input";
 
-import { useEffect } from "react";
+import "react-datepicker/dist/react-datepicker.css";
 
 const formSchema = z.object({
   firstName: z.string().min(1, { message: "First name is required" }),
   lastName: z.string().min(1, { message: "Last name is required" }),
   dateOfBirth: z.date().or(z.string().transform((val) => new Date(val))),
-  phoneNumber: z
-    .string()
-    .min(1, { message: "Phone number is required" })
-    .regex(/^\(\d{3}\) \d{3}-\d{4}$/, "Phone number is not valid"),
+  phoneNumber: z.string().min(1, { message: "Phone number is required" }),
 });
 
 export type FormInputType = z.infer<typeof formSchema>;
 
-const FormStepOne = () => {
-  const { setCurrentFormStep } = useMultiStepFormStore();
+export const PersonalForm = () => {
+  const { goToNextFormStep, setMultiStepFormData, multiStepFormData } =
+    useMultiStepFormStore();
 
   const {
     control,
     register,
     handleSubmit,
-    formState: { isValid, errors },
-    watch,
-    getValues,
+    formState: { isValid },
   } = useForm<FormInputType>({
     resolver: zodResolver(formSchema),
+    defaultValues: {
+      firstName: multiStepFormData?.personalFormData?.firstName,
+      lastName: multiStepFormData?.personalFormData?.lastName,
+      dateOfBirth: multiStepFormData?.personalFormData?.dateOfBirth,
+      phoneNumber: multiStepFormData?.personalFormData?.phoneNumber,
+    },
   });
-  console.log({ errors, isValid });
-  const onSubmit: SubmitHandler<FormInputType> = () => {
-    // Assuming data manipulation or other logic here
-    setCurrentFormStep(2);
+
+  const onSubmit: SubmitHandler<FormInputType> = (data) => {
+    setMultiStepFormData({ personalFormData: data });
+    goToNextFormStep();
   };
-  useEffect(() => {
-    console.log(watch(), getValues());
-  }),
-    [watch];
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between">
@@ -87,7 +84,7 @@ const FormStepOne = () => {
         <div className="flex">
           <button
             className={tw(
-              "w-1/3 rounded-md  px-8 py-2 text-center text-white",
+              "w-1/4 rounded-md  px-8 py-2 text-center text-white",
               isValid ? "bg-[#0B406F]" : "bg-[#6B7280]",
             )}
             type="submit"
@@ -100,5 +97,3 @@ const FormStepOne = () => {
     </div>
   );
 };
-
-export default FormStepOne;

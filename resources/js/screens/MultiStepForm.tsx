@@ -2,17 +2,20 @@ import type { ComponentType } from "react";
 import Stepper from "~/components/Stepper";
 import { useMultiStepFormStore } from "~/stores";
 
-import FormStepOne from "./FormStepOne";
-import FormStepTwo from "./FormStepTwo";
+import { AddressForm } from "./addressForm/AddressForm";
+import { InsuranceForm } from "./insuranceForm/InsuranceForm";
+import { PersonalForm } from "./personalForm";
 
 const stepComponents: Record<number, ComponentType> = {
-  1: FormStepOne,
-  2: FormStepTwo,
+  1: PersonalForm,
+  2: AddressForm,
+  3: InsuranceForm,
 };
 
 const MultiStepForm = () => {
   const { currentFormStep } = useMultiStepFormStore();
 
+  const steps = Object.keys(stepComponents).map(Number);
   const StepComponent = stepComponents[currentFormStep];
 
   return (
@@ -26,7 +29,7 @@ const MultiStepForm = () => {
           System is suitable for you or your loved one.
         </p>
       </div>
-      <Stepper steps={[1, 2, 3]} currentStep={currentFormStep} />
+      <Stepper steps={steps} currentStep={currentFormStep} />
       {StepComponent ? <StepComponent /> : <div>Step not found</div>}
     </div>
   );
