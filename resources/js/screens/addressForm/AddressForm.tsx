@@ -1,11 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "~/components/Input";
 import { useMultiStepFormStore } from "~/stores";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { twMerge as tw } from "tailwind-merge";
 import { z } from "zod";
-
-import { Input } from "./Input";
 
 const addressFormSchema = z.object({
   street: z.string().min(1, { message: "Street is required" }),
@@ -53,12 +52,12 @@ export const AddressForm = () => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-12">
         <div className="flex justify-between gap-4">
-          <Input id="street" label="House/Street" register={register} />
-          <Input id="city" label="City" register={register} />
+          <Input id="street" label="House/Street" {...register("street")} />
+          <Input id="city" label="City" {...register("city")} />
         </div>
         <div className="flex justify-between gap-4">
-          <Input id="state" label="State" register={register} />
-          <Input id="zipCode" label="Zip code" register={register} />
+          <Input id="state" label="State" {...register("state")} />
+          <Input id="zipCode" label="Zip code" {...register("zipCode")} />
         </div>
 
         <div className="flex justify-between">

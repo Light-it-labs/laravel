@@ -2,6 +2,7 @@ import { Layout } from "~/layout";
 import { Home, Login, NotFound } from "~/screens";
 import MultiStepForm from "~/screens/MultiStepForm";
 import { PharmacyBenefit } from "~/screens/PharmacyBenefit";
+import { ProvidersList } from "~/screens/ProvidersList";
 import { useUserStore } from "~/stores";
 import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import type { Location } from "react-router-dom";
@@ -37,6 +38,7 @@ export const Router = () => {
               element={<PharmacyBenefit />}
               path={ROUTES.pharmacyBenefit}
             />
+            <Route element={<ProvidersList />} path={ROUTES.providersList} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </>

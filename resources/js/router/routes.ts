@@ -2,6 +2,7 @@ export const ROUTES = {
   home: "/",
   multiStepForm: "/stepForm",
   pharmacyBenefit: "/pharmacyBenefit",
+  providersList: "/providersList",
   login: "/login",
 } as const;
 

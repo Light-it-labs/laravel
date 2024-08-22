@@ -1,12 +1,11 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "~/components/Input";
 import { useMultiStepFormStore } from "~/stores";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { twMerge as tw } from "tailwind-merge";
 import { z } from "zod";
-
-import { Input } from "./Input";
 
 const InsuranceFormSchema = z.object({
   insurancePlan: z.string().min(1, { message: "Insurance plan is required" }),
@@ -57,9 +56,9 @@ export const InsuranceForm = () => {
           <Input
             id="insurancePlan"
             label="Plan name/type"
-            register={register}
+            {...register("insurancePlan")}
           />
-          <Input id="memberId" label="Member ID" register={register} />
+          <Input id="memberId" label="Member ID" {...register("memberId")} />
         </div>
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
@@ -72,12 +71,12 @@ export const InsuranceForm = () => {
             <Input
               id="diabetesType"
               label="Diabetes Type"
-              register={register}
+              {...register("diabetesType")}
             />
             <Input
               id="diabetesManagement"
               label="Current Diabetes management"
-              register={register}
+              {...register("diabetesManagement")}
             />
           </div>
         </div>

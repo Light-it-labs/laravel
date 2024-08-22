@@ -10,6 +10,7 @@ interface PharmacyPromotion {
   bin: string;
   productName: string;
 }
+
 const pharmacyPromotions: PharmacyPromotion[] = [
   {
     id: 1,
@@ -51,6 +52,7 @@ export const PharmacyBenefit = () => {
       productName: "Freestyle Libre 3",
     },
   );
+
   const { price, pharmacyName, productName, bin } = selectedPromotion;
   return (
     <div className="mx-auto flex w-3/4 flex-col gap-12">

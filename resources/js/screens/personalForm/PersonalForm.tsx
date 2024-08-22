@@ -6,9 +6,9 @@ import { Controller, useForm } from "react-hook-form";
 import { twMerge as tw } from "tailwind-merge";
 import { z } from "zod";
 
-import { Input } from "./Input";
-
 import "react-datepicker/dist/react-datepicker.css";
+
+import { Input } from "~/components/Input";
 
 const formSchema = z.object({
   firstName: z.string().min(1, { message: "First name is required" }),
@@ -27,7 +27,8 @@ export const PersonalForm = () => {
     control,
     register,
     handleSubmit,
-    formState: { isValid },
+    getValues,
+    formState: { isValid, errors },
   } = useForm<FormInputType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -37,7 +38,8 @@ export const PersonalForm = () => {
       phoneNumber: multiStepFormData?.personalFormData?.phoneNumber,
     },
   });
-
+  console.log(getValues());
+  console.log(errors);
   const onSubmit: SubmitHandler<FormInputType> = (data) => {
     setMultiStepFormData({ personalFormData: data });
     goToNextFormStep();
@@ -52,8 +54,8 @@ export const PersonalForm = () => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-12">
         <div className="flex justify-between gap-4">
-          <Input id="firstName" label="First name" register={register} />
-          <Input id="lastName" label="Last name" register={register} />
+          <Input id="firstName" label="First name" {...register("firstName")} />
+          <Input id="lastName" label="Last name" {...register("lastName")} />
         </div>
         <div className="flex justify-between gap-4">
           <div className="gap flex w-full flex-col">
@@ -76,8 +78,8 @@ export const PersonalForm = () => {
           <Input
             id="phoneNumber"
             label="Phone"
-            register={register}
             placeholder="Phone Number (e.g., (123) 456-7890)"
+            {...register("phoneNumber")}
           />
         </div>
 
