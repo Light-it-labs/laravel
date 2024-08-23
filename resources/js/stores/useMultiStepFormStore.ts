@@ -45,8 +45,13 @@ export const useMultiStepFormStore = create<MultiStepFormState>()(
           currentFormStep: currentFormStep - 1,
         }));
       },
-      setMultiStepFormData: (multiStepFormData: MultiStepFormData) => {
-        set(() => ({ multiStepFormData }));
+      setMultiStepFormData: (update: Partial<MultiStepFormData>) => {
+        set((prevState) => ({
+          multiStepFormData: {
+            ...prevState.multiStepFormData,
+            ...update,
+          },
+        }));
       },
     }),
     {

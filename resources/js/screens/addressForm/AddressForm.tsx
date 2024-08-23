@@ -1,10 +1,24 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "~/components/Input";
+import { SelectField } from "~/components/SelectField";
 import { useMultiStepFormStore } from "~/stores";
 import type { SubmitHandler } from "react-hook-form";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { twMerge as tw } from "tailwind-merge";
 import { z } from "zod";
+
+const STATES = [
+  { id: 1, value: "AL", label: "AL - Alabama" },
+  { id: 2, value: "AK", label: "AK - Alaska" },
+  { id: 3, value: "AZ", label: "AZ - Arizona" },
+  { id: 4, value: "AR", label: "AR - Arkansas" },
+  { id: 5, value: "CA", label: "CA - California" },
+  { id: 6, value: "CO", label: "CO - Colorado" },
+  { id: 7, value: "CT", label: "CT - Connecticut" },
+  { id: 8, value: "DE", label: "DE - Delaware" },
+  { id: 9, value: "DC", label: "DC - District Of Columbia" },
+  { id: 10, value: "FL", label: "FL - Florida" },
+];
 
 const addressFormSchema = z.object({
   street: z.string().min(1, { message: "Street is required" }),
@@ -27,6 +41,7 @@ export const AddressForm = () => {
     register,
     handleSubmit,
     formState: { isValid },
+    control,
   } = useForm<AddressFormInputType>({
     resolver: zodResolver(addressFormSchema),
     defaultValues: {
@@ -56,7 +71,13 @@ export const AddressForm = () => {
           <Input id="city" label="City" {...register("city")} />
         </div>
         <div className="flex justify-between gap-4">
-          <Input id="state" label="State" {...register("state")} />
+          <Controller
+            control={control}
+            name="state"
+            render={({ field }) => (
+              <SelectField {...field} options={STATES} label={"State"} />
+            )}
+          />
           <Input id="zipCode" label="Zip code" {...register("zipCode")} />
         </div>
 

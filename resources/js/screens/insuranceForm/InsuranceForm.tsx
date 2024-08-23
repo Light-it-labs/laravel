@@ -1,11 +1,35 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "~/components/Input";
+import { SelectField } from "~/components/SelectField";
 import { useMultiStepFormStore } from "~/stores";
 import type { SubmitHandler } from "react-hook-form";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { twMerge as tw } from "tailwind-merge";
 import { z } from "zod";
+
+const DIABETES_TYPES = [
+  { id: 1, value: "none", label: "None" },
+  { id: 1, value: "type-1", label: "Type 1" },
+  { id: 1, value: "type-2", label: "Type 2" },
+  { id: 1, value: "type-3", label: "Gestational" },
+];
+
+const DIABETES_MANAGEMENT = [
+  { id: 1, value: "none", label: "None" },
+  { id: 1, value: "po", label: "Pills only" },
+  { id: 1, value: "ni", label: "Non-insulin injections" },
+  { id: 1, value: "ii", label: "Insulin injections" },
+  { id: 1, value: "ip", label: "Insulin using pump therapy" },
+  { id: 1, value: "de", label: " Diet and exercise" },
+];
+
+const PLAN_TYPE = [
+  { id: 1, value: "medicare", label: "Medicare" },
+  { id: 2, value: "medicaid", label: "Medicaid" },
+  { id: 3, value: "cigna", label: "Cigna" },
+  { id: 4, value: "humana", label: "Humana" },
+];
 
 const InsuranceFormSchema = z.object({
   insurancePlan: z.string().min(1, { message: "Insurance plan is required" }),
@@ -27,6 +51,7 @@ export const InsuranceForm = () => {
     register,
     handleSubmit,
     formState: { isValid },
+    control,
   } = useForm<InsuranceFormInputType>({
     resolver: zodResolver(InsuranceFormSchema),
     defaultValues: {
@@ -39,6 +64,7 @@ export const InsuranceForm = () => {
   });
 
   const onSubmit: SubmitHandler<InsuranceFormInputType> = (data) => {
+    console.log({ multiStepFormData });
     setMultiStepFormData({ insuranceFormData: data });
     navigate("/pharmacyBenefit");
   };
@@ -53,10 +79,16 @@ export const InsuranceForm = () => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-12">
         <div className="flex justify-between gap-4">
-          <Input
-            id="insurancePlan"
-            label="Plan name/type"
-            {...register("insurancePlan")}
+          <Controller
+            control={control}
+            name="insurancePlan"
+            render={({ field }) => (
+              <SelectField
+                {...field}
+                options={PLAN_TYPE}
+                label={"Plan name/type"}
+              />
+            )}
           />
           <Input id="memberId" label="Member ID" {...register("memberId")} />
         </div>
@@ -68,15 +100,28 @@ export const InsuranceForm = () => {
             </p>
           </div>
           <div className="flex justify-between gap-4">
-            <Input
-              id="diabetesType"
-              label="Diabetes Type"
-              {...register("diabetesType")}
+            <Controller
+              control={control}
+              name="diabetesType"
+              render={({ field }) => (
+                <SelectField
+                  {...field}
+                  options={DIABETES_TYPES}
+                  label={"Diabetes type"}
+                />
+              )}
             />
-            <Input
-              id="diabetesManagement"
-              label="Current Diabetes management"
-              {...register("diabetesManagement")}
+
+            <Controller
+              control={control}
+              name="diabetesManagement"
+              render={({ field }) => (
+                <SelectField
+                  {...field}
+                  options={DIABETES_MANAGEMENT}
+                  label={"Current Diabetes management"}
+                />
+              )}
             />
           </div>
         </div>

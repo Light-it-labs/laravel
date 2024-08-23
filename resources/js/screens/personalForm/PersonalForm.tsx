@@ -27,8 +27,7 @@ export const PersonalForm = () => {
     control,
     register,
     handleSubmit,
-    getValues,
-    formState: { isValid, errors },
+    formState: { isValid },
   } = useForm<FormInputType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,8 +37,7 @@ export const PersonalForm = () => {
       phoneNumber: multiStepFormData?.personalFormData?.phoneNumber,
     },
   });
-  console.log(getValues());
-  console.log(errors);
+
   const onSubmit: SubmitHandler<FormInputType> = (data) => {
     setMultiStepFormData({ personalFormData: data });
     goToNextFormStep();
