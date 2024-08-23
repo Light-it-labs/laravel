@@ -1,14 +1,13 @@
 import { ArrowLeftIcon } from "@heroicons/react/20/solid";
-import { useNavigate } from "react-router-dom";
-
 import { Button } from "~/ui";
+import { useNavigate } from "react-router-dom";
 
 export const NotFound = () => {
   const navigate = useNavigate();
   return (
     <main className="flex h-screen flex-col items-center justify-center">
       <div className="mb-20">
-        <img src={'/images/lightit-logo-violet.svg'} alt="logo" />
+        <img src={"/images/lightit-logo-violet.svg"} alt="logo" />
       </div>
 
       <p className="mb-10 text-2xl">

@@ -6,6 +6,9 @@ use Lightit\Backoffice\Users\App\Controllers\DeleteUserController;
 use Lightit\Backoffice\Users\App\Controllers\GetUserController;
 use Lightit\Backoffice\Users\App\Controllers\ListUserController;
 use Lightit\Backoffice\Users\App\Controllers\StoreUserController;
+use Lightit\Insurance\App\Controllers\GetAvailableDMEProvidersController;
+use Lightit\Insurance\App\Controllers\MedicareAdvantageEligibilityCheckController;
+use Lightit\Insurance\App\Controllers\MedicareEligibilityCheckController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +38,8 @@ Route::prefix('users')
         Route::post('/', StoreUserController::class);
         Route::delete('/{user}', DeleteUserController::class);
     });
+
+Route::post('/medicare/eligibility-check', MedicareEligibilityCheckController::class);
+Route::post('/medicare-advantage/eligibility-check', MedicareAdvantageEligibilityCheckController::class);
+
+Route::get('/dme/providers', GetAvailableDMEProvidersController::class);
