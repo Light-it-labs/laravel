@@ -1,11 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lightit\Backoffice\Users\Domain\DataTransferObjects;
 
 class pVerifyEligibilitySummaryRequestDTO
 {
-    public function __construct(public string $payerCode, public string $payerName, public string $Provider_LastName, public string $Provider_NPI, public string $Provider_PIN, public string $Patient_First, public string $Patient_DOB, public string $Patient_Last, public string $memberID, public string $Date_Of_Service, public string $referenceId, public string $Location, public string $PracticeTypeCode, public string $IncludeTextResponse, public string $InternalId, public string $CustomerID)
-    {
+    public function __construct(
+        public string $payerCode,
+        public string $payerName,
+        public string $Provider_LastName,
+        public string $Provider_NPI,
+        public string $Provider_PIN,
+        public string $Patient_First,
+        public string $Patient_DOB,
+        public string $Patient_Last,
+        public string $memberID,
+        public string $Date_Of_Service,
+        public string $referenceId,
+        public string $Location,
+        public string $PracticeTypeCode,
+        public string $IncludeTextResponse,
+        public string $InternalId,
+        public string $CustomerID,
+    ) {
     }
 
     public function toArray(): array

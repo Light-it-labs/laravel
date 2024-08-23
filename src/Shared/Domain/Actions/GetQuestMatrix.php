@@ -9,6 +9,9 @@ use Lightit\Shared\Domain\Models\PayersDMEProviders;
 
 class GetQuestMatrix
 {
+    /**
+     * @return Collection<int, array{payer_id: int, payer_name: string, dme_provider_name: string, state: string}>
+     */
     public function execute(): Collection
     {
         $matrix = PayersDMEProviders::all();

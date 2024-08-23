@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lightit\Backoffice\Users\App\Integrations\pVerify\Requests;
 
 use Lightit\Backoffice\Users\App\Integrations\pVerify\pVerifyConnector;
@@ -22,8 +24,8 @@ class GetToken extends Request
     protected function defaultBody(): array
     {
         return [
-            'client_id' => $this->connector()->getApiId(),
-            'client_secret' => $this->connector()->getSecret(),
+            'client_id' => config('services.pverify.client_api_id'),
+            'client_secret' => config('services.pverify.client_secret'),
             'grant_type' => 'client_credentials',
         ];
     }

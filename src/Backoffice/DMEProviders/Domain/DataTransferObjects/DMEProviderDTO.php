@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Lightit\Backoffice\DMEProviders\Domain\DataTransferObjects;
 
 use Lightit\Backoffice\DMEProviders\Domain\Enums\BenefitType;

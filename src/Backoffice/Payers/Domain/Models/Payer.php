@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Lightit\Backoffice\Payers\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Lightit\Backoffice\Datasyncs\Domain\Models\Datasync;
 
 /**
  *
@@ -24,9 +26,23 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Payer whereType($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Payer whereUpdatedAt($value)
  *
+ * @property int $data_sync_id
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|Payer whereDataSyncId($value)
+ *
+ * @property-read Datasync|null $dataSync
+ *
  * @mixin \Eloquent
  */
 class Payer extends Model
 {
     protected $guarded = ['id'];
+
+    /**
+     * @return BelongsTo<Datasync, Payer>
+     */
+    public function dataSync(): BelongsTo
+    {
+        return $this->belongsTo(DataSync::class);
+    }
 }

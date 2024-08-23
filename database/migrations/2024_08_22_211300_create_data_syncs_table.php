@@ -10,18 +10,15 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('payers', function (Blueprint $table) {
+        Schema::create('data_syncs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('type');
-            $table->unsignedBigInteger('data_sync_id')->nullable();
-            $table->foreign('data_sync_id')->references('id')->on('data_syncs')->onDelete('set null');
+            $table->string('sync_method');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('payers');
+        Schema::dropIfExists('data_syncs');
     }
 };

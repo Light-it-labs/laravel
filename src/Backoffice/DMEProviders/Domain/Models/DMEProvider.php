@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Lightit\Backoffice\DMEProviders\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Lightit\Backoffice\Datasyncs\Domain\Models\Datasync;
 
 /**
  *
@@ -28,6 +30,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|DMEProvider wherePhone($value)
  * @method static \Illuminate\Database\Eloquent\Builder|DMEProvider whereUpdatedAt($value)
  *
+ * @property int $data_sync_id
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|DMEProvider whereDataSyncId($value)
+ *
+ * @property-read Datasync|null $dataSync
+ *
  * @mixin \Eloquent
  */
 class DMEProvider extends Model
@@ -35,4 +43,12 @@ class DMEProvider extends Model
     protected $guarded = ['id'];
 
     protected $table = 'dme_providers';
+
+    /**
+     * @return BelongsTo<Datasync, DMEProvider>
+     */
+    public function dataSync(): BelongsTo
+    {
+        return $this->belongsTo(DataSync::class);
+    }
 }

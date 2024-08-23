@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('benefit_type');
             $table->string('phone');
             $table->string('fax');
+            $table->unsignedBigInteger('data_sync_id')->nullable();
+            $table->foreign('data_sync_id')->references('id')->on('data_syncs')->onDelete('set null');
             $table->timestamps();
         });
     }

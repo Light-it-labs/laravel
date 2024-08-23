@@ -14,6 +14,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('payer_id')->constrained('payers');
             $table->foreignId('dme_provider_id')->constrained('dme_providers');
+            $table->unsignedBigInteger('data_sync_id')->nullable();
+            $table->foreign('data_sync_id')->references('id')->on('data_syncs')->onDelete('set null');
             $table->string('state');
             $table->timestamps();
         });

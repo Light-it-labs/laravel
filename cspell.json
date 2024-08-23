@@ -25,6 +25,7 @@
     "beanstalkd",
     "captainhook",
     "clsx",
+    "Datasyncs",
     "DBAL",
     "Debugbar",
     "Dispatchable",

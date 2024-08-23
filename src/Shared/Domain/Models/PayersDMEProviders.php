@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Lightit\Shared\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Lightit\Backoffice\DMEProviders\Domain\Models\DMEProvider;
 use Lightit\Backoffice\Payers\Domain\Models\Payer;
 
@@ -30,6 +31,9 @@ use Lightit\Backoffice\Payers\Domain\Models\Payer;
  *
  * @property-read DMEProvider $dmeProvider
  * @property-read Payer $payer
+ * @property int $data_sync_id
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|PayersDMEProviders whereDataSyncId($value)
  *
  * @mixin \Eloquent
  */
@@ -38,12 +42,18 @@ class PayersDMEProviders extends Model
     protected $table = 'payers_dme_providers';
     protected $guarded = ['id'];
 
-    public function payer()
+    /**
+     * @return BelongsTo<Payer, PayersDMEProviders>
+     */
+    public function payer(): BelongsTo
     {
         return $this->belongsTo(Payer::class);
     }
 
-    public function dmeProvider()
+    /**
+     * @return BelongsTo<DMEProvider, PayersDMEProviders>
+     */
+    public function dmeProvider(): BelongsTo
     {
         return $this->belongsTo(DMEProvider::class);
     }
