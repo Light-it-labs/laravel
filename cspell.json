@@ -12,7 +12,8 @@
     "public/",
     "resources/views/",
     "tsconfig.tsbuildinfo",
-    "vendor"
+    "vendor",
+    "resources/csvs/"
   ],
   "words": [
     "autoload",
@@ -28,6 +29,7 @@
     "Debugbar",
     "Dispatchable",
     "docblocks",
+    "dosespot",
     "EHLO",
     "Encrypter",
     "env",
@@ -68,6 +70,7 @@
     "Phpstan",
     "phpstorm",
     "phpunit",
+    "pverify",
     "Queueable",
     "roundrobin",
     "sasl",

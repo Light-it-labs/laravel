@@ -35,4 +35,15 @@ return [
         ],
     ],
 
+    'pverify' => [
+        'base_url' => env('PVERIFY_BASE_URL'),
+        'client_api_id' => env('PVERIFY_CLIENT_API_ID'),
+        'client_secret' => env('PVERIFY_CLIENT_SECRET'),
+    ],
+
+    'dosespot' => [
+        'base_url' => env('DOSESPOT_BASE_URL'),
+        'Username' => env('DOSESPOT_USERNAME'),
+        'Password' => env('DOSESPOT_PASSWORD'),
+    ],
 ];
