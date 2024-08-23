@@ -5,10 +5,9 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/20/solid";
 import { Bars3Icon, BellIcon } from "@heroicons/react/24/outline";
+import { logout } from "~/api/login";
 import { Link } from "react-router-dom";
 import { twMerge as tw } from "tailwind-merge";
-
-import { logout } from "~/api/login";
 
 export interface NavBarProps {
   setSidebarOpen?: (v: boolean) => void;

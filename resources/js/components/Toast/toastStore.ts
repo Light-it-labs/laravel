@@ -1,8 +1,7 @@
 import type { ReactNode } from "react";
+import { asyncTimeout } from "~/utils";
 import { v4 as uuid } from "uuid";
 import { create } from "zustand";
-
-import { asyncTimeout } from "~/utils";
 
 export const toastTypes = ["info", "success", "error", "warning"] as const;
 

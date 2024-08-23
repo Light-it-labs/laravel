@@ -1,10 +1,9 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { HomeIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ROUTES } from "~/router";
 import { Link, useLocation } from "react-router-dom";
 import { twMerge as tw } from "tailwind-merge";
-
-import { ROUTES } from "~/router";
 
 export interface SidebarProps {
   show: boolean;
