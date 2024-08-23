@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { HomeIcon } from "~/components/icons/HomeIcon";
 import { Input } from "~/components/Input";
 import { SelectField } from "~/components/SelectField";
 import { useMultiStepFormStore } from "~/stores";
@@ -60,7 +61,10 @@ export const AddressForm = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between">
-        <p className=" font-extrabold">Patient information</p>
+        <div className="flex items-center gap-2">
+          <HomeIcon />
+          <p className=" font-extrabold">Address information</p>
+        </div>
         <p className="text-sm font-extrabold text-[#6B7280]">
           All fields are required
         </p>

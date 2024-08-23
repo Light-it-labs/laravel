@@ -19,7 +19,7 @@ const MultiStepForm = () => {
   const StepComponent = stepComponents[currentFormStep];
 
   return (
-    <div className="m-auto flex w-2/3 flex-col gap-12">
+    <div className="mx-auto mt-8 flex w-2/3 flex-col gap-12">
       <div className="flex flex-col gap-12 text-center">
         <h1 className="text-3xl font-bold text-[#07284A]">
           Get started with your <b>Freestyle Libre CGM System</b> today.

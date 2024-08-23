@@ -1,8 +1,9 @@
 import type { ComponentPropsWithRef } from "react";
 import { forwardRef } from "react";
 import { Field, Label, Select } from "@headlessui/react";
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { twMerge as tw } from "tailwind-merge";
+
+import { ChevronDownIcon } from "./icons/ChevronDownIcon";
 
 interface SelectPropTypes extends ComponentPropsWithRef<"select"> {
   options: { id: number; value: string; label: string }[];
@@ -18,7 +19,9 @@ export const SelectField = forwardRef<HTMLSelectElement, SelectPropTypes>(
           <div className="relative">
             <Select
               ref={ref}
-              className={tw("w-full rounded-lg border bg-white p-4")}
+              className={tw(
+                "w-full appearance-none rounded-lg border bg-white p-4",
+              )}
               {...props}
             >
               {options.map(({ id, value, label }) => (
@@ -28,8 +31,10 @@ export const SelectField = forwardRef<HTMLSelectElement, SelectPropTypes>(
               ))}
             </Select>
             <ChevronDownIcon
-              className="group pointer-events-none absolute right-2.5 top-2.5 size-4 fill-white/60"
               aria-hidden="true"
+              className={tw(
+                "group pointer-events-none absolute right-2.5 top-1/3 data-[active]:rotate-180",
+              )}
             />
           </div>
         </Field>

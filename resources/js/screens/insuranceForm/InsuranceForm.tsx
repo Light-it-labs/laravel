@@ -1,4 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { ShieldIcon } from "~/components/icons/ShieldIcon";
+import { StethoscopeIcon } from "~/components/icons/StethoscopeIcon";
 import { Input } from "~/components/Input";
 import { SelectField } from "~/components/SelectField";
 import { useMultiStepFormStore } from "~/stores";
@@ -72,7 +74,10 @@ export const InsuranceForm = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between">
-        <p className=" font-extrabold">Insurance information</p>
+        <div className="flex items-center gap-2">
+          <ShieldIcon />
+          <p className=" font-extrabold">Insurance information</p>
+        </div>
         <p className="text-sm font-extrabold text-[#6B7280]">
           All fields are required
         </p>
@@ -94,7 +99,10 @@ export const InsuranceForm = () => {
         </div>
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
-            <p className=" font-extrabold">Medical information</p>
+            <div className="flex items-center gap-2 ">
+              <StethoscopeIcon />
+              <p className=" font-extrabold">Medical information</p>
+            </div>
             <p className="text-sm font-extrabold text-[#6B7280]">
               All fields are required
             </p>
@@ -125,14 +133,12 @@ export const InsuranceForm = () => {
             />
           </div>
         </div>
-        {isValid && (
-          <p className="text-sm text-[#6B7280]">
-            By continuing, you agree with the{" "}
-            <a href="google.com" className="underline">
-              Terms & Conditions
-            </a>
-          </p>
-        )}
+        <p className="text-sm text-[#6B7280]">
+          By continuing, you agree with the{" "}
+          <a href="google.com" className="underline">
+            Terms & Conditions
+          </a>
+        </p>
         <div className="flex justify-between">
           <button
             className={tw(

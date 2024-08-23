@@ -8,6 +8,7 @@ import { z } from "zod";
 
 import "react-datepicker/dist/react-datepicker.css";
 
+import { UserIcon } from "~/components/icons/UserIcon";
 import { Input } from "~/components/Input";
 
 const formSchema = z.object({
@@ -45,7 +46,10 @@ export const PersonalForm = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between">
-        <p className=" font-extrabold">Patient information</p>
+        <div className="flex items-center gap-2">
+          <UserIcon />
+          <p className=" font-extrabold">Patient information</p>
+        </div>
         <p className="text-sm font-extrabold text-[#6B7280]">
           All fields are required
         </p>

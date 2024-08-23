@@ -58,7 +58,7 @@ interface ProviderType {
 
 const ProviderCard = ({ name, email, phoneNumber }: ProviderType) => {
   return (
-    <div className="w-1/3 rounded-lg border border-[#F0F7FF] text-center shadow ">
+    <div className="w-[30%] rounded-lg border border-[#F0F7FF] text-center shadow ">
       <div className="bg-[#F0F7FF] p-4 font-bold text-[#07284A]">
         <h1>{name}</h1>
       </div>
@@ -83,7 +83,7 @@ export const ProvidersList = () => {
           providers you can contact to get your device.
         </p>
       </div>
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap justify-center gap-4">
         {providers.map((provider) => {
           return <ProviderCard key={provider.id} {...provider} />;
         })}
