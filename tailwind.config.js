@@ -2,9 +2,27 @@
 module.exports = {
   content: [
     "./resources/**/*.blade.php",
-    "./resources/js/**/*.{js,ts,jsx,tsx}"
+    "./resources/js/**/*.{js,ts,jsx,tsx}",
   ],
-  plugins: [require("@tailwindcss/typography"), require("tailwindcss-animate")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("tailwindcss-animate"),
+    function ({ addUtilities }) {
+      const newUtilities = {
+        ".no-spinners": {
+          "&::-webkit-inner-spin-button, &::-webkit-outer-spin-button": {
+            "-webkit-appearance": "none",
+            margin: 0,
+          },
+          "-moz-appearance": "textfield", // Firefox
+          "&::-webkit-clear-button": {
+            display: "none", // For type="search"
+          },
+        },
+      };
+      addUtilities(newUtilities, ["responsive"]);
+    },
+  ],
   theme: {
     fontFamily: {
       sans: ["Inter", "sans-serif"],

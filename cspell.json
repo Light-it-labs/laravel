@@ -12,7 +12,8 @@
     "public/",
     "resources/views/",
     "tsconfig.tsbuildinfo",
-    "vendor"
+    "vendor",
+    "package.json"
   ],
   "words": [
     "autoload",
@@ -24,6 +25,7 @@
     "beanstalkd",
     "captainhook",
     "clsx",
+    "datepicker",
     "DBAL",
     "Debugbar",
     "Dispatchable",
@@ -34,6 +36,7 @@
     "fieldsets",
     "filesize",
     "Flugg",
+    "headlessui",
     "heroicons",
     "hookform",
     "ianvs",
@@ -61,6 +64,7 @@
     "Npkj",
     "Nuno",
     "nunomaduro",
+    "Optum",
     "PAPERTRAIL",
     "Parens",
     "passw",
