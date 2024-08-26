@@ -30,15 +30,17 @@ const PLAN_TYPE = [
   { id: 4, value: "humana", label: "Humana" },
 ];
 
-const MultipleChoiceFormSchema = z.object({
-  diabetesManagement: z
-    .string()
-    .min(1, { message: "Diabetes management is required" }),
-  insurancePlan: z.string().min(1, { message: "Insurance plan is required" }),
-  informationType: z.enum(["member-id", "personal-information"], {
-    message: "Select member id or personal information is required",
-  }),
-  memberID: z.string().min(1, { message: "MemberID is required" }),
+const baseSchema = z.object({
+  diabetesManagement: z.string().min(1, { message: "Required" }),
+  insurancePlan: z.string().min(1, { message: "Required" }),
+  informationType: z.enum(["member-id", "personal-information"]),
+});
+
+const memberIdSchema = baseSchema.extend({
+  memberID: z.string().min(1, { message: "Member ID is required" }),
+});
+
+const personalInfoSchema = baseSchema.extend({
   firstName: z.string().min(1, { message: "First name is required" }),
   lastName: z.string().min(1, { message: "Last name is required" }),
   month: z
@@ -55,9 +57,9 @@ const MultipleChoiceFormSchema = z.object({
   zipCode: z.string().min(1, { message: "Zip code is required" }),
 });
 
-export type MultipleChoiceFormInputType = z.infer<
-  typeof MultipleChoiceFormSchema
->;
+export type PersonalInfoFormInputType = z.infer<typeof personalInfoSchema>;
+
+export type MemberIdFormInputType = z.infer<typeof memberIdSchema>;
 
 const MultipleChoiceForm = () => {
   const {
@@ -67,7 +69,14 @@ const MultipleChoiceForm = () => {
     handleSubmit,
     register,
   } = useForm({
-    resolver: zodResolver(MultipleChoiceFormSchema),
+    resolver: (values, context, options) => {
+      const isMemberIdSchema =
+        values.informationType === INFORMATION_TYPE.memberID;
+      const createResolver = zodResolver(
+        isMemberIdSchema ? memberIdSchema : personalInfoSchema,
+      );
+      return createResolver(values, context, options);
+    },
     defaultValues: {
       diabetesManagement: "",
       insurancePlan: "",
@@ -82,10 +91,11 @@ const MultipleChoiceForm = () => {
     },
     mode: "onSubmit",
   });
+
   const isMemberIdSelected = watch("informationType") === "member-id";
   const navigate = useNavigate();
 
-  const onSubmit: SubmitHandler<MultipleChoiceFormInputType> = (data) => {
+  const onSubmit: SubmitHandler<MemberIdFormInputType> = (data) => {
     console.log({ data });
     navigate("/pharmacyBenefit");
   };
@@ -246,6 +256,9 @@ const MultipleChoiceForm = () => {
             isValid ? "bg-[#0B406F]" : "bg-[#6B7280]",
           )}
           type="submit"
+          onClick={() => {
+            console.log(errors);
+          }}
         >
           Next
         </button>
