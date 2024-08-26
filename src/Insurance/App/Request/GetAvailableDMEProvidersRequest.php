@@ -6,7 +6,7 @@ namespace Lightit\Insurance\App\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rules\Enum;
-use Lightit\Backoffice\Users\Domain\DataTransferObjects\GetAvailableDMEProvidersDto;
+use Lightit\Insurance\Domain\DataTransferObjects\GetAvailableDMEProvidersDto;
 use Lightit\Shared\App\Enums\USState;
 
 class GetAvailableDMEProvidersRequest extends FormRequest

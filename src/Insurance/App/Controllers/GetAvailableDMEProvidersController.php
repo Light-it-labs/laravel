@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lightit\Insurance\App\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Lightit\Backoffice\Users\Domain\Actions\GetAvailableDMEProvidersAction;
-use Lightit\Insurance\App\Request\DMEProviderTransformer;
+use Lightit\Insurance\Domain\Actions\GetAvailableDMEProvidersAction;
+use Lightit\Insurance\App\Transformers\DMEProviderTransformer;
 use Lightit\Insurance\App\Request\GetAvailableDMEProvidersRequest;
 
 class GetAvailableDMEProvidersController

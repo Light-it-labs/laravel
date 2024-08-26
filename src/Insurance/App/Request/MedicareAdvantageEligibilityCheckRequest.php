@@ -6,7 +6,7 @@ namespace Lightit\Insurance\App\Request;
 
 use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
-use Lightit\Backoffice\Users\Domain\DataTransferObjects\MedicareAdvantageEligibilityCheckDto;
+use Lightit\Insurance\Domain\DataTransferObjects\MedicareAdvantageEligibilityCheckDto;
 
 class MedicareAdvantageEligibilityCheckRequest extends FormRequest
 {
