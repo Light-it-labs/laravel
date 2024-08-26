@@ -1,5 +1,6 @@
 import { Layout } from "~/layout";
 import { Home, Login, NotFound } from "~/screens";
+import MultipleChoiceForm from "~/screens/MultipleChoiceForm";
 import MultiStepForm from "~/screens/MultiStepForm";
 import { PharmacyBenefit } from "~/screens/PharmacyBenefit";
 import { ProvidersList } from "~/screens/ProvidersList";
@@ -43,6 +44,10 @@ export const Router = () => {
           >
             <Route element={<Home />} path={ROUTES.home} />
             <Route element={<MultiStepForm />} path={ROUTES.multiStepForm} />
+            <Route
+              element={<MultipleChoiceForm />}
+              path={ROUTES.multipleChoiceForm}
+            />
             <Route
               element={<PharmacyBenefit />}
               path={ROUTES.pharmacyBenefit}

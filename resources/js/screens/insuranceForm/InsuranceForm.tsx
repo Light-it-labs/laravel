@@ -52,7 +52,7 @@ export const InsuranceForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { isValid },
+    formState: { isValid, errors },
     control,
   } = useForm<InsuranceFormInputType>({
     resolver: zodResolver(InsuranceFormSchema),
@@ -63,6 +63,7 @@ export const InsuranceForm = () => {
       diabetesManagement:
         multiStepFormData?.insuranceFormData?.diabetesManagement,
     },
+    mode: "onSubmit",
   });
 
   const onSubmit: SubmitHandler<InsuranceFormInputType> = (data) => {
@@ -95,7 +96,12 @@ export const InsuranceForm = () => {
               />
             )}
           />
-          <Input id="memberId" label="Member ID" {...register("memberId")} />
+          <Input
+            id="memberId"
+            label="Member ID"
+            {...register("memberId")}
+            errorMessage={errors.memberId?.message}
+          />
         </div>
         <div className="flex flex-col gap-3">
           <div className="flex justify-between">
@@ -154,7 +160,6 @@ export const InsuranceForm = () => {
               isValid ? "bg-[#0B406F]" : "bg-[#6B7280]",
             )}
             type="submit"
-            disabled={!isValid}
           >
             Submit
           </button>

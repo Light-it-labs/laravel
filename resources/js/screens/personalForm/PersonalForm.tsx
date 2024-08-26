@@ -1,20 +1,26 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMultiStepFormStore } from "~/stores";
-import DatePicker from "react-datepicker";
-import type { SubmitHandler } from "react-hook-form";
-import { Controller, useForm } from "react-hook-form";
-import { twMerge as tw } from "tailwind-merge";
-import { z } from "zod";
-
-import "react-datepicker/dist/react-datepicker.css";
-
 import { UserIcon } from "~/components/icons/UserIcon";
 import { Input } from "~/components/Input";
+import { useMultiStepFormStore } from "~/stores";
+import type { SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
+import { twMerge as tw } from "tailwind-merge";
+import { z } from "zod";
 
 const formSchema = z.object({
   firstName: z.string().min(1, { message: "First name is required" }),
   lastName: z.string().min(1, { message: "Last name is required" }),
-  dateOfBirth: z.date().or(z.string().transform((val) => new Date(val))),
+  month: z
+    .number()
+    .min(1, { message: "Month must be between 1 and 12" })
+    .max(12, { message: "Month must be between 1 and 12" }),
+  day: z
+    .number()
+    .min(1, { message: "Day must be between 1 and 31" })
+    .max(31, { message: "Day must be between 1 and 31" }),
+  year: z.number().min(1900, { message: "Year must be after 1900" }).max(2000, {
+    message: `Year must be before 2000`,
+  }),
   phoneNumber: z.string().min(1, { message: "Phone number is required" }),
 });
 
@@ -25,24 +31,34 @@ export const PersonalForm = () => {
     useMultiStepFormStore();
 
   const {
-    control,
     register,
     handleSubmit,
-    formState: { isValid },
+    formState: { errors },
   } = useForm<FormInputType>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       firstName: multiStepFormData?.personalFormData?.firstName,
       lastName: multiStepFormData?.personalFormData?.lastName,
-      dateOfBirth: multiStepFormData?.personalFormData?.dateOfBirth,
+      month: multiStepFormData?.personalFormData?.dateOfBirth?.month,
+      day: multiStepFormData?.personalFormData?.dateOfBirth?.day,
+      year: multiStepFormData?.personalFormData?.dateOfBirth?.year,
       phoneNumber: multiStepFormData?.personalFormData?.phoneNumber,
     },
+    mode: "onSubmit",
   });
 
   const onSubmit: SubmitHandler<FormInputType> = (data) => {
-    setMultiStepFormData({ personalFormData: data });
-    goToNextFormStep();
+    if (Object.keys(errors).length === 0) {
+      setMultiStepFormData({
+        personalFormData: {
+          ...data,
+          dateOfBirth: { month: data.month, day: data.day, year: data.year },
+        },
+      });
+      goToNextFormStep();
+    }
   };
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between">
@@ -56,43 +72,80 @@ export const PersonalForm = () => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-12">
         <div className="flex justify-between gap-4">
-          <Input id="firstName" label="First name" {...register("firstName")} />
-          <Input id="lastName" label="Last name" {...register("lastName")} />
+          <Input
+            id="firstName"
+            label="First name"
+            {...register("firstName")}
+            errorMessage={errors.firstName?.message}
+          />
+
+          <Input
+            id="lastName"
+            label="Last name"
+            {...register("lastName")}
+            errorMessage={errors.lastName?.message}
+          />
         </div>
-        <div className="flex justify-between gap-4">
-          <div className="gap flex w-full flex-col">
-            <label htmlFor={"dateOfBirth"} className="font-semibold">
-              Date of Birth
-            </label>
-            <Controller
-              control={control}
-              name="dateOfBirth"
-              render={({ field }) => (
-                <DatePicker
-                  placeholderText="Select date"
-                  onChange={(date) => field.onChange(date)}
-                  selected={field.value}
-                  className="w-full rounded-lg border bg-white p-4"
+        <div>
+          <p className="italic">Date of birth</p>
+          <div className="flex justify-between gap-4">
+            <div className="gap flex w-full flex-col">
+              <div className="flex gap-2">
+                <Input
+                  id="month"
+                  label="Month"
+                  {...register("month", {
+                    setValueAs: (v: string) => parseInt(v, 10),
+                  })}
+                  placeholder="MM"
+                  className="w-16"
+                  maxLength={2}
+                  errorMessage={errors.month?.message}
+                  type="number"
                 />
-              )}
+
+                <Input
+                  id="day"
+                  label="Day"
+                  {...register("day", {
+                    setValueAs: (v: string) => parseInt(v, 10),
+                  })}
+                  placeholder="DD"
+                  className="w-16"
+                  maxLength={2}
+                  errorMessage={errors.day?.message}
+                  type="number"
+                />
+                <Input
+                  id="year"
+                  label="Year"
+                  {...register("year", {
+                    setValueAs: (v: string) => parseInt(v, 10),
+                  })}
+                  placeholder="YYYY"
+                  className="w-24"
+                  maxLength={4}
+                  errorMessage={errors.year?.message}
+                  type="number"
+                />
+              </div>
+            </div>
+            <Input
+              id="phoneNumber"
+              label="Phone"
+              placeholder="Phone Number (e.g., (123) 456-7890)"
+              {...register("phoneNumber")}
+              errorMessage={errors.phoneNumber?.message}
             />
           </div>
-          <Input
-            id="phoneNumber"
-            label="Phone"
-            placeholder="Phone Number (e.g., (123) 456-7890)"
-            {...register("phoneNumber")}
-          />
         </div>
 
         <div className="flex">
           <button
             className={tw(
-              "w-1/4 rounded-md  px-8 py-2 text-center text-white",
-              isValid ? "bg-[#0B406F]" : "bg-[#6B7280]",
+              "w-1/4 rounded-md bg-[#0B406F]  px-8 py-2 text-center text-white",
             )}
             type="submit"
-            disabled={!isValid}
           >
             Next
           </button>

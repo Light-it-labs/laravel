@@ -41,7 +41,7 @@ export const AddressForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { isValid },
+    formState: { isValid, errors },
     control,
   } = useForm<AddressFormInputType>({
     resolver: zodResolver(addressFormSchema),
@@ -51,6 +51,7 @@ export const AddressForm = () => {
       state: multiStepFormData?.addressFormData?.state,
       zipCode: multiStepFormData?.addressFormData?.zipCode,
     },
+    mode: "onSubmit",
   });
 
   const onSubmit: SubmitHandler<AddressFormInputType> = (data) => {
@@ -71,8 +72,18 @@ export const AddressForm = () => {
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-12">
         <div className="flex justify-between gap-4">
-          <Input id="street" label="House/Street" {...register("street")} />
-          <Input id="city" label="City" {...register("city")} />
+          <Input
+            id="street"
+            label="House/Street"
+            {...register("street")}
+            errorMessage={errors.street?.message}
+          />
+          <Input
+            id="city"
+            label="City"
+            {...register("city")}
+            errorMessage={errors.city?.message}
+          />
         </div>
         <div className="flex justify-between gap-4">
           <Controller
@@ -82,7 +93,12 @@ export const AddressForm = () => {
               <SelectField {...field} options={STATES} label={"State"} />
             )}
           />
-          <Input id="zipCode" label="Zip code" {...register("zipCode")} />
+          <Input
+            id="zipCode"
+            label="Zip code"
+            {...register("zipCode")}
+            errorMessage={errors.zipCode?.message}
+          />
         </div>
 
         <div className="flex justify-between">
@@ -100,7 +116,6 @@ export const AddressForm = () => {
               isValid ? "bg-[#0B406F]" : "bg-[#6B7280]",
             )}
             type="submit"
-            disabled={!isValid}
           >
             Next
           </button>

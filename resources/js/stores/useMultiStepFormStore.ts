@@ -5,7 +5,7 @@ interface MultiStepFormData {
   personalFormData?: {
     firstName: string;
     lastName: string;
-    dateOfBirth: Date;
+    dateOfBirth: { month: number; day: number; year: number };
     phoneNumber: string;
   };
   addressFormData?: {
