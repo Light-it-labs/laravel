@@ -14,6 +14,7 @@
     "tsconfig.tsbuildinfo",
     "vendor",
     "resources/csvs/"
+    "package.json"
   ],
   "words": [
     "autoload",
@@ -26,6 +27,7 @@
     "captainhook",
     "clsx",
     "Datasyncs",
+    "datepicker",
     "DBAL",
     "Debugbar",
     "Dispatchable",
@@ -37,6 +39,7 @@
     "fieldsets",
     "filesize",
     "Flugg",
+    "headlessui",
     "heroicons",
     "hookform",
     "ianvs",
@@ -64,6 +67,7 @@
     "Npkj",
     "Nuno",
     "nunomaduro",
+    "Optum",
     "PAPERTRAIL",
     "Parens",
     "passw",
