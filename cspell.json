@@ -13,6 +13,7 @@
     "resources/views/",
     "tsconfig.tsbuildinfo",
     "vendor",
+    "resources/csvs/"
     "package.json"
   ],
   "words": [
@@ -25,11 +26,13 @@
     "beanstalkd",
     "captainhook",
     "clsx",
+    "Datasyncs",
     "datepicker",
     "DBAL",
     "Debugbar",
     "Dispatchable",
     "docblocks",
+    "dosespot",
     "EHLO",
     "Encrypter",
     "env",
@@ -72,6 +75,7 @@
     "Phpstan",
     "phpstorm",
     "phpunit",
+    "pverify",
     "Queueable",
     "roundrobin",
     "sasl",
