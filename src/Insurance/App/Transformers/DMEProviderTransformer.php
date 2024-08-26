@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Insurance\App\Request;
+namespace Lightit\Insurance\App\Transformers;
 
 use Flugg\Responder\Transformers\Transformer;
-use Lightit\Backoffice\Users\Domain\DataTransferObjects\DMEProviderDto;
+use Lightit\Insurance\Domain\DataTransferObjects\DMEProviderDto;
 
 class DMEProviderTransformer extends Transformer
 {

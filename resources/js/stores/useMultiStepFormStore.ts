@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface MultiStepFormData {
+export interface MultiStepFormData {
   personalFormData?: {
     firstName: string;
     lastName: string;

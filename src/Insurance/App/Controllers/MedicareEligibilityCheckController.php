@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Lightit\Insurance\App\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Lightit\Backoffice\Users\Domain\Actions\MedicareEligibilityCheckAction;
 use Lightit\Insurance\App\Request\MedicareEligibilityCheckRequest;
-use Lightit\Insurance\App\Request\MedicareEligibilityResponseTransformer;
+use Lightit\Insurance\App\Transformers\MedicareEligibilityResponseTransformer;
+use Lightit\Insurance\Domain\Actions\MedicareEligibilityCheckAction;
 
 class MedicareEligibilityCheckController
 {

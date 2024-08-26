@@ -13,7 +13,7 @@
     "resources/views/",
     "tsconfig.tsbuildinfo",
     "vendor",
-    "resources/csvs/"
+    "resources/csvs/",
     "package.json"
   ],
   "words": [
@@ -92,6 +92,7 @@
     "testsuites",
     "textmate",
     "tokenable",
+    "Tranformers",
     "uncompromised",
     "VITE",
     "Webgriffe",
@@ -99,7 +100,6 @@
     "Worksome",
     "xdebug",
     "yourserver",
-    "zustand",
-    "headlessui"
+    "zustand"
   ]
 }

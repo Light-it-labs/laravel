@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Backoffice\Users\Domain\Actions;
+namespace Lightit\Insurance\Domain\Actions;
 
-use Lightit\Backoffice\Users\Domain\DataTransferObjects\MedicareAdvantageEligibilityCheckDto;
-use Lightit\Backoffice\Users\Domain\DataTransferObjects\MedicareAdvantageEligibilityResponseDto;
+use Lightit\Insurance\Domain\DataTransferObjects\MedicareAdvantageEligibilityCheckDto;
+use Lightit\Insurance\Domain\DataTransferObjects\MedicareAdvantageEligibilityResponseDto;
 use Lightit\Shared\App\Enums\USState;
 
 class MedicareAdvantageEligibilityCheckAction

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Lightit\Backoffice\Users\Domain\Actions;
+namespace Lightit\Insurance\Domain\Actions;
 
 use Illuminate\Support\Collection;
-use Lightit\Backoffice\Users\Domain\DataTransferObjects\DMEProviderDto;
-use Lightit\Backoffice\Users\Domain\DataTransferObjects\GetAvailableDMEProvidersDto;
+use Lightit\Insurance\Domain\DataTransferObjects\DMEProviderDto;
+use Lightit\Insurance\Domain\DataTransferObjects\GetAvailableDMEProvidersDto;
 
 class GetAvailableDMEProvidersAction
 {

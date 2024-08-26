@@ -1,4 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
+import { api } from "~/api/axios";
 import { ShieldIcon } from "~/components/icons/ShieldIcon";
 import { StethoscopeIcon } from "~/components/icons/StethoscopeIcon";
 import { Input } from "~/components/Input";
@@ -66,10 +68,38 @@ export const InsuranceForm = () => {
     mode: "onSubmit",
   });
 
+  const checkEligibility = async (data: unknown) => {
+    const response = await api.post("/medicare/eligibility-check", data);
+    console.log(response);
+    return response;
+  };
+
+  const { mutate: getEligibility } = useMutation({
+    mutationFn: checkEligibility,
+    onSuccess: (data) => {
+      // Navigate based on response
+      if (data) {
+        navigate("/pharmacyBenefit");
+      } else {
+        navigate("/providersList");
+      }
+    },
+    onError: (error) => {
+      console.error("Error checking eligibility:", error);
+    },
+  });
+
   const onSubmit: SubmitHandler<InsuranceFormInputType> = (data) => {
-    console.log({ multiStepFormData });
     setMultiStepFormData({ insuranceFormData: data });
-    navigate("/pharmacyBenefit");
+    if (multiStepFormData) {
+      const { addressFormData, insuranceFormData, personalFormData } =
+        multiStepFormData;
+      getEligibility({
+        ...addressFormData,
+        ...insuranceFormData,
+        ...personalFormData,
+      });
+    }
   };
 
   return (
