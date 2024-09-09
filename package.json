@@ -51,7 +51,7 @@
     "@radix-ui/react-dialog": "^1.1.1",
     "@sentry/react": "^8.28.0",
     "@sentry/vite-plugin": "^2.22.3",
-    "@tanstack/react-query": "^5.53.3",
+    "@tanstack/react-query": "^5.55.2",
     "axios": "^1.7.7",
     "jwt-decode": "^4.0.0",
     "mem": "^10.0.0",
