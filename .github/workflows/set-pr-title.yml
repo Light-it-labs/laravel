@@ -47,8 +47,8 @@ jobs:
             } else {
               try {
               const [type, id, description] = branchName.split('/');
-              const templateTitle = description.replace("-", ' ').replace(/\b\w/g, (l) => l.toUpperCase());
-              const taskCode = id.startsWith("CU-") ? id.replace("CU-", '') : id;
+              const templateTitle = description.split("-").join(' ').replace(/\b\w/g, (l) => l.toUpperCase());
+              const taskCode = id.startsWith("CU-") ? id.split("CU-").join('') : id;
               const typeOfChange = changeTypes[type] || '- [ ] Unknown Type';
               title = `[${id}] ${templateTitle}`;
 
