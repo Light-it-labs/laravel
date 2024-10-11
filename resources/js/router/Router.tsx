@@ -4,7 +4,6 @@ import type { Location } from "react-router-dom";
 import { Layout } from "@/layout";
 import { Home, NotFound, Users } from "@/screens";
 import { Login } from "@/screens/Login";
-import { ModalRouter } from "./ModalRouter";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { ROUTES } from "./routes";
 
@@ -38,14 +37,6 @@ export const Router = () => {
             <Route element={<Users />} path={ROUTES.users} />
           </Route>
         </Route>
-      </Routes>
-
-      {/* MODALS ROUTES */}
-      <Routes>
-        <Route
-          path="*"
-          element={<ModalRouter showModal={!!previousLocation} />}
-        />
       </Routes>
     </>
   );

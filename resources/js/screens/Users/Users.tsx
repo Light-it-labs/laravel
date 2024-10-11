@@ -1,8 +1,8 @@
+import React from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { deleteUser, getUsersQuery } from "@/api";
-import { MODAL_ROUTES } from "@/router";
-import { useNavigateModal } from "@/router/useNavigateModal";
+import { UserModal } from "@/modals";
 import { Button, errorToast, icons, useToastStore } from "@/ui";
 import { tw } from "@/utils";
 
@@ -121,6 +121,8 @@ export const Users = () => {
   const { pushToast } = useToastStore();
   const queryClient = useQueryClient();
 
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
   const { data: users, isLoading: isLoadingUsers } = useQuery({
     ...getUsersQuery(),
     select: (users) =>
@@ -153,158 +155,156 @@ export const Users = () => {
     onError: errorToast,
   });
 
-  const navigateModal = useNavigateModal();
-
   return (
-    <div className="bg-gray-900">
-      <h2 className="flex items-center justify-between px-4 py-9 text-base font-semibold leading-7 text-white sm:px-6 lg:px-8">
-        Latest activity
-        <Button
-          variant="secondary"
-          onClick={() => navigateModal(MODAL_ROUTES.userForm)}
-        >
-          Create user
-        </Button>
-      </h2>
+    <>
+      <div className="bg-gray-900">
+        <h2 className="flex items-center justify-between px-4 py-9 text-base font-semibold leading-7 text-white sm:px-6 lg:px-8">
+          Latest activity
+          <Button variant="secondary" onClick={() => setIsModalOpen(true)}>
+            Create user
+          </Button>
+        </h2>
 
-      <table className="w-full whitespace-nowrap text-left">
-        <colgroup>
-          <col className="w-full sm:w-4/12" />
+        <table className="w-full whitespace-nowrap text-left">
+          <colgroup>
+            <col className="w-full sm:w-4/12" />
 
-          <col className="lg:w-4/12" />
+            <col className="lg:w-4/12" />
 
-          <col className="lg:w-2/12" />
+            <col className="lg:w-2/12" />
 
-          <col className="lg:w-1/12" />
+            <col className="lg:w-1/12" />
 
-          <col className="lg:w-1/12" />
+            <col className="lg:w-1/12" />
 
-          <col className="lg:w-1/12" />
-        </colgroup>
+            <col className="lg:w-1/12" />
+          </colgroup>
 
-        <thead className="border-b border-white/10 text-sm leading-6 text-white">
-          <tr>
-            <th
-              scope="col"
-              className="py-2 pl-4 pr-8 font-semibold sm:pl-6 lg:pl-8"
-            >
-              User
-            </th>
+          <thead className="border-b border-white/10 text-sm leading-6 text-white">
+            <tr>
+              <th
+                scope="col"
+                className="py-2 pl-4 pr-8 font-semibold sm:pl-6 lg:pl-8"
+              >
+                User
+              </th>
 
-            <th
-              scope="col"
-              className="hidden py-2 pl-0 pr-8 font-semibold sm:table-cell"
-            >
-              Commit
-            </th>
+              <th
+                scope="col"
+                className="hidden py-2 pl-0 pr-8 font-semibold sm:table-cell"
+              >
+                Commit
+              </th>
 
-            <th
-              scope="col"
-              className="py-2 pl-0 pr-4 text-right font-semibold sm:pr-8 sm:text-left lg:pr-20"
-            >
-              Status
-            </th>
+              <th
+                scope="col"
+                className="py-2 pl-0 pr-4 text-right font-semibold sm:pr-8 sm:text-left lg:pr-20"
+              >
+                Status
+              </th>
 
-            <th
-              scope="col"
-              className="hidden py-2 pl-0 pr-8 font-semibold md:table-cell lg:pr-20"
-            >
-              Duration
-            </th>
+              <th
+                scope="col"
+                className="hidden py-2 pl-0 pr-8 font-semibold md:table-cell lg:pr-20"
+              >
+                Duration
+              </th>
 
-            <th
-              scope="col"
-              className="hidden py-2 pl-0 pr-4 text-right font-semibold sm:table-cell sm:pr-6 lg:pr-8"
-            >
-              Deployed at
-            </th>
+              <th
+                scope="col"
+                className="hidden py-2 pl-0 pr-4 text-right font-semibold sm:table-cell sm:pr-6 lg:pr-8"
+              >
+                Deployed at
+              </th>
 
-            <th
-              scope="col"
-              className="hidden py-2 pl-0 pr-4 text-right font-semibold sm:table-cell sm:pr-6 lg:pr-8"
-            >
-              <span className="sr-only">Action</span>
-            </th>
-          </tr>
-        </thead>
-
-        <tbody className="divide-y divide-white/5">
-          {isLoadingUsers && (
-            <tr className="h-full items-center">
-              <td colSpan={5}>
-                <div className="flex justify-center p-9">
-                  <icons.SpinnerIcon />
-                </div>
-              </td>
+              <th
+                scope="col"
+                className="hidden py-2 pl-0 pr-4 text-right font-semibold sm:table-cell sm:pr-6 lg:pr-8"
+              >
+                <span className="sr-only">Action</span>
+              </th>
             </tr>
-          )}
-          {users?.map((item) => (
-            <tr key={item.commit}>
-              <td className="py-4 pl-4 pr-8 sm:pl-6 lg:pl-8">
-                <div className="flex items-center gap-x-4">
-                  <img
-                    src={item.user.imageUrl}
-                    alt=""
-                    className="h-8 w-8 rounded-full bg-gray-800"
-                  />
-                  <div className="truncate text-sm font-medium leading-6 text-white">
-                    {item.user.name}
-                  </div>
-                </div>
-              </td>
-              <td className="hidden py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
-                <div className="flex gap-x-3">
-                  <div className="font-mono text-sm leading-6 text-gray-400">
-                    {item.commit}
-                  </div>
+          </thead>
 
-                  <div className="rounded-md bg-gray-700/40 px-2 py-1 text-xs font-medium text-gray-400 ring-1 ring-inset ring-white/10">
-                    {item.branch}
+          <tbody className="divide-y divide-white/5">
+            {isLoadingUsers && (
+              <tr className="h-full items-center">
+                <td colSpan={5}>
+                  <div className="flex justify-center p-9">
+                    <icons.SpinnerIcon />
                   </div>
-                </div>
-              </td>
-              <td className="py-4 pl-0 pr-4 text-sm leading-6 sm:pr-8 lg:pr-20">
-                <div className="flex items-center justify-end gap-x-2 sm:justify-start">
-                  <time
-                    className="text-gray-400 sm:hidden"
-                    dateTime={item.dateTime}
+                </td>
+              </tr>
+            )}
+            {users?.map((item) => (
+              <tr key={item.commit}>
+                <td className="py-4 pl-4 pr-8 sm:pl-6 lg:pl-8">
+                  <div className="flex items-center gap-x-4">
+                    <img
+                      src={item.user.imageUrl}
+                      alt=""
+                      className="h-8 w-8 rounded-full bg-gray-800"
+                    />
+                    <div className="truncate text-sm font-medium leading-6 text-white">
+                      {item.user.name}
+                    </div>
+                  </div>
+                </td>
+                <td className="hidden py-4 pl-0 pr-4 sm:table-cell sm:pr-8">
+                  <div className="flex gap-x-3">
+                    <div className="font-mono text-sm leading-6 text-gray-400">
+                      {item.commit}
+                    </div>
+
+                    <div className="rounded-md bg-gray-700/40 px-2 py-1 text-xs font-medium text-gray-400 ring-1 ring-inset ring-white/10">
+                      {item.branch}
+                    </div>
+                  </div>
+                </td>
+                <td className="py-4 pl-0 pr-4 text-sm leading-6 sm:pr-8 lg:pr-20">
+                  <div className="flex items-center justify-end gap-x-2 sm:justify-start">
+                    <time
+                      className="text-gray-400 sm:hidden"
+                      dateTime={item.dateTime}
+                    >
+                      {item.date}
+                    </time>
+
+                    <div
+                      className={tw(
+                        statuses[item.status],
+                        "flex-none rounded-full p-1",
+                      )}
+                    >
+                      <div className="h-1.5 w-1.5 rounded-full bg-current" />
+                    </div>
+                    <div className="hidden text-white sm:block">
+                      {item.status}
+                    </div>
+                  </div>
+                </td>
+                <td className="hidden py-4 pl-0 pr-8 text-sm leading-6 text-gray-400 md:table-cell lg:pr-20">
+                  {item.duration}
+                </td>
+
+                <td className="hidden py-4 pl-0 pr-4 text-right text-sm leading-6 text-gray-400 sm:table-cell sm:pr-6 lg:pr-8">
+                  <time dateTime={item.dateTime}>{item.date}</time>
+                </td>
+
+                <td className="hidden py-4 pl-0 pr-4 text-right text-sm leading-6 text-gray-400 sm:table-cell sm:pr-6 lg:pr-8">
+                  <Button
+                    variant="tertiary"
+                    onClick={() => deleteUserMutation(item.user.id)}
                   >
-                    {item.date}
-                  </time>
-
-                  <div
-                    className={tw(
-                      statuses[item.status],
-                      "flex-none rounded-full p-1",
-                    )}
-                  >
-                    <div className="h-1.5 w-1.5 rounded-full bg-current" />
-                  </div>
-                  <div className="hidden text-white sm:block">
-                    {item.status}
-                  </div>
-                </div>
-              </td>
-              <td className="hidden py-4 pl-0 pr-8 text-sm leading-6 text-gray-400 md:table-cell lg:pr-20">
-                {item.duration}
-              </td>
-
-              <td className="hidden py-4 pl-0 pr-4 text-right text-sm leading-6 text-gray-400 sm:table-cell sm:pr-6 lg:pr-8">
-                <time dateTime={item.dateTime}>{item.date}</time>
-              </td>
-
-              <td className="hidden py-4 pl-0 pr-4 text-right text-sm leading-6 text-gray-400 sm:table-cell sm:pr-6 lg:pr-8">
-                <Button
-                  variant="tertiary"
-                  onClick={() => deleteUserMutation(item.user.id)}
-                >
-                  <icons.TrashIcon className="h-5 w-5" />
-                </Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+                    <icons.TrashIcon className="h-5 w-5" />
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <UserModal show={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </>
   );
 };
