@@ -1,38 +1,42 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import mem from "mem";
 
-import { useUserStore } from "@/stores";
+import { useAuthStore } from "~/stores";
 import type { ServiceResponse } from "../api.types";
-import { privateAPI } from "../axios";
+import { api } from "../axios";
+
+const { setToken } = useAuthStore.getState();
 
 export interface UserToken {
-  refreshToken: string;
-  tokenType: string;
-  expiresIn: number;
+  refresh_token: string;
+  token_type: string;
+  expires_in: number;
 }
 
+// refresh token was based on this article
+// https://dev.to/franciscomendes10866/how-to-use-axios-interceptors-b7d
+
 const refreshToken = async () => {
-  const { setToken, clearUser } = useUserStore.getState();
   let refreshWasSuccessful = false;
-
   try {
-    const response =
-      await privateAPI.post<ServiceResponse<UserToken>>("/auth/refresh");
-
+    const response = await api.post<ServiceResponse<UserToken>>(
+      "/auth/refresh",
+      {},
+    );
     const { data: userToken } = response.data;
-    if (!userToken.refreshToken) {
-      clearUser();
+    if (!userToken.refresh_token) {
+      setToken(null);
     } else {
       refreshWasSuccessful = true;
-      setToken(userToken.refreshToken);
+      setToken(userToken.refresh_token);
     }
   } catch (error) {
-    clearUser();
+    setToken(null);
   }
-
   return refreshWasSuccessful;
 };
 
-const MAX_AGE = 10000;
+const maxAge = 10000;
 
-export const memoizedRefreshToken = mem(refreshToken, { maxAge: MAX_AGE });
+export const memoizedRefreshToken = mem(refreshToken, {
+  maxAge,
+});

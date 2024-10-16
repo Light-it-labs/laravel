@@ -1,27 +1,36 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "baseUrl": "./resources/js",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "incremental": true,
-    "isolatedModules": true,
-    "jsx": "react-jsx",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "rootDir": "./",
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["esnext", "DOM", "DOM.Iterable"],
     "module": "esnext",
-    "moduleResolution": "node",
-    "noEmit": true,
-    "noUncheckedIndexedAccess": true,
-    "paths": {
-      "@/*": ["*"]
-    },
-    "resolveJsonModule": true,
     "skipLibCheck": true,
+    "baseUrl": "./resources/js",
+    "paths": {
+      "~/assets": ["./shared/assets"],
+      "~/components": ["./shared/components/ui"],
+      "~/hooks": ["./shared/hooks"],
+      "~/icons": ["./shared/components/icons"],
+      "~/sections": ["./shared/sections"],
+      "~/utils": ["./shared/utils"],
+      "~/*": ["*"]
+    },
+
+    /* Bundler mode */
+    "moduleResolution": "node",
+    "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve",
+
+    /* Linting */
     "strict": true,
-    "target": "ESNext",
-    "types": ["vite/client"],
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["./resources/js/**/*", ".eslintrc.cjs", "prettier.config.cjs"]
 }

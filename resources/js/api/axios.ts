@@ -1,17 +1,20 @@
 import axios from "axios";
 
-import { env } from "@/env";
-import { errorResponse, privateRequest } from "./interceptors";
+import { env } from "~/env";
+import {
+  authHeaderInterceptor,
+  errorResponseInterceptor,
+} from "./interceptors";
 
-const baseConfig = {
+export const api = axios.create({
   baseURL: env.VITE_API_URL,
   headers: {
     "Content-Type": "application/json",
   },
-};
+});
 
-export const publicAPI = axios.create(baseConfig);
-export const privateAPI = axios.create(baseConfig);
+api.interceptors.request.use(authHeaderInterceptor);
 
-privateAPI.interceptors.request.use(privateRequest);
-privateAPI.interceptors.response.use((response) => response, errorResponse);
+// interceptor was based on this article
+// https://dev.to/franciscomendes10866/how-to-use-axios-interceptors-b7d
+api.interceptors.response.use((response) => response, errorResponseInterceptor);
