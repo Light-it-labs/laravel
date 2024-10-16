@@ -1,3 +1,4 @@
+import path from "path";
 import { sentryVitePlugin } from "@sentry/vite-plugin";
 /* eslint-disable import/no-extraneous-dependencies */
 import react from "@vitejs/plugin-react";
@@ -25,9 +26,37 @@ export default ({ mode }) => {
         name: "blade",
       },
     ],
-  
     build: {
       sourcemap: true,
+    },
+    resolve: {
+      alias: [
+        {
+          find: "~/assets",
+          replacement: path.resolve(__dirname, "./resources/js/shared/assets"),
+        },
+        {
+          find: "~/components",
+          replacement: path.resolve(__dirname, "./resources/js/shared/components/ui"),
+        },
+        {
+          find: "~/hooks",
+          replacement: path.resolve(__dirname, "./resources/js/shared/hooks"),
+        },
+        {
+          find: "~/icons",
+          replacement: path.resolve(__dirname, "./resources/js/shared/components/icons"),
+        },
+        {
+          find: "~/sections",
+          replacement: path.resolve(__dirname, "./resources/js/shared/sections"),
+        },
+        {
+          find: "~/utils",
+          replacement: path.resolve(__dirname, "./resources/js/shared/utils"),
+        },
+        { find: "~", replacement: path.resolve(__dirname, "./resources/js") },
+      ],
     },
   };
 
@@ -37,7 +66,7 @@ export default ({ mode }) => {
     const sentryAuthToken = env.VITE_SENTRY_AUTH_TOKEN;
     const sentryOrg = env.VITE_SENTRY_ORGANIZATION;
     const sentryProject = env.VITE_SENTRY_PROJECT;
-    
+
     if (sentryAuthToken && sentryOrg && sentryProject) {
       config.plugins.push(sentryVitePlugin({
         authToken: sentryAuthToken,
